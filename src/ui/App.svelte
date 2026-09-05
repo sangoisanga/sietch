@@ -132,9 +132,7 @@
   </p>
 </div>
 
-<div bind:offsetHeight={barHeight}>
-  <PlayerBar {player} />
-</div>
+<PlayerBar {player} bind:height={barHeight} />
 
 <SettingsSheet bind:open={settingsOpen} {providers} {player} {runSteppedTask} />
 <LibrarySheet bind:open={libraryOpen} />

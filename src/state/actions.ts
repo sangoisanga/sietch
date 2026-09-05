@@ -12,6 +12,7 @@ import { exportProfile, importProfile } from '../data/profileTransfer'
 import {
   activeProfile, createProfile, deleteProfile, listProfiles, renameProfile, setActiveProfile,
 } from '../data/profiles'
+import { loadPrefs, savePrefs } from '../data/prefs'
 import { exportPool, findConflict, installPool, listPools, loadDrill, toRotationPool, type InstallDecision } from '../data/pools'
 import { assignForPeriod, loadProgress, markCompleted } from '../data/progress'
 import { loadSettings, saveSettings } from '../data/settings'
@@ -150,6 +151,13 @@ async function ensureStarterPool(): Promise<void> {
 export async function refreshProfiles(): Promise<void> {
   app.profiles = await listProfiles()
   app.profile = await activeProfile()
+  app.shadowPace = (await loadPrefs(app.profile.id)).shadowPace
+}
+
+export async function setShadowPace(pace: number): Promise<void> {
+  if (!app.profile) return
+  app.shadowPace = pace
+  await savePrefs(app.profile.id, { shadowPace: pace })
 }
 
 export async function boot(): Promise<void> {

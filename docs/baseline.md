@@ -53,5 +53,6 @@ A new dependency needs a one-line reason recorded below. "It is popular" is not 
 Not a chosen rule, but the migration path is real and someone will need it:
 
 - Persisted shapes carry a version: `DB_VERSION` in `src/data/db.ts`, `schema` in a pool file.
-- Bumping `DB_VERSION` adds a `case` to the `upgrade` switch. Never edit an existing `case` — someone's browser is still on it.
+- Bumping `DB_VERSION` adds one `if (oldVersion < n)` block to `upgrade`, never an edit to an existing block — someone's browser is still on that version. (A `switch` cannot be used here: version steps need fall-through, which `noFallthroughCasesInSwitch` forbids.)
+- Every bump gets a test that builds a database at the previous version, opens it at the new one, and asserts the old data survived.
 - An unknown pool `schema` fails with the version in the error message, so an old app tells the user what is wrong instead of reporting a shape error.

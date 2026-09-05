@@ -3,7 +3,7 @@ import type { Settings } from '../core/settings'
 import type { Drill, Profile } from '../types'
 
 export const DB_NAME = 'drill-forge'
-export const DB_VERSION = 1
+export const DB_VERSION = 2
 
 export const ACTIVE_PROFILE_KEY = 'activeProfile'
 
@@ -51,6 +51,11 @@ export interface LibraryRecord extends Timestamped {
   drill: Drill
 }
 
+export interface ProfilePrefsRecord extends Timestamped {
+  profileId: string
+  shadowPace: number
+}
+
 export interface MetaRecord {
   key: string
   value: unknown
@@ -65,9 +70,14 @@ interface DrillForgeDB extends DBSchema {
   settings: { key: string; value: SettingsRecord }
   library: { key: string; value: LibraryRecord }
   meta: { key: string; value: MetaRecord }
+  profilePrefs: { key: string; value: ProfilePrefsRecord }
 }
 
 export type DrillForgeDatabase = IDBPDatabase<DrillForgeDB>
+
+function createProfilePrefsStore(db: DrillForgeDatabase): void {
+  db.createObjectStore('profilePrefs', { keyPath: 'profileId' })
+}
 
 function createInitialStores(db: DrillForgeDatabase): void {
   db.createObjectStore('profiles', { keyPath: 'id' })
@@ -87,11 +97,10 @@ let connection: Promise<DrillForgeDatabase> | null = null
 export function openDb(): Promise<DrillForgeDatabase> {
   connection ??= openDB<DrillForgeDB>(DB_NAME, DB_VERSION, {
     upgrade(db, oldVersion) {
-      // never edit an existing case — someone's browser is still on that version
-      switch (oldVersion) {
-        case 0:
-          createInitialStores(db as unknown as DrillForgeDatabase)
-      }
+      // one block per version step, never edited once shipped — someone's browser is still on it
+      const database = db as unknown as DrillForgeDatabase
+      if (oldVersion < 1) createInitialStores(database)
+      if (oldVersion < 2) createProfilePrefsStore(database)
     },
   })
   return connection

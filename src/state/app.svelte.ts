@@ -1,6 +1,7 @@
 import { DEFAULT_ACCENT, resolveAccent } from '../core/accents'
 import { auditIPA } from '../core/audit'
 import { DEFAULT_SETTINGS, type Settings } from '../core/settings'
+import { DEFAULT_SHADOW_PACE } from '../core/shadow'
 import { countWords } from '../core/text'
 import type { PoolRecord } from '../data/db'
 import type { Drill, Profile } from '../types'
@@ -47,6 +48,7 @@ class AppState {
   completedToday = $state(false)
   openPackId = $state('')
   library = $state<(Drill & { entryId: string })[]>([])
+  shadowPace = $state(DEFAULT_SHADOW_PACE)
 
   toggles = $state({ ipa: true, vi: true, anchor: true, shadow: false })
   playing = $state(false)

@@ -1,11 +1,9 @@
 import { resolveAccent } from '../core/accents'
+import { estimatedShadowGapMs, shadowGapMs } from '../core/shadow'
 import type { Providers } from '../providers'
 import type { SpeakOptions, SpeechHandle } from '../providers/tts/types'
 import { STRINGS } from '../ui/strings'
 import { app, setStatus } from './app.svelte'
-
-const SHADOW_PACE = 1150
-const MS_PER_CHARACTER = 70
 
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -54,18 +52,18 @@ export function createPlayer(providers: Providers): Player {
     const sentence = app.drill.sentences[index]
     if (!sentence) return
 
-    let gap = sentence.en.length * MS_PER_CHARACTER
+    let gap = estimatedShadowGapMs(sentence.en, app.shadowPace)
     const { prefetch } = providers.activeTts()
     if (prefetch) {
       try {
         const clip = await prefetch(sentence.en, speakOptions())
-        gap = clip.durationSeconds / app.settings.rate * SHADOW_PACE
+        gap = shadowGapMs(clip.durationSeconds, app.settings.rate, app.shadowPace)
       } catch {
         // no clip to measure — the character-count estimate stands
       }
     }
 
-    setStatus(STRINGS.yourTurn(index), 'shadow')
+    setStatus(STRINGS.yourTurn(index, Math.round(gap / 1000)), 'shadow')
     const until = Date.now() + gap
     while (Date.now() < until) {
       if (app.stopRequested) return
