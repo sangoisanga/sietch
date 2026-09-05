@@ -1,4 +1,4 @@
-import type { Progress } from '../core/profiles'
+import type { Progress } from '../types'
 import { itemKey, type Pool, type PoolItem } from './pool'
 
 function hash(seed: string): number {

@@ -1,0 +1,1380 @@
+{
+  "schema": 1,
+  "id": "drill-forge-starter",
+  "title": "Drill Forge starter",
+  "version": 1,
+  "cadence": "daily",
+  "author": "Drill Forge",
+  "license": "CC-BY-4.0",
+  "updatedAt": "2026-09-05T00:00:00.000Z",
+  "packs": [
+    {
+      "id": "beatles",
+      "theme": "The Beatles",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "Yesterday I saw a friend I hadn't seen for years.",
+          "ipa": "/ˈjɛstɚdeɪ aɪ ˈsɔ ə ˈfrɛnd aɪ ˈhædnt ˈsin fɚ ˈjɪrz/",
+          "vi": "Hôm qua tôi gặp lại một người bạn cũ, đã bao năm không thấy nhau.",
+          "tips": [
+            "/ɚ/ trong yesterday — cong lưỡi",
+            "years /jɪrz/ giữ /r/",
+            "hadn't: nuốt nguyên âm"
+          ]
+        },
+        {
+          "en": "We chose joy over gold.",
+          "ipa": "/wi ˈtʃoʊz ˈdʒɔɪ ˈoʊvɚ ˈɡoʊld/",
+          "vi": "Chúng tôi chọn niềm vui, không chọn vàng.",
+          "tips": [
+            "/tʃ/ vs /dʒ/ liền nhau",
+            "gold: dark L",
+            "/oʊ/ tròn môi rồi trượt"
+          ]
+        },
+        {
+          "en": "A hard day's work leaves you tired, but the pleasure is pure: a warm voice, a shared song, good friends here at home.",
+          "ipa": "/ə ˈhɑrd ˈdeɪz ˈwɝk ˈlivz ju ˈtaɪɚd | bət ðə ˈplɛʒɚ ɪz ˈpjʊr | ə ˈwɔrm ˈvɔɪs | ə ˈʃɛrd ˈsɔŋ | ˈɡʊd ˈfrɛndz ˈhɪr æt ˈhoʊm/",
+          "vi": "Một ngày làm việc cật lực khiến ta rã rời, nhưng cái sướng thì nguyên vẹn: một giọng ấm, một bài hát chung, bạn bè ngay tại nhà.",
+          "tips": [
+            "pleasure /ˈplɛʒɚ/ — /ʒ/",
+            "pure /pjʊr/ giữ /j/",
+            "hard, warm: bật /r/ cuối",
+            "song /sɔŋ/ không /ɡ/"
+          ]
+        },
+        {
+          "en": "Look at the blackbird — she sings through the long, dark night and waits for the sun.",
+          "ipa": "/ˈlʊk ət ðə ˈblækbɝd | ʃi ˈsɪŋz θru ðə ˈlɔŋ ˈdɑrk ˈnaɪt ənd ˈweɪts fɚ ðə ˈsʌn/",
+          "vi": "Nhìn con chim đen kia — nó hót suốt đêm dài và chờ mặt trời lên.",
+          "tips": [
+            "through /θ/ lưỡi ra răng",
+            "blackbird /ˈblækbɝd/ — /ɝ/",
+            "waits: /ts/ bật gọn"
+          ]
+        },
+        {
+          "en": "Nothing you own can buy that hour.",
+          "ipa": "/ˈnʌθɪŋ ju ˈoʊn kən ˈbaɪ ðæt ˈaʊɚ/",
+          "vi": "Không tài sản nào mua nổi cái giờ khắc ấy.",
+          "tips": [
+            "nothing: /θ/ + /ŋ/",
+            "that hour: /t/ thành âm vỗ",
+            "hour /aʊɚ/ câm h"
+          ]
+        },
+        {
+          "en": "So take my hand, breathe, and let the world turn.",
+          "ipa": "/soʊ ˈteɪk maɪ ˈhænd | ˈbrið | ənd ˈlɛt ðə ˈwɝld ˈtɝn/",
+          "vi": "Nắm tay tôi đi, thở một hơi, và để đời cứ trôi.",
+          "tips": [
+            "breathe /brið/ — /ð/ rung",
+            "world: /ɝ/ rồi dark L"
+          ]
+        },
+        {
+          "en": "Rain will pour, the road will bend, we grow.",
+          "ipa": "/ˈreɪn wɪl ˈpɔr | ðə ˈroʊd wɪl ˈbɛnd | wi ˈɡroʊ/",
+          "vi": "Mưa sẽ đổ, đường sẽ quanh co, ta lớn lên.",
+          "tips": [
+            "pour /pɔr/ bật /r/",
+            "/r/ đầu từ vs dark L cuối"
+          ]
+        },
+        {
+          "en": "Love is the one thing that measures us: not what we earn, but who we are when we say hello, and again when we say goodbye.",
+          "ipa": "/ˈlʌv ɪz ðə ˈwʌn ˈθɪŋ ðət ˈmɛʒɚz əs | ˈnɑt ˈwʌt wi ˈɝn | bət ˈhu wi ˈɑr wɛn wi seɪ həˈloʊ | ənd əˈɡɛn wɛn wi seɪ ɡʊdˈbaɪ/",
+          "vi": "Tình thương mới là thước đo: không phải ta kiếm bao nhiêu, mà ta là ai lúc chào nhau, và lúc chia tay.",
+          "tips": [
+            "measures /ˈmɛʒɚz/ — /ʒ/",
+            "thing /θɪŋ/",
+            "EARN ↗ … ARE ↘"
+          ]
+        },
+        {
+          "en": "Tomorrow is unwritten.",
+          "ipa": "/təˈmɑroʊ ɪz ʌnˈrɪtn/",
+          "vi": "Ngày mai còn là trang giấy trắng.",
+          "tips": [
+            "/t/ thành âm vỗ, /n/ âm tiết"
+          ]
+        },
+        {
+          "en": "Yesterday is finished.",
+          "ipa": "/ˈjɛstɚdeɪ ɪz ˈfɪnɪʃt/",
+          "vi": "Hôm qua đã khép lại.",
+          "tips": [
+            "finished /ʃt/ — kết dứt khoát"
+          ]
+        },
+        {
+          "en": "Sing now.",
+          "ipa": "/ˈsɪŋ ˈnaʊ/",
+          "vi": "Hát đi, ngay bây giờ.",
+          "tips": [
+            "/ŋ/ cuối + /naʊ/ mở rộng"
+          ]
+        }
+      ],
+      "anchors": {
+        "yesterday": "/ˈjɛstɚdeɪ/ trọng âm đầu, /ɚ/ cong lưỡi",
+        "saw": "/sɔ/ — nhiều vùng Mỹ đọc /sɑ/",
+        "years": "/jɪrz/ giữ /r/",
+        "hadn't": "nuốt nguyên âm, /t/ tắc họng",
+        "gold": "dark L",
+        "world": "/wɝld/ — /ɝ/ rồi dark L",
+        "will": "dark L",
+        "pleasure": "/ˈplɛʒɚ/ — /ʒ/ rung",
+        "measures": "/ˈmɛʒɚz/ — /ʒ/ rung",
+        "pure": "/pjʊr/ giữ /j/",
+        "song": "/sɔŋ/ không thêm /ɡ/",
+        "sings": "/sɪŋz/",
+        "nothing": "/θ/ + /ŋ/",
+        "thing": "/θɪŋ/",
+        "sing": "/sɪŋ/",
+        "through": "/θru/ lưỡi ra răng",
+        "breathe": "/brið/ — /ð/ rung",
+        "here": "/hɪr/ giữ /r/",
+        "hard": "/hɑrd/ bật /r/ rõ",
+        "dark": "/dɑrk/ bật /r/ rõ",
+        "warm": "/wɔrm/ bật /r/ rõ",
+        "pour": "/pɔr/ bật /r/ rõ",
+        "work": "/wɝk/ — /ɝ/ cong lưỡi",
+        "turn": "/tɝn/ — /ɝ/ cong lưỡi",
+        "earn": "/ɝn/ — lên giọng",
+        "are": "/ɑr/ — rơi giọng",
+        "that": "trước nguyên âm, /t/ thành âm vỗ /ɾ/",
+        "hour": "/aʊɚ/ câm h",
+        "unwritten": "/ʌnˈrɪtn/ — /n/ âm tiết",
+        "goodbye": "trọng âm sau",
+        "hello": "trọng âm sau"
+      }
+    },
+    {
+      "id": "dylan",
+      "theme": "Bob Dylan",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "The answer was never hiding; it was just louder than the question.",
+          "ipa": "/ði ˈænsɚ wəz ˈnɛvɚ ˈhaɪdɪŋ | ɪt wəz ˈdʒʌst ˈlaʊdɚ ðən ðə ˈkwɛstʃən/",
+          "vi": "Câu trả lời chưa từng trốn; nó chỉ ồn hơn câu hỏi.",
+          "tips": [
+            "question /ˈkwɛstʃən/ — /tʃ/ giữa",
+            "louder /ˈlaʊdɚ/ — /aʊ/ rồi /ɚ/"
+          ]
+        },
+        {
+          "en": "Old roads judge you by your shoes, not your reasons.",
+          "ipa": "/ˈoʊld ˈroʊdz ˈdʒʌdʒ ju baɪ jʊr ˈʃuz | ˈnɑt jʊr ˈrizənz/",
+          "vi": "Những con đường cũ đánh giá bạn qua đôi giày, không qua lý lẽ.",
+          "tips": [
+            "judge /dʒʌdʒ/ — /dʒ/ hai đầu",
+            "shoes /ʃuz/ — /ʃ/ rồi /u/"
+          ]
+        },
+        {
+          "en": "Something is happening here, and the paper will print it wrong.",
+          "ipa": "/ˈsʌmθɪŋ ɪz ˈhæpənɪŋ ˈhɪr | ənd ðə ˈpeɪpɚ wɪl ˈprɪnt ɪt ˈrɔŋ/",
+          "vi": "Có chuyện đang xảy ra ở đây, và báo chí sẽ in sai.",
+          "tips": [
+            "something: /θ/ + /ŋ/",
+            "wrong /rɔŋ/ câm w"
+          ]
+        },
+        {
+          "en": "A good song is a coin: one face pleasure, one face warning.",
+          "ipa": "/ə ˈɡʊd ˈsɔŋ ɪz ə ˈkɔɪn | ˈwʌn ˈfeɪs ˈplɛʒɚ | ˈwʌn ˈfeɪs ˈwɔrnɪŋ/",
+          "vi": "Bài hát hay là đồng xu: một mặt khoái cảm, một mặt cảnh báo.",
+          "tips": [
+            "coin /kɔɪn/ — /ɔɪ/",
+            "pleasure /ˈplɛʒɚ/ — /ʒ/ rung"
+          ]
+        },
+        {
+          "en": "They wanted a prophet; he bought a motorcycle.",
+          "ipa": "/ðeɪ ˈwɔntɪd ə ˈprɑfət | hi ˈbɔt ə ˈmoʊtɚsaɪkəl/",
+          "vi": "Họ muốn một nhà tiên tri; anh ta mua một chiếc mô tô.",
+          "tips": [
+            "bought /bɔt/ — /ɔ/ dài",
+            "motorcycle: /t/ thành âm vỗ"
+          ]
+        },
+        {
+          "en": "Truth moves through a crowd like weather through a field.",
+          "ipa": "/ˈtruθ ˈmuvz θru ə ˈkraʊd ˈlaɪk ˈwɛðɚ θru ə ˈfild/",
+          "vi": "Sự thật đi qua đám đông như thời tiết đi qua cánh đồng.",
+          "tips": [
+            "truth /truθ/ và through /θru/ — /θ/",
+            "weather /ˈwɛðɚ/ — /ð/ rung"
+          ]
+        },
+        {
+          "en": "Take what you can carry and leave the rest burning.",
+          "ipa": "/ˈteɪk ˈwʌt ju kən ˈkæri ənd ˈliv ðə ˈrɛst ˈbɝnɪŋ/",
+          "vi": "Mang theo thứ bạn vác nổi và để phần còn lại cháy.",
+          "tips": [
+            "carry /ˈkæri/ — /æ/ mở",
+            "burning /ˈbɝnɪŋ/ — /ɝ/"
+          ]
+        },
+        {
+          "en": "The times were always changing; we just noticed.",
+          "ipa": "/ðə ˈtaɪmz wɚ ˈɔlweɪz ˈtʃeɪndʒɪŋ | wi ˈdʒʌst ˈnoʊtɪst/",
+          "vi": "Thời thế vẫn luôn đổi; chỉ là ta mới để ý.",
+          "tips": [
+            "changing /ˈtʃeɪndʒɪŋ/ — /tʃ/ đầu, /dʒ/ giữa",
+            "noticed: /t/ thành âm vỗ"
+          ]
+        },
+        {
+          "en": "Sing it plain.",
+          "ipa": "/ˈsɪŋ ɪt ˈpleɪn/",
+          "vi": "Hát mộc thôi.",
+          "tips": [
+            "sing /sɪŋ/ — /ŋ/ cuối",
+            "plain /pleɪn/ — /pl/"
+          ]
+        }
+      ],
+      "anchors": {
+        "question": "/ˈkwɛstʃən/ — /tʃ/ giữa",
+        "louder": "/ˈlaʊdɚ/",
+        "judge": "/dʒʌdʒ/ — /dʒ/ hai đầu",
+        "shoes": "/ʃuz/",
+        "something": "/θ/ + /ŋ/",
+        "wrong": "/rɔŋ/ câm w",
+        "coin": "/kɔɪn/",
+        "pleasure": "/ˈplɛʒɚ/ — /ʒ/ rung",
+        "bought": "/bɔt/",
+        "motorcycle": "/t/ thành âm vỗ",
+        "truth": "/truθ/",
+        "through": "/θru/ lưỡi ra răng",
+        "weather": "/ˈwɛðɚ/ — /ð/ rung",
+        "carry": "/ˈkæri/",
+        "burning": "/ˈbɝnɪŋ/ — /ɝ/",
+        "changing": "/ˈtʃeɪndʒɪŋ/",
+        "sing": "/sɪŋ/",
+        "warning": "/ˈwɔrnɪŋ/ bật /r/"
+      }
+    },
+    {
+      "id": "cohen",
+      "theme": "Leonard Cohen",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "There is a crack in every honest thing; that is the door.",
+          "ipa": "/ðɛr ɪz ə ˈkræk ɪn ˈɛvri ˈɑnəst ˈθɪŋ | ˈðæt ɪz ðə ˈdɔr/",
+          "vi": "Thứ gì thật thà cũng có một vết nứt; đó chính là cánh cửa.",
+          "tips": [
+            "thing /θɪŋ/ — /θ/ rồi /ŋ/",
+            "that /ðæt/ — /ð/ rung"
+          ]
+        },
+        {
+          "en": "He sang low because the high notes were already taken.",
+          "ipa": "/hi ˈsæŋ ˈloʊ bɪˈkɔz ðə ˈhaɪ ˈnoʊts wɚ ɔlˈrɛdi ˈteɪkən/",
+          "vi": "Ông hát trầm vì những nốt cao đã có người lấy mất.",
+          "tips": [
+            "sang /sæŋ/ — /æ/ rồi /ŋ/",
+            "low /loʊ/ vs high /haɪ/"
+          ]
+        },
+        {
+          "en": "Love is not a victory march; it is a long apprenticeship.",
+          "ipa": "/ˈlʌv ɪz ˈnɑt ə ˈvɪktəri ˈmɑrtʃ | ɪt ɪz ə ˈlɔŋ əˈprɛntɪsʃɪp/",
+          "vi": "Tình yêu không phải khúc khải hoàn; nó là một cuộc học nghề dài.",
+          "tips": [
+            "march /mɑrtʃ/ — /tʃ/ cuối",
+            "apprenticeship: /sʃ/ đừng nuốt"
+          ]
+        },
+        {
+          "en": "The saints and the drunks judge nothing; both leave a coin.",
+          "ipa": "/ðə ˈseɪnts ənd ðə ˈdrʌŋks ˈdʒʌdʒ ˈnʌθɪŋ | ˈboʊθ ˈliv ə ˈkɔɪn/",
+          "vi": "Thánh nhân và kẻ say chẳng phán xét ai; cả hai đều để lại một đồng xu.",
+          "tips": [
+            "drunks /drʌŋks/ — /ŋks/",
+            "both /boʊθ/ — /θ/ cuối"
+          ]
+        },
+        {
+          "en": "Measure your sorrow in music, and it will pay rent.",
+          "ipa": "/ˈmɛʒɚ jʊr ˈsɑroʊ ɪn ˈmjuzɪk | ənd ɪt wɪl ˈpeɪ ˈrɛnt/",
+          "vi": "Hãy đo nỗi buồn bằng âm nhạc, rồi nó sẽ trả tiền nhà.",
+          "tips": [
+            "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+            "music /ˈmjuzɪk/ giữ /j/"
+          ]
+        },
+        {
+          "en": "A good coat, a cheap room, and a woman's laughter down the hall.",
+          "ipa": "/ə ˈɡʊd ˈkoʊt | ə ˈtʃip ˈrum | ənd ə ˈwʊmənz ˈlæftɚ ˈdaʊn ðə ˈhɔl/",
+          "vi": "Một áo khoác tốt, một căn phòng rẻ, và tiếng cười đàn bà cuối hành lang.",
+          "tips": [
+            "cheap /tʃip/ — /tʃ/ đầu",
+            "woman's /ˈwʊmənz/ — /ʊ/ ngắn"
+          ]
+        },
+        {
+          "en": "You want it darker; the light was never yours to dim.",
+          "ipa": "/ju ˈwɔnt ɪt ˈdɑrkɚ | ðə ˈlaɪt wəz ˈnɛvɚ ˈjʊrz tu ˈdɪm/",
+          "vi": "Bạn muốn nó tối hơn; ánh sáng vốn chưa từng thuộc về bạn để mà vặn nhỏ.",
+          "tips": [
+            "darker /ˈdɑrkɚ/ — /ɑr/ rồi /ɚ/",
+            "yours /jʊrz/ giữ /j/"
+          ]
+        },
+        {
+          "en": "Sing the broken word.",
+          "ipa": "/ˈsɪŋ ðə ˈbroʊkən ˈwɝd/",
+          "vi": "Hãy hát cái từ đã vỡ.",
+          "tips": [
+            "word /wɝd/ — /ɝ/ cong lưỡi",
+            "sing /sɪŋ/ — /ŋ/"
+          ]
+        },
+        {
+          "en": "That is enough.",
+          "ipa": "/ˈðæt ɪz ɪˈnʌf/",
+          "vi": "Thế là đủ.",
+          "tips": [
+            "enough /ɪˈnʌf/ trọng âm sau"
+          ]
+        }
+      ],
+      "anchors": {
+        "thing": "/θɪŋ/ — /θ/ rồi /ŋ/",
+        "sang": "/sæŋ/",
+        "march": "/mɑrtʃ/ — /tʃ/ cuối",
+        "drunks": "/drʌŋks/ — /ŋks/",
+        "both": "/boʊθ/ — /θ/ cuối",
+        "judge": "/dʒʌdʒ/",
+        "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+        "music": "/ˈmjuzɪk/ giữ /j/",
+        "cheap": "/tʃip/",
+        "woman's": "/ˈwʊmənz/ — /ʊ/ ngắn",
+        "darker": "/ˈdɑrkɚ/",
+        "yours": "/jʊrz/ giữ /j/",
+        "word": "/wɝd/ — /ɝ/",
+        "enough": "/ɪˈnʌf/ trọng âm sau",
+        "coin": "/kɔɪn/",
+        "laughter": "/ˈlæftɚ/",
+        "already": "/ɔlˈrɛdi/"
+      }
+    },
+    {
+      "id": "andersen",
+      "theme": "Hans Christian Andersen",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "The duckling was not ugly; the pond was simply the wrong mirror.",
+          "ipa": "/ðə ˈdʌklɪŋ wəz ˈnɑt ˈʌɡli | ðə ˈpɑnd wəz ˈsɪmpli ðə ˈrɔŋ ˈmɪrɚ/",
+          "vi": "Con vịt con không hề xấu; cái ao chỉ là tấm gương sai.",
+          "tips": [
+            "duckling /ˈdʌklɪŋ/ — /ŋ/ cuối",
+            "wrong /rɔŋ/ câm w",
+            "mirror /ˈmɪrɚ/ — /ɚ/"
+          ]
+        },
+        {
+          "en": "A tin soldier loves best when he cannot move or speak.",
+          "ipa": "/ə ˈtɪn ˈsoʊldʒɚ ˈlʌvz ˈbɛst wɛn hi ˈkænɑt ˈmuv ɔr ˈspik/",
+          "vi": "Chàng lính chì yêu sâu nhất khi không thể cử động hay cất lời.",
+          "tips": [
+            "soldier /ˈsoʊldʒɚ/ — /dʒ/ giữa",
+            "loves /lʌvz/ — /v/ rồi /z/"
+          ]
+        },
+        {
+          "en": "She traded her voice for legs, and found the shore was also a kind of sea.",
+          "ipa": "/ʃi ˈtreɪdɪd hɚ ˈvɔɪs fɔr ˈlɛɡz | ənd ˈfaʊnd ðə ˈʃɔr wəz ˈɔlsoʊ ə ˈkaɪnd ʌv ˈsi/",
+          "vi": "Nàng đổi giọng lấy đôi chân, rồi nhận ra bờ cũng là một thứ biển.",
+          "tips": [
+            "voice /vɔɪs/",
+            "shore /ʃɔr/ — /ʃ/ rồi /r/",
+            "found /faʊnd/ — /aʊ/"
+          ]
+        },
+        {
+          "en": "Every winter the garden pretends to be finished.",
+          "ipa": "/ˈɛvri ˈwɪntɚ ðə ˈɡɑrdn prɪˈtɛndz tu bi ˈfɪnɪʃt/",
+          "vi": "Mùa đông nào khu vườn cũng giả vờ như đã hết.",
+          "tips": [
+            "garden /ˈɡɑrdn/ — /n/ âm tiết",
+            "finished /ˈfɪnɪʃt/ — /ʃt/"
+          ]
+        },
+        {
+          "en": "The emperor's new clothes were a measure of the crowd, not the thread.",
+          "ipa": "/ði ˈɛmpərɚz ˈnu ˈkloʊðz wɚ ə ˈmɛʒɚ ʌv ðə ˈkraʊd | ˈnɑt ðə ˈθrɛd/",
+          "vi": "Bộ đồ mới của hoàng đế là thước đo đám đông, không phải thước đo sợi vải.",
+          "tips": [
+            "clothes /kloʊðz/ — /ðz/ khó, đừng bỏ",
+            "measure /ˈmɛʒɚ/ — /ʒ/",
+            "thread /θrɛd/ — /θr/"
+          ]
+        },
+        {
+          "en": "Grief is a swan that arrives young.",
+          "ipa": "/ˈɡrif ɪz ə ˈswɑn ðət əˈraɪvz ˈjʌŋ/",
+          "vi": "Nỗi đau là con thiên nga đến sớm.",
+          "tips": [
+            "grief /ɡrif/ — /i/ dài",
+            "young /jʌŋ/ — /j/ rồi /ŋ/"
+          ]
+        },
+        {
+          "en": "Put your ear to the cold stove; the story is still burning.",
+          "ipa": "/ˈpʊt jʊr ˈɪr tu ðə ˈkoʊld ˈstoʊv | ðə ˈstɔri ɪz ˈstɪl ˈbɝnɪŋ/",
+          "vi": "Ghé tai vào cái lò lạnh ngắt; câu chuyện vẫn đang cháy.",
+          "tips": [
+            "put /pʊt/ — /ʊ/ ngắn",
+            "burning /ˈbɝnɪŋ/ — /ɝ/ cong lưỡi"
+          ]
+        },
+        {
+          "en": "Beauty chose the long road.",
+          "ipa": "/ˈbjuti ˈtʃoʊz ðə ˈlɔŋ ˈroʊd/",
+          "vi": "Cái đẹp chọn con đường dài.",
+          "tips": [
+            "beauty /ˈbjuti/ giữ /j/",
+            "chose /tʃoʊz/ — /tʃ/"
+          ]
+        },
+        {
+          "en": "Wait for the thaw.",
+          "ipa": "/ˈweɪt fɔr ðə ˈθɔ/",
+          "vi": "Hãy đợi băng tan.",
+          "tips": [
+            "thaw /θɔ/ — /θ/ rồi /ɔ/, không có /r/"
+          ]
+        }
+      ],
+      "anchors": {
+        "duckling": "/ˈdʌklɪŋ/ — /ŋ/ cuối",
+        "wrong": "/rɔŋ/ câm w",
+        "mirror": "/ˈmɪrɚ/ — /ɚ/",
+        "soldier": "/ˈsoʊldʒɚ/ — /dʒ/ giữa",
+        "voice": "/vɔɪs/",
+        "shore": "/ʃɔr/ — /ʃ/ rồi /r/",
+        "garden": "/ˈɡɑrdn/ — /n/ âm tiết",
+        "clothes": "/kloʊðz/ — /ðz/ đừng bỏ",
+        "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+        "thread": "/θrɛd/ — /θr/",
+        "grief": "/ɡrif/ — /i/ dài",
+        "young": "/jʌŋ/",
+        "put": "/pʊt/ — /ʊ/ ngắn",
+        "burning": "/ˈbɝnɪŋ/ — /ɝ/",
+        "beauty": "/ˈbjuti/ giữ /j/",
+        "chose": "/tʃoʊz/",
+        "thaw": "/θɔ/ không có /r/",
+        "crowd": "/kraʊd/",
+        "finished": "/ˈfɪnɪʃt/ — /ʃt/"
+      }
+    },
+    {
+      "id": "aesop",
+      "theme": "Aesop's Fables",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "The fox judged the grapes sour only after the third jump.",
+          "ipa": "/ðə ˈfɑks ˈdʒʌdʒd ðə ˈɡreɪps ˈsaʊɚ ˈoʊnli ˈæftɚ ðə ˈθɝd ˈdʒʌmp/",
+          "vi": "Con cáo chê nho chua chỉ sau cú nhảy thứ ba.",
+          "tips": [
+            "judged /dʒʌdʒd/ — /dʒ/ hai đầu",
+            "sour /ˈsaʊɚ/ — /aʊ/ rồi /ɚ/",
+            "third /θɝd/ — /θ/ rồi /ɝ/"
+          ]
+        },
+        {
+          "en": "A crow with cheese should think before she uses her voice.",
+          "ipa": "/ə ˈkroʊ wɪð ˈtʃiz ʃʊd ˈθɪŋk bɪˈfɔr ʃi ˈjuzɪz hɚ ˈvɔɪs/",
+          "vi": "Quạ ngậm phô mai nên nghĩ kỹ trước khi cất tiếng.",
+          "tips": [
+            "cheese /tʃiz/ vs she /ʃi/",
+            "uses /ˈjuzɪz/ giữ /j/",
+            "voice /vɔɪs/"
+          ]
+        },
+        {
+          "en": "Slow feet finish the race that boasting begins.",
+          "ipa": "/ˈsloʊ ˈfit ˈfɪnɪʃ ðə ˈreɪs ðət ˈboʊstɪŋ bɪˈɡɪnz/",
+          "vi": "Đôi chân chậm về đích cái cuộc đua mà tiếng khoác lác mở màn.",
+          "tips": [
+            "slow /sloʊ/ — dark L",
+            "boasting /ˈboʊstɪŋ/ — /ŋ/ cuối"
+          ]
+        },
+        {
+          "en": "The lion spared the mouse, and the mouse cut the net.",
+          "ipa": "/ðə ˈlaɪən ˈspɛrd ðə ˈmaʊs | ənd ðə ˈmaʊs ˈkʌt ðə ˈnɛt/",
+          "vi": "Sư tử tha con chuột, rồi con chuột cắn đứt lưới.",
+          "tips": [
+            "lion /ˈlaɪən/ hai âm tiết",
+            "mouse /maʊs/ — /aʊ/ mở rộng"
+          ]
+        },
+        {
+          "en": "Treasure buried in fear is treasure already lost.",
+          "ipa": "/ˈtrɛʒɚ ˈbɛrid ɪn ˈfɪr ɪz ˈtrɛʒɚ ɔlˈrɛdi ˈlɔst/",
+          "vi": "Kho báu chôn trong sợ hãi là kho báu đã mất.",
+          "tips": [
+            "treasure /ˈtrɛʒɚ/ — /ʒ/ rung",
+            "fear /fɪr/ giữ /r/"
+          ]
+        },
+        {
+          "en": "A boy who enjoys the joke will not be believed at noon.",
+          "ipa": "/ə ˈbɔɪ ˈhu ɛnˈdʒɔɪz ðə ˈdʒoʊk wɪl ˈnɑt bi bɪˈlivd æt ˈnun/",
+          "vi": "Thằng bé khoái trò đùa sẽ chẳng ai tin lúc chính ngọ.",
+          "tips": [
+            "boy /bɔɪ/ vs enjoys /ɛnˈdʒɔɪz/",
+            "noon /nun/ — /u/ dài"
+          ]
+        },
+        {
+          "en": "Good tools, poor hands.",
+          "ipa": "/ˈɡʊd ˈtulz | ˈpʊr ˈhændz/",
+          "vi": "Đồ nghề tốt, tay nghề tồi.",
+          "tips": [
+            "good /ɡʊd/ vs tools /tulz/ — /ʊ/ ngắn vs /u/ dài",
+            "poor /pʊr/"
+          ]
+        },
+        {
+          "en": "Every moral was once somebody's bad morning.",
+          "ipa": "/ˈɛvri ˈmɔrəl wəz ˈwʌns ˈsʌmbɑdiz ˈbæd ˈmɔrnɪŋ/",
+          "vi": "Bài học đạo đức nào cũng từng là một buổi sáng tồi tệ của ai đó.",
+          "tips": [
+            "moral /ˈmɔrəl/ — dark L",
+            "morning /ˈmɔrnɪŋ/ bật /r/"
+          ]
+        },
+        {
+          "en": "Ask the wind.",
+          "ipa": "/ˈæsk ðə ˈwɪnd/",
+          "vi": "Hỏi gió mà xem.",
+          "tips": [
+            "ask /æsk/ — /æ/ mở",
+            "/sk/ bật gọn"
+          ]
+        }
+      ],
+      "anchors": {
+        "judged": "/dʒʌdʒd/ — /dʒ/ cả hai đầu",
+        "sour": "/ˈsaʊɚ/ — /aʊ/ rồi /ɚ/",
+        "third": "/θɝd/ — /θ/ rồi /ɝ/",
+        "cheese": "/tʃiz/ — /tʃ/ đầu",
+        "uses": "/ˈjuzɪz/ giữ /j/",
+        "voice": "/vɔɪs/",
+        "treasure": "/ˈtrɛʒɚ/ — /ʒ/ rung",
+        "boasting": "/ŋ/ cuối",
+        "lion": "/ˈlaɪən/ hai âm tiết",
+        "mouse": "/maʊs/",
+        "noon": "/nun/ — /u/ dài",
+        "poor": "/pʊr/",
+        "morning": "/ˈmɔrnɪŋ/ bật /r/",
+        "enjoys": "/ɛnˈdʒɔɪz/ trọng âm sau",
+        "believed": "/bɪˈlivd/ — /v/ rồi /d/",
+        "fear": "/fɪr/ giữ /r/"
+      }
+    },
+    {
+      "id": "grimm",
+      "theme": "Grimm Brothers",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "The forest keeps every promise it makes, which is why children fear it.",
+          "ipa": "/ðə ˈfɔrəst ˈkips ˈɛvri ˈprɑməs ɪt ˈmeɪks | ˈwɪtʃ ɪz ˈwaɪ ˈtʃɪldrən ˈfɪr ɪt/",
+          "vi": "Khu rừng giữ đúng mọi lời hứa, và đó là lý do trẻ con sợ nó.",
+          "tips": [
+            "which /wɪtʃ/ và children /ˈtʃɪldrən/ — /tʃ/",
+            "keeps /kips/ — /i/ dài"
+          ]
+        },
+        {
+          "en": "Bread crumbs are a poor plan; birds are honest and hungry.",
+          "ipa": "/ˈbrɛd ˈkrʌmz ɑr ə ˈpʊr ˈplæn | ˈbɝdz ɑr ˈɑnəst ənd ˈhʌŋɡri/",
+          "vi": "Vụn bánh mì là kế dở; chim thì thật thà và đói.",
+          "tips": [
+            "birds /bɝdz/ — /ɝ/ cong lưỡi",
+            "hungry /ˈhʌŋɡri/ — /ŋɡ/ có /ɡ/"
+          ]
+        },
+        {
+          "en": "The wolf wore the grandmother's voice, and that was enough.",
+          "ipa": "/ðə ˈwʊlf ˈwɔr ðə ˈɡrænmʌðɚz ˈvɔɪs | ənd ˈðæt wəz ɪˈnʌf/",
+          "vi": "Con sói mượn giọng bà ngoại, và thế là đủ.",
+          "tips": [
+            "wolf /wʊlf/ — /ʊ/ rồi dark L",
+            "voice /vɔɪs/",
+            "enough /ɪˈnʌf/ trọng âm sau"
+          ]
+        },
+        {
+          "en": "Treasure is usually buried under something you were told not to move.",
+          "ipa": "/ˈtrɛʒɚ ɪz ˈjuʒuəli ˈbɛrid ˈʌndɚ ˈsʌmθɪŋ ju wɚ ˈtoʊld ˈnɑt tu ˈmuv/",
+          "vi": "Kho báu thường nằm dưới thứ người ta dặn bạn đừng động vào.",
+          "tips": [
+            "treasure /ˈtrɛʒɚ/ và usually /ˈjuʒuəli/ — /ʒ/ hai lần",
+            "something: /θ/ + /ŋ/"
+          ]
+        },
+        {
+          "en": "A girl with a sharp answer outlives a girl with a soft one.",
+          "ipa": "/ə ˈɡɝl wɪð ə ˈʃɑrp ˈænsɚ ˌaʊtˈlɪvz ə ˈɡɝl wɪð ə ˈsɔft ˈwʌn/",
+          "vi": "Cô gái có câu trả lời sắc sống lâu hơn cô gái có câu trả lời mềm.",
+          "tips": [
+            "girl /ɡɝl/ — /ɝ/ rồi dark L",
+            "sharp /ʃɑrp/ — /ʃ/ rồi /r/"
+          ]
+        },
+        {
+          "en": "The oven was always in the story; only the ending changed.",
+          "ipa": "/ði ˈʌvən wəz ˈɔlweɪz ɪn ðə ˈstɔri | ˈoʊnli ði ˈɛndɪŋ ˈtʃeɪndʒd/",
+          "vi": "Cái lò luôn có trong truyện; chỉ có đoạn kết là đổi.",
+          "tips": [
+            "changed /tʃeɪndʒd/ — /tʃ/ đầu, /dʒd/ cuối",
+            "ending /ˈɛndɪŋ/ — /ŋ/"
+          ]
+        },
+        {
+          "en": "Count the doors, then choose the third.",
+          "ipa": "/ˈkaʊnt ðə ˈdɔrz | ˈðɛn ˈtʃuz ðə ˈθɝd/",
+          "vi": "Đếm số cửa, rồi chọn cánh thứ ba.",
+          "tips": [
+            "count /kaʊnt/ — /aʊ/",
+            "third /θɝd/ — /θ/ rồi /ɝ/"
+          ]
+        },
+        {
+          "en": "Not everyone in the woods is lost; some are simply careful.",
+          "ipa": "/ˈnɑt ˈɛvriwʌn ɪn ðə ˈwʊdz ɪz ˈlɔst | ˈsʌm ɑr ˈsɪmpli ˈkɛrfəl/",
+          "vi": "Không phải ai trong rừng cũng lạc; có người chỉ đang cẩn thận.",
+          "tips": [
+            "woods /wʊdz/ — /ʊ/ ngắn",
+            "careful /ˈkɛrfəl/ — dark L"
+          ]
+        },
+        {
+          "en": "Shut the gate behind you.",
+          "ipa": "/ˈʃʌt ðə ˈɡeɪt bɪˈhaɪnd ju/",
+          "vi": "Đóng cổng lại sau lưng.",
+          "tips": [
+            "shut /ʃʌt/ — /ʃ/ đầu",
+            "behind /bɪˈhaɪnd/ trọng âm sau"
+          ]
+        }
+      ],
+      "anchors": {
+        "children": "/ˈtʃɪldrən/ — /tʃ/",
+        "birds": "/bɝdz/ — /ɝ/ cong lưỡi",
+        "hungry": "/ˈhʌŋɡri/ — /ŋɡ/ có /ɡ/",
+        "wolf": "/wʊlf/ — /ʊ/ rồi dark L",
+        "voice": "/vɔɪs/",
+        "enough": "/ɪˈnʌf/ trọng âm sau",
+        "treasure": "/ˈtrɛʒɚ/ — /ʒ/",
+        "usually": "/ˈjuʒuəli/ — /ʒ/",
+        "something": "/θ/ + /ŋ/",
+        "girl": "/ɡɝl/ — /ɝ/ rồi dark L",
+        "sharp": "/ʃɑrp/",
+        "changed": "/tʃeɪndʒd/",
+        "third": "/θɝd/",
+        "count": "/kaʊnt/",
+        "woods": "/wʊdz/ — /ʊ/ ngắn",
+        "careful": "dark L",
+        "shut": "/ʃʌt/",
+        "poor": "/pʊr/"
+      }
+    },
+    {
+      "id": "holmes",
+      "theme": "Sherlock Holmes",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "You see everything, but you observe almost nothing.",
+          "ipa": "/ju ˈsi ˈɛvriθɪŋ | bət ju əbˈzɝv ˈɔlmoʊst ˈnʌθɪŋ/",
+          "vi": "Anh nhìn thấy mọi thứ, nhưng gần như chẳng quan sát được gì.",
+          "tips": [
+            "observe /əbˈzɝv/ — trọng âm sau, /ɝ/",
+            "everything, nothing: /θ/ + /ŋ/"
+          ]
+        },
+        {
+          "en": "The fog was thick enough to hide a judge or a thief.",
+          "ipa": "/ðə ˈfɔɡ wəz ˈθɪk ɪˈnʌf tu ˈhaɪd ə ˈdʒʌdʒ ɔr ə ˈθif/",
+          "vi": "Sương dày đủ để giấu một quan tòa hay một tên trộm.",
+          "tips": [
+            "judge /dʒʌdʒ/ — /dʒ/ hai đầu",
+            "thief /θif/ vs thick /θɪk/"
+          ]
+        },
+        {
+          "en": "A muddy boot told me more than a long confession.",
+          "ipa": "/ə ˈmʌdi ˈbut ˈtoʊld mi ˈmɔr ðən ə ˈlɔŋ kənˈfɛʃən/",
+          "vi": "Một chiếc ủng dính bùn nói cho tôi nhiều hơn cả một lời thú tội dài.",
+          "tips": [
+            "muddy: /t/? không — /d/ giữa thành âm vỗ",
+            "confession /kənˈfɛʃən/ — /ʃ/"
+          ]
+        },
+        {
+          "en": "Measure the ash, weigh the silence, and the answer arrives.",
+          "ipa": "/ˈmɛʒɚ ði ˈæʃ | ˈweɪ ðə ˈsaɪləns | ənd ði ˈænsɚ əˈraɪvz/",
+          "vi": "Cân tro, đo sự im lặng, rồi câu trả lời tự đến.",
+          "tips": [
+            "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+            "ash /æʃ/ — /ʃ/ cuối",
+            "arrives /z/ cuối"
+          ]
+        },
+        {
+          "en": "Choice is a luxury the guilty rarely enjoy.",
+          "ipa": "/ˈtʃɔɪs ɪz ə ˈlʌkʃəri ðə ˈɡɪlti ˈrɛrli ɛnˈdʒɔɪ/",
+          "vi": "Lựa chọn là thứ xa xỉ mà kẻ có tội hiếm khi được hưởng.",
+          "tips": [
+            "choice /tʃɔɪs/ vs enjoy /ɛnˈdʒɔɪ/",
+            "guilty: dark L"
+          ]
+        },
+        {
+          "en": "Now look down at the ground, not out at the crowd.",
+          "ipa": "/ˈnaʊ ˈlʊk ˈdaʊn ət ðə ˈɡraʊnd | ˈnɑt ˈaʊt ət ðə ˈkraʊd/",
+          "vi": "Giờ nhìn xuống mặt đất, đừng nhìn ra đám đông.",
+          "tips": [
+            "/aʊ/ năm lần liền — mở miệng rộng",
+            "look /lʊk/ ngắn"
+          ]
+        },
+        {
+          "en": "The good doctor thinks I am cold; I am merely awake.",
+          "ipa": "/ðə ˈɡʊd ˈdɑktɚ ˈθɪŋks aɪ æm ˈkoʊld | aɪ æm ˈmɪrli əˈweɪk/",
+          "vi": "Vị bác sĩ tốt bụng nghĩ tôi lạnh lùng; tôi chỉ đang tỉnh táo.",
+          "tips": [
+            "doctor /ˈdɑktɚ/ — /ɑ/ rồi /ɚ/",
+            "cold: dark L"
+          ]
+        },
+        {
+          "en": "Every case begins with a question no one wished to ask.",
+          "ipa": "/ˈɛvri ˈkeɪs bɪˈɡɪnz wɪð ə ˈkwɛstʃən ˈnoʊ ˈwʌn ˈwɪʃt tu ˈæsk/",
+          "vi": "Vụ nào cũng bắt đầu bằng một câu hỏi chẳng ai muốn hỏi.",
+          "tips": [
+            "question /ˈkwɛstʃən/ — /tʃ/ giữa",
+            "wished /wɪʃt/ — /ʃt/"
+          ]
+        },
+        {
+          "en": "Bring your coat; the game moves.",
+          "ipa": "/ˈbrɪŋ jʊr ˈkoʊt | ðə ˈɡeɪm ˈmuvz/",
+          "vi": "Mang áo khoác đi; ván cờ đã động.",
+          "tips": [
+            "bring /brɪŋ/ — /ŋ/ cuối",
+            "moves /muvz/ — /v/ rồi /z/"
+          ]
+        },
+        {
+          "en": "The truth is patient.",
+          "ipa": "/ðə ˈtruθ ɪz ˈpeɪʃənt/",
+          "vi": "Sự thật rất kiên nhẫn.",
+          "tips": [
+            "truth /truθ/ — /θ/ cuối",
+            "patient /ˈpeɪʃənt/ — /ʃ/"
+          ]
+        }
+      ],
+      "anchors": {
+        "observe": "/əbˈzɝv/ — trọng âm sau, /ɝ/",
+        "everything": "/θ/ + /ŋ/",
+        "nothing": "/θ/ + /ŋ/",
+        "judge": "/dʒʌdʒ/ — /dʒ/ cả hai đầu",
+        "thief": "/θif/ — /i/ dài",
+        "fog": "/fɔɡ/",
+        "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+        "ash": "/æʃ/ — /ʃ/ cuối",
+        "choice": "/tʃɔɪs/",
+        "enjoy": "/ɛnˈdʒɔɪ/ trọng âm sau",
+        "guilty": "dark L",
+        "doctor": "/ˈdɑktɚ/ — /ɑ/ rồi /ɚ/",
+        "cold": "dark L",
+        "question": "/ˈkwɛstʃən/ — /tʃ/ giữa",
+        "wished": "/wɪʃt/ — /ʃt/ dứt khoát",
+        "bring": "/brɪŋ/ — /ŋ/ cuối",
+        "truth": "/truθ/ — /θ/ cuối",
+        "patient": "/ˈpeɪʃənt/ — /ʃ/",
+        "crowd": "/kraʊd/",
+        "ground": "/ɡraʊnd/",
+        "moves": "/muvz/"
+      }
+    },
+    {
+      "id": "ghibli",
+      "theme": "Studio Ghibli",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "The wind remembers the shape of every wing that used it.",
+          "ipa": "/ðə ˈwɪnd rɪˈmɛmbɚz ðə ˈʃeɪp ʌv ˈɛvri ˈwɪŋ ðət ˈjuzd ɪt/",
+          "vi": "Gió nhớ hình dáng của từng đôi cánh từng mượn nó.",
+          "tips": [
+            "shape /ʃeɪp/ — /ʃ/ đầu",
+            "wing /wɪŋ/ — /ŋ/ cuối",
+            "used /juzd/ giữ /j/"
+          ]
+        },
+        {
+          "en": "A bathhouse full of gods still needs someone to scrub the floor.",
+          "ipa": "/ə ˈbæθhaʊs ˈfʊl ʌv ˈɡɑdz ˈstɪl ˈnidz ˈsʌmwʌn tu ˈskrʌb ðə ˈflɔr/",
+          "vi": "Nhà tắm đầy thần linh vẫn cần ai đó cọ sàn.",
+          "tips": [
+            "bathhouse /ˈbæθhaʊs/ — /θ/ rồi /h/",
+            "full /fʊl/ — /ʊ/ rồi dark L"
+          ]
+        },
+        {
+          "en": "Courage is quiet; it looks like a girl choosing the longer road home.",
+          "ipa": "/ˈkɝɪdʒ ɪz ˈkwaɪət | ɪt ˈlʊks ˈlaɪk ə ˈɡɝl ˈtʃuzɪŋ ðə ˈlɔŋɡɚ ˈroʊd ˈhoʊm/",
+          "vi": "Can đảm thì lặng lẽ; nó giống một cô bé chọn con đường về xa hơn.",
+          "tips": [
+            "courage /ˈkɝɪdʒ/ — /ɝ/ rồi /dʒ/",
+            "choosing /ˈtʃuzɪŋ/ — /tʃ/ đầu"
+          ]
+        },
+        {
+          "en": "The forest is not evil; it is simply older than your opinion of it.",
+          "ipa": "/ðə ˈfɔrəst ɪz ˈnɑt ˈivəl | ɪt ɪz ˈsɪmpli ˈoʊldɚ ðən jʊr əˈpɪnjən ʌv ɪt/",
+          "vi": "Khu rừng không ác; nó chỉ già hơn ý kiến của bạn về nó.",
+          "tips": [
+            "evil /ˈivəl/ — dark L",
+            "older /ˈoʊldɚ/ — /ɚ/"
+          ]
+        },
+        {
+          "en": "Measure a life in warm bread, clean water, and one good friend.",
+          "ipa": "/ˈmɛʒɚ ə ˈlaɪf ɪn ˈwɔrm ˈbrɛd | ˈklin ˈwɔtɚ | ənd ˈwʌn ˈɡʊd ˈfrɛnd/",
+          "vi": "Hãy đo một đời bằng bánh mì ấm, nước sạch, và một người bạn tốt.",
+          "tips": [
+            "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+            "water: /t/ thành âm vỗ"
+          ]
+        },
+        {
+          "en": "Flying is mostly falling with better manners.",
+          "ipa": "/ˈflaɪɪŋ ɪz ˈmoʊstli ˈfɔlɪŋ wɪð ˈbɛtɚ ˈmænɚz/",
+          "vi": "Bay phần lớn là rơi một cách lịch sự hơn.",
+          "tips": [
+            "flying /ˈflaɪɪŋ/ hai âm tiết",
+            "manners /ˈmænɚz/ — /ɚ/"
+          ]
+        },
+        {
+          "en": "Say thank you to the house before you leave it.",
+          "ipa": "/ˈseɪ ˈθæŋk ju tu ðə ˈhaʊs bɪˈfɔr ju ˈliv ɪt/",
+          "vi": "Hãy cảm ơn ngôi nhà trước khi rời đi.",
+          "tips": [
+            "thank /θæŋk/ — /θ/ rồi /ŋ/",
+            "house /haʊs/ — /aʊ/"
+          ]
+        },
+        {
+          "en": "The soot sprites enjoy their work.",
+          "ipa": "/ðə ˈsut ˈspraɪts ɛnˈdʒɔɪ ðɛr ˈwɝk/",
+          "vi": "Lũ bụi than rất khoái việc của mình.",
+          "tips": [
+            "enjoy /ɛnˈdʒɔɪ/ — /dʒ/ rồi /ɔɪ/",
+            "work /wɝk/ — /ɝ/"
+          ]
+        },
+        {
+          "en": "Now catch the train.",
+          "ipa": "/ˈnaʊ ˈkætʃ ðə ˈtreɪn/",
+          "vi": "Giờ thì bắt chuyến tàu đi.",
+          "tips": [
+            "catch /kætʃ/ — /tʃ/ cuối",
+            "train /treɪn/ — /tr/"
+          ]
+        }
+      ],
+      "anchors": {
+        "shape": "/ʃeɪp/ — /ʃ/ đầu",
+        "wing": "/wɪŋ/ — /ŋ/ cuối",
+        "used": "/juzd/ giữ /j/",
+        "bathhouse": "/ˈbæθhaʊs/ — /θ/ rồi /h/",
+        "full": "/fʊl/ — dark L",
+        "courage": "/ˈkɝɪdʒ/ — /ɝ/ rồi /dʒ/",
+        "choosing": "/ˈtʃuzɪŋ/",
+        "evil": "dark L",
+        "older": "/ˈoʊldɚ/ — /ɚ/",
+        "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+        "water": "/t/ thành âm vỗ",
+        "flying": "/ˈflaɪɪŋ/ hai âm tiết",
+        "manners": "/ˈmænɚz/",
+        "thank": "/θæŋk/ — /θ/ rồi /ŋ/",
+        "house": "/haʊs/",
+        "enjoy": "/ɛnˈdʒɔɪ/",
+        "work": "/wɝk/ — /ɝ/",
+        "catch": "/kætʃ/ — /tʃ/ cuối"
+      }
+    },
+    {
+      "id": "pratchett",
+      "theme": "Terry Pratchett",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "The turtle moves, whatever the priests would rather you believed.",
+          "ipa": "/ðə ˈtɝtəl ˈmuvz | wʌtˈɛvɚ ðə ˈprists ˈwʊd ˈræðɚ ju bɪˈlivd/",
+          "vi": "Con rùa vẫn đi, bất kể mấy ông thầy tu muốn bạn tin gì.",
+          "tips": [
+            "turtle /ˈtɝtəl/ — /ɝ/ rồi dark L",
+            "rather /ˈræðɚ/ — /ð/ rung"
+          ]
+        },
+        {
+          "en": "Death is polite; he simply refuses to be argued with.",
+          "ipa": "/ˈdɛθ ɪz pəˈlaɪt | hi ˈsɪmpli rɪˈfjuzɪz tu bi ˈɑrɡjud wɪð/",
+          "vi": "Thần Chết rất lịch sự; ngài chỉ là không chịu tranh luận.",
+          "tips": [
+            "death /dɛθ/ — /θ/ cuối",
+            "refuses /rɪˈfjuzɪz/ giữ /j/"
+          ]
+        },
+        {
+          "en": "A good lie is a bridge; a great one is a whole city.",
+          "ipa": "/ə ˈɡʊd ˈlaɪ ɪz ə ˈbrɪdʒ | ə ˈɡreɪt ˈwʌn ɪz ə ˈhoʊl ˈsɪti/",
+          "vi": "Một lời nói dối khéo là cây cầu; một lời dối lớn là cả thành phố.",
+          "tips": [
+            "bridge /brɪdʒ/ — /dʒ/ cuối",
+            "whole /hoʊl/ — dark L"
+          ]
+        },
+        {
+          "en": "Justice is not natural; that is exactly why we keep building it.",
+          "ipa": "/ˈdʒʌstɪs ɪz ˈnɑt ˈnætʃərəl | ˈðæt ɪz ɪɡˈzæktli ˈwaɪ wi ˈkip ˈbɪldɪŋ ɪt/",
+          "vi": "Công lý không tự nhiên mà có; chính vì thế ta cứ phải dựng nó lên.",
+          "tips": [
+            "justice /ˈdʒʌstɪs/ — /dʒ/ đầu",
+            "natural /ˈnætʃərəl/ — /tʃ/ giữa"
+          ]
+        },
+        {
+          "en": "Measure a man by how he treats the sweeper, not the king.",
+          "ipa": "/ˈmɛʒɚ ə ˈmæn baɪ ˈhaʊ hi ˈtrits ðə ˈswipɚ | ˈnɑt ðə ˈkɪŋ/",
+          "vi": "Hãy đo một người qua cách anh ta đối xử với người quét rác, không phải với vua.",
+          "tips": [
+            "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+            "king /kɪŋ/ — /ŋ/ cuối"
+          ]
+        },
+        {
+          "en": "The wizards found the answer, then lost the question.",
+          "ipa": "/ðə ˈwɪzɚdz ˈfaʊnd ði ˈænsɚ | ˈðɛn ˈlɔst ðə ˈkwɛstʃən/",
+          "vi": "Đám pháp sư tìm ra câu trả lời, rồi làm mất câu hỏi.",
+          "tips": [
+            "found /faʊnd/ — /aʊ/",
+            "question /ˈkwɛstʃən/ — /tʃ/"
+          ]
+        },
+        {
+          "en": "Some books should be read with the lights on.",
+          "ipa": "/ˈsʌm ˈbʊks ˈʃʊd bi ˈrɛd wɪð ðə ˈlaɪts ˈɔn/",
+          "vi": "Có những cuốn sách nên đọc lúc bật đèn.",
+          "tips": [
+            "books /bʊks/, should /ʃʊd/ — /ʊ/ ngắn"
+          ]
+        },
+        {
+          "en": "Boil the joy slowly.",
+          "ipa": "/ˈbɔɪl ðə ˈdʒɔɪ ˈsloʊli/",
+          "vi": "Hãy đun niềm vui thật chậm.",
+          "tips": [
+            "boil /bɔɪl/ — /ɔɪ/ rồi dark L",
+            "joy /dʒɔɪ/"
+          ]
+        },
+        {
+          "en": "Mind how you go.",
+          "ipa": "/ˈmaɪnd ˈhaʊ ju ˈɡoʊ/",
+          "vi": "Đi đứng cẩn thận nhé.",
+          "tips": [
+            "mind /maɪnd/ vs how /haʊ/ — hai nguyên âm đôi"
+          ]
+        }
+      ],
+      "anchors": {
+        "turtle": "/ˈtɝtəl/ — /ɝ/ rồi dark L",
+        "rather": "/ˈræðɚ/ — /ð/ rung",
+        "death": "/dɛθ/ — /θ/ cuối",
+        "refuses": "/rɪˈfjuzɪz/ giữ /j/",
+        "bridge": "/brɪdʒ/ — /dʒ/ cuối",
+        "whole": "/hoʊl/ — dark L",
+        "justice": "/ˈdʒʌstɪs/",
+        "natural": "/ˈnætʃərəl/ — /tʃ/ giữa",
+        "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+        "king": "/kɪŋ/ — /ŋ/ cuối",
+        "question": "/ˈkwɛstʃən/",
+        "books": "/bʊks/ — /ʊ/ ngắn",
+        "boil": "/bɔɪl/",
+        "joy": "/dʒɔɪ/",
+        "argued": "/ˈɑrɡjud/ giữ /j/",
+        "exactly": "/ɪɡˈzæktli/ — /ɡz/"
+      }
+    },
+    {
+      "id": "rumi",
+      "theme": "Rumi",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "The reed sings because it remembers the field it was cut from.",
+          "ipa": "/ðə ˈrid ˈsɪŋz bɪˈkɔz ɪt rɪˈmɛmbɚz ðə ˈfild ɪt wəz ˈkʌt frʌm/",
+          "vi": "Cây sáo hót lên vì nó còn nhớ cánh đồng nơi mình bị cắt ra.",
+          "tips": [
+            "reed /rid/ dài, không phải /rɪd/",
+            "/ɚ/ trong remembers — cong lưỡi",
+            "field: dark L cuối"
+          ]
+        },
+        {
+          "en": "Your wound is the door where the light chooses to enter.",
+          "ipa": "/jʊr ˈwund ɪz ðə ˈdɔr wɛr ðə ˈlaɪt ˈtʃuzɪz tu ˈɛntɚ/",
+          "vi": "Vết thương của bạn chính là cánh cửa ánh sáng chọn để bước vào.",
+          "tips": [
+            "wound /wund/ không phải /waʊnd/",
+            "chooses /ˈtʃuzɪz/ — /tʃ/ rồi /z/",
+            "door /dɔr/ bật /r/"
+          ]
+        },
+        {
+          "en": "Do not measure the journey in miles, but in what you were willing to lose.",
+          "ipa": "/du ˈnɑt ˈmɛʒɚ ðə ˈdʒɝni ɪn ˈmaɪlz | bət ɪn ˈwʌt ju wɚ ˈwɪlɪŋ tu ˈluz/",
+          "vi": "Đừng đo hành trình bằng số dặm, hãy đo bằng những gì bạn dám buông.",
+          "tips": [
+            "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+            "journey /ˈdʒɝni/ — /dʒ/ rồi /ɝ/",
+            "MILES ↗ … LOSE ↘"
+          ]
+        },
+        {
+          "en": "A thirsty jug thinks the water is far away.",
+          "ipa": "/ə ˈθɝsti ˈdʒʌɡ ˈθɪŋks ðə ˈwɔtɚ ɪz ˈfɑr əˈweɪ/",
+          "vi": "Cái bình đang khát cứ tưởng nước ở xa lắm.",
+          "tips": [
+            "thirsty /θ/ + /ɝ/ — lưỡi ra răng rồi cong",
+            "water: /t/ thành âm vỗ",
+            "far /fɑr/ bật /r/"
+          ]
+        },
+        {
+          "en": "Joy and grief share one house, and both are guests.",
+          "ipa": "/ˈdʒɔɪ ənd ˈɡrif ˈʃɛr ˈwʌn ˈhaʊs | ənd ˈboʊθ ɑr ˈɡɛsts/",
+          "vi": "Niềm vui và nỗi đau ở chung một nhà, cả hai đều là khách.",
+          "tips": [
+            "joy /dʒɔɪ/ vs share /ʃɛr/",
+            "both /boʊθ/ — /θ/ cuối",
+            "guests /sts/ bật gọn"
+          ]
+        },
+        {
+          "en": "Come, sit down, and let the noise of the world finish without you.",
+          "ipa": "/ˈkʌm | ˈsɪt ˈdaʊn | ənd ˈlɛt ðə ˈnɔɪz ʌv ðə ˈwɝld ˈfɪnɪʃ wɪˈðaʊt ju/",
+          "vi": "Lại đây, ngồi xuống, để tiếng ồn của thế gian tự tàn mà không cần bạn.",
+          "tips": [
+            "world /wɝld/ — /ɝ/ rồi dark L",
+            "without /wɪˈðaʊt/ — /ð/ rung",
+            "noise /nɔɪz/"
+          ]
+        },
+        {
+          "en": "What you are seeking is also seeking you, through the long night.",
+          "ipa": "/ˈwʌt ju ɑr ˈsikɪŋ ɪz ˈɔlsoʊ ˈsikɪŋ ju | θru ðə ˈlɔŋ ˈnaɪt/",
+          "vi": "Thứ bạn đang tìm cũng đang tìm bạn, suốt đêm dài.",
+          "tips": [
+            "seeking /ˈsikɪŋ/ — /i/ dài, /ŋ/ cuối",
+            "through /θru/ lưỡi ra răng",
+            "long /lɔŋ/ không /ɡ/"
+          ]
+        },
+        {
+          "en": "Burn the old map.",
+          "ipa": "/ˈbɝn ðə ˈoʊld ˈmæp/",
+          "vi": "Đốt tấm bản đồ cũ đi.",
+          "tips": [
+            "burn /bɝn/ — /ɝ/ cong lưỡi",
+            "old: dark L"
+          ]
+        },
+        {
+          "en": "The garden does not argue; it simply grows.",
+          "ipa": "/ðə ˈɡɑrdn dʌz ˈnɑt ˈɑrɡju | ɪt ˈsɪmpli ˈɡroʊz/",
+          "vi": "Khu vườn không tranh cãi; nó chỉ lớn lên.",
+          "tips": [
+            "garden /ˈɡɑrdn/ — /n/ âm tiết",
+            "argue /ˈɑrɡju/ giữ /j/"
+          ]
+        },
+        {
+          "en": "Be quiet now.",
+          "ipa": "/ˈbi ˈkwaɪət ˈnaʊ/",
+          "vi": "Giờ thì lặng đi.",
+          "tips": [
+            "quiet hai âm tiết /ˈkwaɪ-ət/",
+            "/naʊ/ mở rộng"
+          ]
+        }
+      ],
+      "anchors": {
+        "reed": "/rid/ — /i/ dài",
+        "remembers": "/rɪˈmɛmbɚz/ — /ɚ/ cong lưỡi",
+        "wound": "/wund/ không phải /waʊnd/",
+        "chooses": "/ˈtʃuzɪz/ — /tʃ/ đầu, /z/ cuối",
+        "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+        "journey": "/ˈdʒɝni/ — /dʒ/ + /ɝ/",
+        "thirsty": "/ˈθɝsti/ — /θ/ rồi /ɝ/",
+        "water": "/t/ giữa hai nguyên âm thành âm vỗ",
+        "joy": "/dʒɔɪ/",
+        "both": "/boʊθ/ — /θ/ cuối",
+        "world": "/wɝld/ — /ɝ/ rồi dark L",
+        "without": "/wɪˈðaʊt/ — /ð/ rung",
+        "through": "/θru/ lưỡi ra răng",
+        "long": "/lɔŋ/ không thêm /ɡ/",
+        "burn": "/bɝn/ — /ɝ/ cong lưỡi",
+        "garden": "/ˈɡɑrdn/ — /n/ âm tiết",
+        "argue": "/ˈɑrɡju/ giữ /j/",
+        "quiet": "hai âm tiết /ˈkwaɪ-ət/",
+        "noise": "/nɔɪz/",
+        "old": "dark L",
+        "grows": "/ɡroʊz/",
+        "far": "/fɑr/ bật /r/ rõ"
+      }
+    },
+    {
+      "id": "austen",
+      "theme": "Jane Austen",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "It is a truth universally ignored that charm rarely pays the rent.",
+          "ipa": "/ɪt ɪz ə ˈtruθ ˌjunɪˈvɝsəli ɪɡˈnɔrd ðət ˈtʃɑrm ˈrɛrli ˈpeɪz ðə ˈrɛnt/",
+          "vi": "Có một sự thật ai cũng lờ đi: duyên dáng hiếm khi trả nổi tiền nhà.",
+          "tips": [
+            "truth /truθ/ — /θ/ cuối",
+            "universally /ˌjunɪˈvɝsəli/ — /j/ rồi /ɝ/",
+            "charm /tʃɑrm/ bật /r/"
+          ]
+        },
+        {
+          "en": "She judged him by his boots, which was fair, and by his silence, which was not.",
+          "ipa": "/ʃi ˈdʒʌdʒd ɪm baɪ ɪz ˈbuts | ˈwɪtʃ wəz ˈfɛr | ənd baɪ ɪz ˈsaɪləns | ˈwɪtʃ wəz ˈnɑt/",
+          "vi": "Nàng đánh giá chàng qua đôi giày, điều đó công bằng, và qua sự im lặng, điều đó thì không.",
+          "tips": [
+            "judged /dʒʌdʒd/ vs which /wɪtʃ/",
+            "silence /ˈsaɪləns/ — dark L"
+          ]
+        },
+        {
+          "en": "A young man with a good coat and no opinions is a great pleasure at dinner.",
+          "ipa": "/ə ˈjʌŋ ˈmæn wɪð ə ˈɡʊd ˈkoʊt ənd ˈnoʊ əˈpɪnjənz ɪz ə ˈɡreɪt ˈplɛʒɚ æt ˈdɪnɚ/",
+          "vi": "Một chàng trai có áo khoác đẹp và không có chính kiến là niềm vui lớn trong bữa tối.",
+          "tips": [
+            "young /jʌŋ/ — /j/ rồi /ŋ/",
+            "opinions /əˈpɪnjənz/ — /nj/",
+            "pleasure /ˈplɛʒɚ/ — /ʒ/"
+          ]
+        },
+        {
+          "en": "Do not mistake a loud house for a happy one.",
+          "ipa": "/du ˈnɑt mɪˈsteɪk ə ˈlaʊd ˈhaʊs fɔr ə ˈhæpi ˈwʌn/",
+          "vi": "Đừng nhầm một ngôi nhà ồn ào với một ngôi nhà hạnh phúc.",
+          "tips": [
+            "loud /laʊd/, house /haʊs/ — /aʊ/",
+            "happy /ˈhæpi/ — /æ/ mở"
+          ]
+        },
+        {
+          "en": "Her mother thought the whole business a joy; her father thought it noise.",
+          "ipa": "/hɚ ˈmʌðɚ ˈθɔt ðə ˈhoʊl ˈbɪznəs ə ˈdʒɔɪ | hɚ ˈfɑðɚ ˈθɔt ɪt ˈnɔɪz/",
+          "vi": "Mẹ nàng thấy cả chuyện này là niềm vui; cha nàng thấy đó là tiếng ồn.",
+          "tips": [
+            "thought /θɔt/ — /θ/ vs mother /ˈmʌðɚ/ — /ð/",
+            "joy /dʒɔɪ/ vs noise /nɔɪz/"
+          ]
+        },
+        {
+          "en": "We are civil, and therefore we are cruel, but slowly.",
+          "ipa": "/wi ɑr ˈsɪvəl | ənd ˈðɛrfɔr wi ɑr ˈkruəl | bət ˈsloʊli/",
+          "vi": "Chúng ta lịch sự, và vì thế chúng ta tàn nhẫn, chỉ là từ từ thôi.",
+          "tips": [
+            "civil /ˈsɪvəl/ — dark L",
+            "cruel /ˈkruəl/ hai âm tiết"
+          ]
+        },
+        {
+          "en": "Everyone wishes to be understood; almost no one wishes to be known.",
+          "ipa": "/ˈɛvriwʌn ˈwɪʃɪz tu bi ˌʌndɚˈstʊd | ˈɔlmoʊst ˈnoʊ ˈwʌn ˈwɪʃɪz tu bi ˈnoʊn/",
+          "vi": "Ai cũng muốn được thấu hiểu; gần như không ai muốn bị nhìn thấu.",
+          "tips": [
+            "wishes /ˈwɪʃɪz/ — /ʃ/ rồi /z/",
+            "understood /ˌʌndɚˈstʊd/ — /ɚ/ rồi /ʊ/"
+          ]
+        },
+        {
+          "en": "The letter came late.",
+          "ipa": "/ðə ˈlɛtɚ ˈkeɪm ˈleɪt/",
+          "vi": "Lá thư đến muộn.",
+          "tips": [
+            "letter: /t/ giữa thành âm vỗ",
+            "late /leɪt/ — /t/ dứt"
+          ]
+        },
+        {
+          "en": "She smiled, and said nothing.",
+          "ipa": "/ʃi ˈsmaɪld | ənd ˈsɛd ˈnʌθɪŋ/",
+          "vi": "Nàng mỉm cười, và không nói gì.",
+          "tips": [
+            "smiled /smaɪld/ — dark L",
+            "nothing: /θ/ + /ŋ/"
+          ]
+        }
+      ],
+      "anchors": {
+        "truth": "/truθ/ — /θ/ cuối",
+        "universally": "/ˌjunɪˈvɝsəli/ — /j/ rồi /ɝ/",
+        "charm": "/tʃɑrm/ bật /r/",
+        "judged": "/dʒʌdʒd/",
+        "silence": "dark L",
+        "young": "/jʌŋ/ — /j/ rồi /ŋ/",
+        "opinions": "/əˈpɪnjənz/ — /nj/",
+        "pleasure": "/ˈplɛʒɚ/ — /ʒ/ rung",
+        "loud": "/laʊd/",
+        "house": "/haʊs/",
+        "mother": "/ˈmʌðɚ/ — /ð/ rung",
+        "thought": "/θɔt/ — /θ/ đầu",
+        "joy": "/dʒɔɪ/",
+        "noise": "/nɔɪz/",
+        "civil": "dark L",
+        "cruel": "/ˈkruəl/ hai âm tiết",
+        "understood": "/ˌʌndɚˈstʊd/",
+        "wishes": "/ˈwɪʃɪz/",
+        "letter": "/t/ giữa thành âm vỗ",
+        "nothing": "/θ/ + /ŋ/"
+      }
+    },
+    {
+      "id": "floyd",
+      "theme": "Pink Floyd",
+      "accent": "GA",
+      "sentences": [
+        {
+          "en": "Time slips away while you are busy measuring it.",
+          "ipa": "/ˈtaɪm ˈslɪps əˈweɪ ˈwaɪl ju ɑr ˈbɪzi ˈmɛʒərɪŋ ɪt/",
+          "vi": "Thời gian trôi mất trong lúc bạn bận đo nó.",
+          "tips": [
+            "measuring /ˈmɛʒərɪŋ/ — /ʒ/ rung",
+            "while /waɪl/ — dark L"
+          ]
+        },
+        {
+          "en": "Every brick you add makes the room a little quieter.",
+          "ipa": "/ˈɛvri ˈbrɪk ju ˈæd ˈmeɪks ðə ˈrum ə ˈlɪtəl ˈkwaɪətɚ/",
+          "vi": "Mỗi viên gạch bạn thêm vào làm căn phòng lặng đi một chút.",
+          "tips": [
+            "little /ˈlɪtəl/ — /t/ thành âm vỗ, dark L",
+            "quieter /ˈkwaɪətɚ/ ba âm tiết"
+          ]
+        },
+        {
+          "en": "There is no dark side; there is only the half we choose to show.",
+          "ipa": "/ðɛr ɪz ˈnoʊ ˈdɑrk ˈsaɪd | ðɛr ɪz ˈoʊnli ðə ˈhæf wi ˈtʃuz tu ˈʃoʊ/",
+          "vi": "Không có mặt tối nào cả; chỉ có nửa mà ta chọn để phô ra.",
+          "tips": [
+            "choose /tʃuz/ vs show /ʃoʊ/ — /tʃ/ vs /ʃ/",
+            "half /hæf/ câm l"
+          ]
+        },
+        {
+          "en": "We taught the machine to sing, then learned to enjoy the chorus.",
+          "ipa": "/wi ˈtɔt ðə məˈʃin tu ˈsɪŋ | ˈðɛn ˈlɝnd tu ɛnˈdʒɔɪ ðə ˈkɔrəs/",
+          "vi": "Ta dạy cỗ máy hát, rồi học cách tận hưởng điệp khúc của nó.",
+          "tips": [
+            "machine /məˈʃin/ — /ʃ/ giữa, trọng âm sau",
+            "learned /lɝnd/ — /ɝ/ cong lưỡi",
+            "enjoy /ɛnˈdʒɔɪ/ — /dʒ/ rồi /ɔɪ/"
+          ]
+        },
+        {
+          "en": "Comfortably numb is nothing but comfort, and that is the trouble.",
+          "ipa": "/ˈkʌmftɚbli ˈnʌm ɪz ˈnʌθɪŋ bət ˈkʌmfɚt | ənd ˈðæt ɪz ðə ˈtrʌbəl/",
+          "vi": "Tê dại dễ chịu thì cũng chỉ là dễ chịu, và đó mới là vấn đề.",
+          "tips": [
+            "numb /nʌm/ câm b",
+            "nothing: /θ/ + /ŋ/"
+          ]
+        },
+        {
+          "en": "Wish you were here, and not merely available.",
+          "ipa": "/ˈwɪʃ ju wɚ ˈhɪr | ənd ˈnɑt ˈmɪrli əˈveɪləbəl/",
+          "vi": "Ước gì bạn ở đây, chứ không chỉ là rảnh.",
+          "tips": [
+            "wish /wɪʃ/ — /ʃ/ cuối",
+            "here /hɪr/ giữ /r/"
+          ]
+        },
+        {
+          "en": "The moon has a good publicist.",
+          "ipa": "/ðə ˈmun ˈhæz ə ˈɡʊd ˈpʌbləsɪst/",
+          "vi": "Mặt trăng có một tay PR giỏi.",
+          "tips": [
+            "moon /mun/ vs good /ɡʊd/ — /u/ dài vs /ʊ/ ngắn"
+          ]
+        },
+        {
+          "en": "Breathe out.",
+          "ipa": "/ˈbrið ˈaʊt/",
+          "vi": "Thở ra đi.",
+          "tips": [
+            "breathe /brið/ — /ð/ rung, không phải /θ/"
+          ]
+        },
+        {
+          "en": "The song ends young.",
+          "ipa": "/ðə ˈsɔŋ ˈɛndz ˈjʌŋ/",
+          "vi": "Bài hát tắt khi còn trẻ.",
+          "tips": [
+            "song /sɔŋ/ không thêm /ɡ/",
+            "young /jʌŋ/ — /j/ rồi /ŋ/"
+          ]
+        }
+      ],
+      "anchors": {
+        "measuring": "/ˈmɛʒərɪŋ/ — /ʒ/ rung",
+        "while": "dark L",
+        "little": "/t/ thành âm vỗ, dark L",
+        "quieter": "/ˈkwaɪətɚ/ ba âm tiết",
+        "choose": "/tʃuz/ — /tʃ/",
+        "show": "/ʃoʊ/ — /ʃ/",
+        "half": "/hæf/ câm l",
+        "machine": "/məˈʃin/ trọng âm sau",
+        "learned": "/lɝnd/ — /ɝ/ cong lưỡi",
+        "enjoy": "/ɛnˈdʒɔɪ/ — /dʒ/ rồi /ɔɪ/",
+        "numb": "/nʌm/ câm b",
+        "nothing": "/θ/ + /ŋ/",
+        "wish": "/wɪʃ/ — /ʃ/ cuối",
+        "here": "/hɪr/ giữ /r/",
+        "moon": "/mun/ — /u/ dài",
+        "breathe": "/brið/ — /ð/ rung",
+        "song": "/sɔŋ/ không thêm /ɡ/",
+        "young": "/jʌŋ/",
+        "chorus": "/ˈkɔrəs/"
+      }
+    }
+  ],
+  "checksum": "sha256:1205c42a2d8643d96d17435010aa502d425eacafc61cacd288581764ea47b9c3"
+}

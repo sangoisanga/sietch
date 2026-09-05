@@ -1,0 +1,8 @@
+# the service worker and the shell must never be served stale, or an update can
+# never reach an installed app
+/sw.js
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache

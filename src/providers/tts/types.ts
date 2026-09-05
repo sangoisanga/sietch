@@ -1,6 +1,7 @@
 import type { Accent } from '../../core/accents'
+import type { SpeakingStyle } from '../../types'
 
-export type SpeakingStyle = 'slow' | 'natural' | 'veryslow'
+export type { SpeakingStyle }
 
 export interface SpeakOptions {
   accent: Accent

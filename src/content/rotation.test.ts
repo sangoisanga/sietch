@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { Progress } from '../core/profiles'
+import type { Progress } from '../types'
 import { itemKey, type Pool } from './pool'
 import { drawForPeriod, withAssignment, withCompletion } from './rotation'
 
