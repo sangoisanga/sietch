@@ -52,17 +52,22 @@ function encodePng(size, pixelAt) {
 // a dune horizon: a near crest overlapping a far one, separated by a thin accent
 // stroke because two flat colours alone would merge the two silhouettes
 function duneHorizon(size) {
-  const border = Math.round(size * 0.09)
-  const stroke = Math.max(2, Math.round(size * 0.022))
+  // below favicon size the frame and the hairline stroke turn to mush, so the
+  // small mark is one bold crest with no frame at all
+  const detailed = size >= 64
+  const border = detailed ? Math.round(size * 0.09) : 0
+  const stroke = detailed ? Math.max(2, Math.round(size * 0.022)) : 0
 
   const hump = (t, centre, width, height) => height * Math.exp(-(((t - centre) / width) ** 2))
   const farCrest = x => (0.68 - hump(x / size, 0.32, 0.30, 0.14)) * size
   const nearCrest = x => (0.82 - hump(x / size, 0.70, 0.26, 0.13)) * size
 
   return (x, y) => {
-    if (x < border || y < border || x >= size - border || y >= size - border) return INK
+    if (border && (x < border || y < border || x >= size - border || y >= size - border)) return INK
 
     const far = farCrest(x)
+    if (!detailed) return y >= far ? INK : ACCENT
+
     const near = nearCrest(x)
     if (y >= near) return y < near + stroke && y >= far ? ACCENT : INK
     return y >= far ? INK : ACCENT
@@ -70,7 +75,7 @@ function duneHorizon(size) {
 }
 
 mkdirSync(join(process.cwd(), 'public', 'icons'), { recursive: true })
-for (const size of [192, 512]) {
+for (const size of [32, 180, 192, 512]) {
   const target = join(process.cwd(), 'public', 'icons', `icon-${size}.png`)
   writeFileSync(target, encodePng(size, duneHorizon(size)))
   console.log(`icon-${size}.png`)
