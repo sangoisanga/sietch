@@ -1,0 +1,107 @@
+{
+  "theme": "Aesop's Fables",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "The fox judged the grapes sour only after the third jump.",
+      "ipa": "/ðə ˈfɑks ˈdʒʌdʒd ðə ˈɡreɪps ˈsaʊɚ ˈoʊnli ˈæftɚ ðə ˈθɝd ˈdʒʌmp/",
+      "vi": "Con cáo chê nho chua chỉ sau cú nhảy thứ ba.",
+      "tips": [
+        "judged /dʒʌdʒd/ — /dʒ/ hai đầu",
+        "sour /ˈsaʊɚ/ — /aʊ/ rồi /ɚ/",
+        "third /θɝd/ — /θ/ rồi /ɝ/"
+      ]
+    },
+    {
+      "en": "A crow with cheese should think before she uses her voice.",
+      "ipa": "/ə ˈkroʊ wɪð ˈtʃiz ʃʊd ˈθɪŋk bɪˈfɔr ʃi ˈjuzɪz hɚ ˈvɔɪs/",
+      "vi": "Quạ ngậm phô mai nên nghĩ kỹ trước khi cất tiếng.",
+      "tips": [
+        "cheese /tʃiz/ vs she /ʃi/",
+        "uses /ˈjuzɪz/ giữ /j/",
+        "voice /vɔɪs/"
+      ]
+    },
+    {
+      "en": "Slow feet finish the race that boasting begins.",
+      "ipa": "/ˈsloʊ ˈfit ˈfɪnɪʃ ðə ˈreɪs ðət ˈboʊstɪŋ bɪˈɡɪnz/",
+      "vi": "Đôi chân chậm về đích cái cuộc đua mà tiếng khoác lác mở màn.",
+      "tips": [
+        "slow /sloʊ/ — dark L",
+        "boasting /ˈboʊstɪŋ/ — /ŋ/ cuối"
+      ]
+    },
+    {
+      "en": "The lion spared the mouse, and the mouse cut the net.",
+      "ipa": "/ðə ˈlaɪən ˈspɛrd ðə ˈmaʊs | ənd ðə ˈmaʊs ˈkʌt ðə ˈnɛt/",
+      "vi": "Sư tử tha con chuột, rồi con chuột cắn đứt lưới.",
+      "tips": [
+        "lion /ˈlaɪən/ hai âm tiết",
+        "mouse /maʊs/ — /aʊ/ mở rộng"
+      ]
+    },
+    {
+      "en": "Treasure buried in fear is treasure already lost.",
+      "ipa": "/ˈtrɛʒɚ ˈbɛrid ɪn ˈfɪr ɪz ˈtrɛʒɚ ɔlˈrɛdi ˈlɔst/",
+      "vi": "Kho báu chôn trong sợ hãi là kho báu đã mất.",
+      "tips": [
+        "treasure /ˈtrɛʒɚ/ — /ʒ/ rung",
+        "fear /fɪr/ giữ /r/"
+      ]
+    },
+    {
+      "en": "A boy who enjoys the joke will not be believed at noon.",
+      "ipa": "/ə ˈbɔɪ ˈhu ɛnˈdʒɔɪz ðə ˈdʒoʊk wɪl ˈnɑt bi bɪˈlivd æt ˈnun/",
+      "vi": "Thằng bé khoái trò đùa sẽ chẳng ai tin lúc chính ngọ.",
+      "tips": [
+        "boy /bɔɪ/ vs enjoys /ɛnˈdʒɔɪz/",
+        "noon /nun/ — /u/ dài"
+      ]
+    },
+    {
+      "en": "Good tools, poor hands.",
+      "ipa": "/ˈɡʊd ˈtulz | ˈpʊr ˈhændz/",
+      "vi": "Đồ nghề tốt, tay nghề tồi.",
+      "tips": [
+        "good /ɡʊd/ vs tools /tulz/ — /ʊ/ ngắn vs /u/ dài",
+        "poor /pʊr/"
+      ]
+    },
+    {
+      "en": "Every moral was once somebody's bad morning.",
+      "ipa": "/ˈɛvri ˈmɔrəl wəz ˈwʌns ˈsʌmbɑdiz ˈbæd ˈmɔrnɪŋ/",
+      "vi": "Bài học đạo đức nào cũng từng là một buổi sáng tồi tệ của ai đó.",
+      "tips": [
+        "moral /ˈmɔrəl/ — dark L",
+        "morning /ˈmɔrnɪŋ/ bật /r/"
+      ]
+    },
+    {
+      "en": "Ask the wind.",
+      "ipa": "/ˈæsk ðə ˈwɪnd/",
+      "vi": "Hỏi gió mà xem.",
+      "tips": [
+        "ask /æsk/ — /æ/ mở",
+        "/sk/ bật gọn"
+      ]
+    }
+  ],
+  "anchors": {
+    "judged": "/dʒʌdʒd/ — /dʒ/ cả hai đầu",
+    "sour": "/ˈsaʊɚ/ — /aʊ/ rồi /ɚ/",
+    "third": "/θɝd/ — /θ/ rồi /ɝ/",
+    "cheese": "/tʃiz/ — /tʃ/ đầu",
+    "uses": "/ˈjuzɪz/ giữ /j/",
+    "voice": "/vɔɪs/",
+    "treasure": "/ˈtrɛʒɚ/ — /ʒ/ rung",
+    "boasting": "/ŋ/ cuối",
+    "lion": "/ˈlaɪən/ hai âm tiết",
+    "mouse": "/maʊs/",
+    "noon": "/nun/ — /u/ dài",
+    "poor": "/pʊr/",
+    "morning": "/ˈmɔrnɪŋ/ bật /r/",
+    "enjoys": "/ɛnˈdʒɔɪz/ trọng âm sau",
+    "believed": "/bɪˈlivd/ — /v/ rồi /d/",
+    "fear": "/fɪr/ giữ /r/"
+  }
+}

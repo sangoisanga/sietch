@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Drill Forge — 120 words, 44 sounds, your world</title>
+<title>Drill Forge — every sound, your world</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -12,13 +12,14 @@
 
 <header class="hdr"><div class="hdr-in">
   <div class="brand">Drill&nbsp;Forge</div>
+  <button class="mini" id="openProfiles" aria-label="Profiles">👤 <span id="profileName">Me</span></button>
   <button class="ico" id="openLib" aria-label="Library">☰</button>
   <button class="ico" id="openSet" aria-label="Settings">⚙</button>
 </div></header>
 
 <div class="wrap">
 
-<h1 class="lead">120 words.<br>44 sounds.<br>The world you pick.</h1>
+<h1 class="lead">120 words.<br><span id="soundCount">41</span> sounds.<br>The world you pick.</h1>
 <p class="sub">Pick the band, the author, or the fairy tale you love. The forge writes an original passage containing every sound in English, then audits itself.</p>
 
 <hr>
@@ -35,7 +36,8 @@
   </div>
   <div class="row" style="margin-top:12px">
     <button class="pri" id="forge">⚒ Forge passage</button>
-    <button id="reset">↺ Back to Beatles</button>
+    <select id="pack" aria-label="Drill pack"></select>
+    <button class="mini" id="markDone">✓ Mark done</button>
   </div>
   <details style="margin-top:12px;border-top:2px solid #000;padding-top:10px" id="ownDetails">
     <summary>Or: use your own text</summary>
@@ -151,6 +153,23 @@ The audit covers the first factor. Shadow mode covers the second. The third is y
   <div class="sheet-bd">
     <button class="pri" id="save" style="width:100%">💾 Save the open passage</button>
     <div id="libList" style="margin-top:16px"></div>
+  </div>
+</section>
+
+<section class="sheet" id="sheetProfiles">
+  <div class="sheet-hd"><b>Profiles</b><button class="ico" data-close>✕</button></div>
+  <div class="sheet-bd">
+    <div id="profileList"></div>
+    <div class="row" style="margin-top:14px">
+      <input id="newProfileName" placeholder="New profile name">
+      <button class="pri" id="addProfile">+ Add</button>
+    </div>
+    <p class="sub">Progress lives in this browser. Export it to carry it to another device.</p>
+    <div class="row" style="margin-top:14px">
+      <button class="mini" id="exportProfile">↓ Export progress</button>
+      <button class="mini" id="importProfile">↑ Import progress</button>
+    </div>
+    <input id="importFile" type="file" accept="application/json" class="hide">
   </div>
 </section>
 

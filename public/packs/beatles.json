@@ -1,95 +1,97 @@
 {
   "theme": "The Beatles",
-  "accent": "RP",
+  "accent": "GA",
   "sentences": [
     {
       "en": "Yesterday I saw a friend I hadn't seen for years.",
-      "ipa": "/ˈjestədeɪ aɪ ˈsɔːr‿ə ˈfrend aɪ ˈhædnt ˈsiːn fə ˈjɪəz/",
+      "ipa": "/ˈjɛstɚdeɪ aɪ ˈsɔ ə ˈfrɛnd aɪ ˈhædnt ˈsin fɚ ˈjɪrz/",
       "vi": "Hôm qua tôi gặp lại một người bạn cũ, đã bao năm không thấy nhau.",
       "tips": [
-        "saw‿r‿a: thêm /r/ nối",
-        "hadn't: nuốt nguyên âm",
-        "years /jɪəz/ không cong lưỡi"
+        "/ɚ/ trong yesterday — cong lưỡi",
+        "years /jɪrz/ giữ /r/",
+        "hadn't: nuốt nguyên âm"
       ]
     },
     {
       "en": "We chose joy over gold.",
-      "ipa": "/wi ˈtʃəʊz ˈdʒɔɪ ˈəʊvə ˈɡəʊld/",
+      "ipa": "/wi ˈtʃoʊz ˈdʒɔɪ ˈoʊvɚ ˈɡoʊld/",
       "vi": "Chúng tôi chọn niềm vui, không chọn vàng.",
       "tips": [
         "/tʃ/ vs /dʒ/ liền nhau",
-        "gold: dark L"
+        "gold: dark L",
+        "/oʊ/ tròn môi rồi trượt"
       ]
     },
     {
       "en": "A hard day's work leaves you tired, but the pleasure is pure: a warm voice, a shared song, good friends here at home.",
-      "ipa": "/ə ˈhɑːd ˈdeɪz ˈwɜːk ˈliːvz ju ˈtaɪəd | bət ðə ˈpleʒər‿ɪz ˈpjʊə | ə ˈwɔːm ˈvɔɪs | ə ˈʃeəd ˈsɒŋ | ˈɡʊd ˈfrendz ˈhɪər‿ət ˈhəʊm/",
+      "ipa": "/ə ˈhɑrd ˈdeɪz ˈwɝk ˈlivz ju ˈtaɪɚd | bət ðə ˈplɛʒɚ ɪz ˈpjʊr | ə ˈwɔrm ˈvɔɪs | ə ˈʃɛrd ˈsɔŋ | ˈɡʊd ˈfrɛndz ˈhɪr æt ˈhoʊm/",
       "vi": "Một ngày làm việc cật lực khiến ta rã rời, nhưng cái sướng thì nguyên vẹn: một giọng ấm, một bài hát chung, bạn bè ngay tại nhà.",
       "tips": [
-        "pleasure /ˈpleʒə/ — /ʒ/",
-        "pure /pjʊə/",
-        "here‿at: linking R",
-        "song /sɒŋ/ không /g/"
+        "pleasure /ˈplɛʒɚ/ — /ʒ/",
+        "pure /pjʊr/ giữ /j/",
+        "hard, warm: bật /r/ cuối",
+        "song /sɔŋ/ không /ɡ/"
       ]
     },
     {
       "en": "Look at the blackbird — she sings through the long, dark night and waits for the sun.",
-      "ipa": "/ˈlʊk‿ət ðə ˈblækbɜːd | ʃi ˈsɪŋz θruː ðə ˈlɒŋ ˈdɑːk ˈnaɪt‿ənd ˈweɪts fə ðə ˈsʌn/",
+      "ipa": "/ˈlʊk ət ðə ˈblækbɝd | ʃi ˈsɪŋz θru ðə ˈlɔŋ ˈdɑrk ˈnaɪt ənd ˈweɪts fɚ ðə ˈsʌn/",
       "vi": "Nhìn con chim đen kia — nó hót suốt đêm dài và chờ mặt trời lên.",
       "tips": [
         "through /θ/ lưỡi ra răng",
-        "sings /sɪŋz/",
+        "blackbird /ˈblækbɝd/ — /ɝ/",
         "waits: /ts/ bật gọn"
       ]
     },
     {
       "en": "Nothing you own can buy that hour.",
-      "ipa": "/ˈnʌθɪŋ ju ˈəʊn kən ˈbaɪ ðæt ˈaʊə/",
+      "ipa": "/ˈnʌθɪŋ ju ˈoʊn kən ˈbaɪ ðæt ˈaʊɚ/",
       "vi": "Không tài sản nào mua nổi cái giờ khắc ấy.",
       "tips": [
         "nothing: /θ/ + /ŋ/",
-        "hour /aʊə/ câm h"
+        "that hour: /t/ thành âm vỗ",
+        "hour /aʊɚ/ câm h"
       ]
     },
     {
       "en": "So take my hand, breathe, and let the world turn.",
-      "ipa": "/səʊ ˈteɪk maɪ ˈhænd | ˈbriːð | ənd ˈlet ðə ˈwɜːld ˈtɜːn/",
+      "ipa": "/soʊ ˈteɪk maɪ ˈhænd | ˈbrið | ənd ˈlɛt ðə ˈwɝld ˈtɝn/",
       "vi": "Nắm tay tôi đi, thở một hơi, và để đời cứ trôi.",
       "tips": [
-        "breathe /briːð/ — /ð/ rung",
-        "world: dark L rồi /d/"
+        "breathe /brið/ — /ð/ rung",
+        "world: /ɝ/ rồi dark L"
       ]
     },
     {
       "en": "Rain will pour, the road will bend, we grow.",
-      "ipa": "/ˈreɪn wɪl ˈpɔː | ðə ˈrəʊd wɪl ˈbend | wi ˈɡrəʊ/",
+      "ipa": "/ˈreɪn wɪl ˈpɔr | ðə ˈroʊd wɪl ˈbɛnd | wi ˈɡroʊ/",
       "vi": "Mưa sẽ đổ, đường sẽ quanh co, ta lớn lên.",
       "tips": [
-        "pour /pɔː/ không cong lưỡi",
+        "pour /pɔr/ bật /r/",
         "/r/ đầu từ vs dark L cuối"
       ]
     },
     {
       "en": "Love is the one thing that measures us: not what we earn, but who we are when we say hello, and again when we say goodbye.",
-      "ipa": "/ˈlʌv‿ɪz ðə ˈwʌn ˈθɪŋ ðət ˈmeʒəz‿əs | ˈnɒt ˈwɒt wi ˈɜːn | bət ˈhuː wi ˈɑː wen wi seɪ həˈləʊ | ənd‿əˈɡen wen wi seɪ ɡʊdˈbaɪ/",
+      "ipa": "/ˈlʌv ɪz ðə ˈwʌn ˈθɪŋ ðət ˈmɛʒɚz əs | ˈnɑt ˈwʌt wi ˈɝn | bət ˈhu wi ˈɑr wɛn wi seɪ həˈloʊ | ənd əˈɡɛn wɛn wi seɪ ɡʊdˈbaɪ/",
       "vi": "Tình thương mới là thước đo: không phải ta kiếm bao nhiêu, mà ta là ai lúc chào nhau, và lúc chia tay.",
       "tips": [
-        "measures /ˈmeʒəz/ — /ʒ/",
+        "measures /ˈmɛʒɚz/ — /ʒ/",
         "thing /θɪŋ/",
         "EARN ↗ … ARE ↘"
       ]
     },
     {
       "en": "Tomorrow is unwritten.",
-      "ipa": "/təˈmɒrəʊ ɪz ʌnˈrɪtn/",
+      "ipa": "/təˈmɑroʊ ɪz ʌnˈrɪtn/",
       "vi": "Ngày mai còn là trang giấy trắng.",
       "tips": [
-        "/t/ thành glottal, /n/ âm tiết"
+        "/t/ thành âm vỗ, /n/ âm tiết"
       ]
     },
     {
       "en": "Yesterday is finished.",
-      "ipa": "/ˈjestədeɪ ɪz ˈfɪnɪʃt/",
+      "ipa": "/ˈjɛstɚdeɪ ɪz ˈfɪnɪʃt/",
       "vi": "Hôm qua đã khép lại.",
       "tips": [
         "finished /ʃt/ — kết dứt khoát"
@@ -105,34 +107,35 @@
     }
   ],
   "anchors": {
-    "yesterday": "/ˈjestədeɪ/ trọng âm đầu",
-    "saw": "intrusive /r/ sang 'a'",
-    "years": "/jɪəz/ non-rhotic",
-    "hadn't": "nuốt nguyên âm",
+    "yesterday": "/ˈjɛstɚdeɪ/ trọng âm đầu, /ɚ/ cong lưỡi",
+    "saw": "/sɔ/ — nhiều vùng Mỹ đọc /sɑ/",
+    "years": "/jɪrz/ giữ /r/",
+    "hadn't": "nuốt nguyên âm, /t/ tắc họng",
     "gold": "dark L",
-    "world": "dark L + /d/",
+    "world": "/wɝld/ — /ɝ/ rồi dark L",
     "will": "dark L",
-    "pleasure": "/ˈpleʒə/ — /ʒ/ rung",
-    "measures": "/ˈmeʒəz/ — /ʒ/ rung",
-    "pure": "/pjʊə/ giữ hai phần",
-    "song": "/sɒŋ/ không thêm /g/",
+    "pleasure": "/ˈplɛʒɚ/ — /ʒ/ rung",
+    "measures": "/ˈmɛʒɚz/ — /ʒ/ rung",
+    "pure": "/pjʊr/ giữ /j/",
+    "song": "/sɔŋ/ không thêm /ɡ/",
     "sings": "/sɪŋz/",
     "nothing": "/θ/ + /ŋ/",
     "thing": "/θɪŋ/",
     "sing": "/sɪŋ/",
-    "through": "/θruː/ lưỡi ra răng",
-    "breathe": "/briːð/ — /ð/ rung",
-    "here": "linking /r/ sang 'at'",
-    "hard": "non-rhotic",
-    "dark": "non-rhotic",
-    "warm": "non-rhotic",
-    "pour": "non-rhotic",
-    "work": "non-rhotic",
-    "turn": "non-rhotic",
-    "earn": "/ɜːn/ — lên giọng",
-    "are": "/ɑː/ — rơi giọng",
-    "hour": "/aʊə/ câm h",
-    "unwritten": "/n/ âm tiết",
+    "through": "/θru/ lưỡi ra răng",
+    "breathe": "/brið/ — /ð/ rung",
+    "here": "/hɪr/ giữ /r/",
+    "hard": "/hɑrd/ bật /r/ rõ",
+    "dark": "/dɑrk/ bật /r/ rõ",
+    "warm": "/wɔrm/ bật /r/ rõ",
+    "pour": "/pɔr/ bật /r/ rõ",
+    "work": "/wɝk/ — /ɝ/ cong lưỡi",
+    "turn": "/tɝn/ — /ɝ/ cong lưỡi",
+    "earn": "/ɝn/ — lên giọng",
+    "are": "/ɑr/ — rơi giọng",
+    "that": "trước nguyên âm, /t/ thành âm vỗ /ɾ/",
+    "hour": "/aʊɚ/ câm h",
+    "unwritten": "/ʌnˈrɪtn/ — /n/ âm tiết",
     "goodbye": "trọng âm sau",
     "hello": "trọng âm sau"
   }

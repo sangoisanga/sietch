@@ -1,0 +1,107 @@
+{
+  "theme": "Pink Floyd",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "Time slips away while you are busy measuring it.",
+      "ipa": "/ˈtaɪm ˈslɪps əˈweɪ ˈwaɪl ju ɑr ˈbɪzi ˈmɛʒərɪŋ ɪt/",
+      "vi": "Thời gian trôi mất trong lúc bạn bận đo nó.",
+      "tips": [
+        "measuring /ˈmɛʒərɪŋ/ — /ʒ/ rung",
+        "while /waɪl/ — dark L"
+      ]
+    },
+    {
+      "en": "Every brick you add makes the room a little quieter.",
+      "ipa": "/ˈɛvri ˈbrɪk ju ˈæd ˈmeɪks ðə ˈrum ə ˈlɪtəl ˈkwaɪətɚ/",
+      "vi": "Mỗi viên gạch bạn thêm vào làm căn phòng lặng đi một chút.",
+      "tips": [
+        "little /ˈlɪtəl/ — /t/ thành âm vỗ, dark L",
+        "quieter /ˈkwaɪətɚ/ ba âm tiết"
+      ]
+    },
+    {
+      "en": "There is no dark side; there is only the half we choose to show.",
+      "ipa": "/ðɛr ɪz ˈnoʊ ˈdɑrk ˈsaɪd | ðɛr ɪz ˈoʊnli ðə ˈhæf wi ˈtʃuz tu ˈʃoʊ/",
+      "vi": "Không có mặt tối nào cả; chỉ có nửa mà ta chọn để phô ra.",
+      "tips": [
+        "choose /tʃuz/ vs show /ʃoʊ/ — /tʃ/ vs /ʃ/",
+        "half /hæf/ câm l"
+      ]
+    },
+    {
+      "en": "We taught the machine to sing, then learned to enjoy the chorus.",
+      "ipa": "/wi ˈtɔt ðə məˈʃin tu ˈsɪŋ | ˈðɛn ˈlɝnd tu ɛnˈdʒɔɪ ðə ˈkɔrəs/",
+      "vi": "Ta dạy cỗ máy hát, rồi học cách tận hưởng điệp khúc của nó.",
+      "tips": [
+        "machine /məˈʃin/ — /ʃ/ giữa, trọng âm sau",
+        "learned /lɝnd/ — /ɝ/ cong lưỡi",
+        "enjoy /ɛnˈdʒɔɪ/ — /dʒ/ rồi /ɔɪ/"
+      ]
+    },
+    {
+      "en": "Comfortably numb is nothing but comfort, and that is the trouble.",
+      "ipa": "/ˈkʌmftɚbli ˈnʌm ɪz ˈnʌθɪŋ bət ˈkʌmfɚt | ənd ˈðæt ɪz ðə ˈtrʌbəl/",
+      "vi": "Tê dại dễ chịu thì cũng chỉ là dễ chịu, và đó mới là vấn đề.",
+      "tips": [
+        "numb /nʌm/ câm b",
+        "nothing: /θ/ + /ŋ/"
+      ]
+    },
+    {
+      "en": "Wish you were here, and not merely available.",
+      "ipa": "/ˈwɪʃ ju wɚ ˈhɪr | ənd ˈnɑt ˈmɪrli əˈveɪləbəl/",
+      "vi": "Ước gì bạn ở đây, chứ không chỉ là rảnh.",
+      "tips": [
+        "wish /wɪʃ/ — /ʃ/ cuối",
+        "here /hɪr/ giữ /r/"
+      ]
+    },
+    {
+      "en": "The moon has a good publicist.",
+      "ipa": "/ðə ˈmun ˈhæz ə ˈɡʊd ˈpʌbləsɪst/",
+      "vi": "Mặt trăng có một tay PR giỏi.",
+      "tips": [
+        "moon /mun/ vs good /ɡʊd/ — /u/ dài vs /ʊ/ ngắn"
+      ]
+    },
+    {
+      "en": "Breathe out.",
+      "ipa": "/ˈbrið ˈaʊt/",
+      "vi": "Thở ra đi.",
+      "tips": [
+        "breathe /brið/ — /ð/ rung, không phải /θ/"
+      ]
+    },
+    {
+      "en": "The song ends young.",
+      "ipa": "/ðə ˈsɔŋ ˈɛndz ˈjʌŋ/",
+      "vi": "Bài hát tắt khi còn trẻ.",
+      "tips": [
+        "song /sɔŋ/ không thêm /ɡ/",
+        "young /jʌŋ/ — /j/ rồi /ŋ/"
+      ]
+    }
+  ],
+  "anchors": {
+    "measuring": "/ˈmɛʒərɪŋ/ — /ʒ/ rung",
+    "while": "dark L",
+    "little": "/t/ thành âm vỗ, dark L",
+    "quieter": "/ˈkwaɪətɚ/ ba âm tiết",
+    "choose": "/tʃuz/ — /tʃ/",
+    "show": "/ʃoʊ/ — /ʃ/",
+    "half": "/hæf/ câm l",
+    "machine": "/məˈʃin/ trọng âm sau",
+    "learned": "/lɝnd/ — /ɝ/ cong lưỡi",
+    "enjoy": "/ɛnˈdʒɔɪ/ — /dʒ/ rồi /ɔɪ/",
+    "numb": "/nʌm/ câm b",
+    "nothing": "/θ/ + /ŋ/",
+    "wish": "/wɪʃ/ — /ʃ/ cuối",
+    "here": "/hɪr/ giữ /r/",
+    "moon": "/mun/ — /u/ dài",
+    "breathe": "/brið/ — /ð/ rung",
+    "song": "/sɔŋ/ không thêm /ɡ/",
+    "young": "/jʌŋ/",
+    "chorus": "/ˈkɔrəs/"
+  }
+}

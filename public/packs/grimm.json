@@ -1,0 +1,108 @@
+{
+  "theme": "Grimm Brothers",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "The forest keeps every promise it makes, which is why children fear it.",
+      "ipa": "/ðə ˈfɔrəst ˈkips ˈɛvri ˈprɑməs ɪt ˈmeɪks | ˈwɪtʃ ɪz ˈwaɪ ˈtʃɪldrən ˈfɪr ɪt/",
+      "vi": "Khu rừng giữ đúng mọi lời hứa, và đó là lý do trẻ con sợ nó.",
+      "tips": [
+        "which /wɪtʃ/ và children /ˈtʃɪldrən/ — /tʃ/",
+        "keeps /kips/ — /i/ dài"
+      ]
+    },
+    {
+      "en": "Bread crumbs are a poor plan; birds are honest and hungry.",
+      "ipa": "/ˈbrɛd ˈkrʌmz ɑr ə ˈpʊr ˈplæn | ˈbɝdz ɑr ˈɑnəst ənd ˈhʌŋɡri/",
+      "vi": "Vụn bánh mì là kế dở; chim thì thật thà và đói.",
+      "tips": [
+        "birds /bɝdz/ — /ɝ/ cong lưỡi",
+        "hungry /ˈhʌŋɡri/ — /ŋɡ/ có /ɡ/"
+      ]
+    },
+    {
+      "en": "The wolf wore the grandmother's voice, and that was enough.",
+      "ipa": "/ðə ˈwʊlf ˈwɔr ðə ˈɡrænmʌðɚz ˈvɔɪs | ənd ˈðæt wəz ɪˈnʌf/",
+      "vi": "Con sói mượn giọng bà ngoại, và thế là đủ.",
+      "tips": [
+        "wolf /wʊlf/ — /ʊ/ rồi dark L",
+        "voice /vɔɪs/",
+        "enough /ɪˈnʌf/ trọng âm sau"
+      ]
+    },
+    {
+      "en": "Treasure is usually buried under something you were told not to move.",
+      "ipa": "/ˈtrɛʒɚ ɪz ˈjuʒuəli ˈbɛrid ˈʌndɚ ˈsʌmθɪŋ ju wɚ ˈtoʊld ˈnɑt tu ˈmuv/",
+      "vi": "Kho báu thường nằm dưới thứ người ta dặn bạn đừng động vào.",
+      "tips": [
+        "treasure /ˈtrɛʒɚ/ và usually /ˈjuʒuəli/ — /ʒ/ hai lần",
+        "something: /θ/ + /ŋ/"
+      ]
+    },
+    {
+      "en": "A girl with a sharp answer outlives a girl with a soft one.",
+      "ipa": "/ə ˈɡɝl wɪð ə ˈʃɑrp ˈænsɚ ˌaʊtˈlɪvz ə ˈɡɝl wɪð ə ˈsɔft ˈwʌn/",
+      "vi": "Cô gái có câu trả lời sắc sống lâu hơn cô gái có câu trả lời mềm.",
+      "tips": [
+        "girl /ɡɝl/ — /ɝ/ rồi dark L",
+        "sharp /ʃɑrp/ — /ʃ/ rồi /r/"
+      ]
+    },
+    {
+      "en": "The oven was always in the story; only the ending changed.",
+      "ipa": "/ði ˈʌvən wəz ˈɔlweɪz ɪn ðə ˈstɔri | ˈoʊnli ði ˈɛndɪŋ ˈtʃeɪndʒd/",
+      "vi": "Cái lò luôn có trong truyện; chỉ có đoạn kết là đổi.",
+      "tips": [
+        "changed /tʃeɪndʒd/ — /tʃ/ đầu, /dʒd/ cuối",
+        "ending /ˈɛndɪŋ/ — /ŋ/"
+      ]
+    },
+    {
+      "en": "Count the doors, then choose the third.",
+      "ipa": "/ˈkaʊnt ðə ˈdɔrz | ˈðɛn ˈtʃuz ðə ˈθɝd/",
+      "vi": "Đếm số cửa, rồi chọn cánh thứ ba.",
+      "tips": [
+        "count /kaʊnt/ — /aʊ/",
+        "third /θɝd/ — /θ/ rồi /ɝ/"
+      ]
+    },
+    {
+      "en": "Not everyone in the woods is lost; some are simply careful.",
+      "ipa": "/ˈnɑt ˈɛvriwʌn ɪn ðə ˈwʊdz ɪz ˈlɔst | ˈsʌm ɑr ˈsɪmpli ˈkɛrfəl/",
+      "vi": "Không phải ai trong rừng cũng lạc; có người chỉ đang cẩn thận.",
+      "tips": [
+        "woods /wʊdz/ — /ʊ/ ngắn",
+        "careful /ˈkɛrfəl/ — dark L"
+      ]
+    },
+    {
+      "en": "Shut the gate behind you.",
+      "ipa": "/ˈʃʌt ðə ˈɡeɪt bɪˈhaɪnd ju/",
+      "vi": "Đóng cổng lại sau lưng.",
+      "tips": [
+        "shut /ʃʌt/ — /ʃ/ đầu",
+        "behind /bɪˈhaɪnd/ trọng âm sau"
+      ]
+    }
+  ],
+  "anchors": {
+    "children": "/ˈtʃɪldrən/ — /tʃ/",
+    "birds": "/bɝdz/ — /ɝ/ cong lưỡi",
+    "hungry": "/ˈhʌŋɡri/ — /ŋɡ/ có /ɡ/",
+    "wolf": "/wʊlf/ — /ʊ/ rồi dark L",
+    "voice": "/vɔɪs/",
+    "enough": "/ɪˈnʌf/ trọng âm sau",
+    "treasure": "/ˈtrɛʒɚ/ — /ʒ/",
+    "usually": "/ˈjuʒuəli/ — /ʒ/",
+    "something": "/θ/ + /ŋ/",
+    "girl": "/ɡɝl/ — /ɝ/ rồi dark L",
+    "sharp": "/ʃɑrp/",
+    "changed": "/tʃeɪndʒd/",
+    "third": "/θɝd/",
+    "count": "/kaʊnt/",
+    "woods": "/wʊdz/ — /ʊ/ ngắn",
+    "careful": "dark L",
+    "shut": "/ʃʌt/",
+    "poor": "/pʊr/"
+  }
+}

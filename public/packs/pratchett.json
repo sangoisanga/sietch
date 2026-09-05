@@ -1,0 +1,103 @@
+{
+  "theme": "Terry Pratchett",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "The turtle moves, whatever the priests would rather you believed.",
+      "ipa": "/ðə ˈtɝtəl ˈmuvz | wʌtˈɛvɚ ðə ˈprists ˈwʊd ˈræðɚ ju bɪˈlivd/",
+      "vi": "Con rùa vẫn đi, bất kể mấy ông thầy tu muốn bạn tin gì.",
+      "tips": [
+        "turtle /ˈtɝtəl/ — /ɝ/ rồi dark L",
+        "rather /ˈræðɚ/ — /ð/ rung"
+      ]
+    },
+    {
+      "en": "Death is polite; he simply refuses to be argued with.",
+      "ipa": "/ˈdɛθ ɪz pəˈlaɪt | hi ˈsɪmpli rɪˈfjuzɪz tu bi ˈɑrɡjud wɪð/",
+      "vi": "Thần Chết rất lịch sự; ngài chỉ là không chịu tranh luận.",
+      "tips": [
+        "death /dɛθ/ — /θ/ cuối",
+        "refuses /rɪˈfjuzɪz/ giữ /j/"
+      ]
+    },
+    {
+      "en": "A good lie is a bridge; a great one is a whole city.",
+      "ipa": "/ə ˈɡʊd ˈlaɪ ɪz ə ˈbrɪdʒ | ə ˈɡreɪt ˈwʌn ɪz ə ˈhoʊl ˈsɪti/",
+      "vi": "Một lời nói dối khéo là cây cầu; một lời dối lớn là cả thành phố.",
+      "tips": [
+        "bridge /brɪdʒ/ — /dʒ/ cuối",
+        "whole /hoʊl/ — dark L"
+      ]
+    },
+    {
+      "en": "Justice is not natural; that is exactly why we keep building it.",
+      "ipa": "/ˈdʒʌstɪs ɪz ˈnɑt ˈnætʃərəl | ˈðæt ɪz ɪɡˈzæktli ˈwaɪ wi ˈkip ˈbɪldɪŋ ɪt/",
+      "vi": "Công lý không tự nhiên mà có; chính vì thế ta cứ phải dựng nó lên.",
+      "tips": [
+        "justice /ˈdʒʌstɪs/ — /dʒ/ đầu",
+        "natural /ˈnætʃərəl/ — /tʃ/ giữa"
+      ]
+    },
+    {
+      "en": "Measure a man by how he treats the sweeper, not the king.",
+      "ipa": "/ˈmɛʒɚ ə ˈmæn baɪ ˈhaʊ hi ˈtrits ðə ˈswipɚ | ˈnɑt ðə ˈkɪŋ/",
+      "vi": "Hãy đo một người qua cách anh ta đối xử với người quét rác, không phải với vua.",
+      "tips": [
+        "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+        "king /kɪŋ/ — /ŋ/ cuối"
+      ]
+    },
+    {
+      "en": "The wizards found the answer, then lost the question.",
+      "ipa": "/ðə ˈwɪzɚdz ˈfaʊnd ði ˈænsɚ | ˈðɛn ˈlɔst ðə ˈkwɛstʃən/",
+      "vi": "Đám pháp sư tìm ra câu trả lời, rồi làm mất câu hỏi.",
+      "tips": [
+        "found /faʊnd/ — /aʊ/",
+        "question /ˈkwɛstʃən/ — /tʃ/"
+      ]
+    },
+    {
+      "en": "Some books should be read with the lights on.",
+      "ipa": "/ˈsʌm ˈbʊks ˈʃʊd bi ˈrɛd wɪð ðə ˈlaɪts ˈɔn/",
+      "vi": "Có những cuốn sách nên đọc lúc bật đèn.",
+      "tips": [
+        "books /bʊks/, should /ʃʊd/ — /ʊ/ ngắn"
+      ]
+    },
+    {
+      "en": "Boil the joy slowly.",
+      "ipa": "/ˈbɔɪl ðə ˈdʒɔɪ ˈsloʊli/",
+      "vi": "Hãy đun niềm vui thật chậm.",
+      "tips": [
+        "boil /bɔɪl/ — /ɔɪ/ rồi dark L",
+        "joy /dʒɔɪ/"
+      ]
+    },
+    {
+      "en": "Mind how you go.",
+      "ipa": "/ˈmaɪnd ˈhaʊ ju ˈɡoʊ/",
+      "vi": "Đi đứng cẩn thận nhé.",
+      "tips": [
+        "mind /maɪnd/ vs how /haʊ/ — hai nguyên âm đôi"
+      ]
+    }
+  ],
+  "anchors": {
+    "turtle": "/ˈtɝtəl/ — /ɝ/ rồi dark L",
+    "rather": "/ˈræðɚ/ — /ð/ rung",
+    "death": "/dɛθ/ — /θ/ cuối",
+    "refuses": "/rɪˈfjuzɪz/ giữ /j/",
+    "bridge": "/brɪdʒ/ — /dʒ/ cuối",
+    "whole": "/hoʊl/ — dark L",
+    "justice": "/ˈdʒʌstɪs/",
+    "natural": "/ˈnætʃərəl/ — /tʃ/ giữa",
+    "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+    "king": "/kɪŋ/ — /ŋ/ cuối",
+    "question": "/ˈkwɛstʃən/",
+    "books": "/bʊks/ — /ʊ/ ngắn",
+    "boil": "/bɔɪl/",
+    "joy": "/dʒɔɪ/",
+    "argued": "/ˈɑrɡjud/ giữ /j/",
+    "exactly": "/ɪɡˈzæktli/ — /ɡz/"
+  }
+}

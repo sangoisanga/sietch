@@ -1,11 +1,11 @@
 export const STRINGS = {
   ready: 'Ready.',
+  loading: 'Loading packs…',
   forging: 'Forging the passage…',
   annotating: 'Annotating your text…',
   stopped: 'Stopped.',
   cancelled: 'Cancelled.',
   audioCleared: 'Audio cleared.',
-  backToPreset: 'Back to the Beatles passage.',
   coverageComplete: 'Fully covered.',
   nothingToPatch: 'Already fully covered, nothing to patch.',
   passageEnd: 'End of the passage. Record yourself and compare with yesterday.',
@@ -27,6 +27,7 @@ export const STRINGS = {
   generatingSentence: (index: number) => `Generating audio for sentence ${index + 1}…`,
   savedTo: (theme: string) => `Saved: ${theme}`,
   opened: (theme: string) => `Opened: ${theme}`,
+  packLoadFailed: (message: string) => `Could not load packs: ${message}`,
   forged: (theme: string, words: number) => `Done: ${theme} · ${words} words`,
   annotated: (words: number) => `Done: ${words} words`,
   loaded: (theme: string, words: number) => `Loaded: ${theme} · ${words} words`,
@@ -36,4 +37,15 @@ export const STRINGS = {
   auditSummary: (words: number, sentences: number, missing: number, total: number) =>
     `${words} words · ${sentences} sentences · missing ${missing}/${total} sounds.`,
   myText: 'My text',
+  nothingScheduled: 'Nothing in the pool',
+  profileNeedsName: 'Give the profile a name first.',
+  lastProfile: 'That is the only profile — keep at least one.',
+  alreadyDone: 'Already marked done today.',
+  noScheduledItem: 'Nothing scheduled to mark done.',
+
+  todayOption: (title: string) => `Today · ${title}`,
+  markedDone: (title: string) => `Marked done: ${title}`,
+  profileSwitched: (name: string) => `Now drilling as ${name}.`,
+  profileExported: (name: string) => `Exported ${name}'s progress.`,
+  profileImported: (name: string) => `Imported ${name}'s progress.`,
 } as const

@@ -1,5 +1,4 @@
-import { loadPack } from './content'
-import { resolveAccent } from './core/accents'
+import { DEFAULT_ACCENT, resolveAccent } from './core/accents'
 import { auditIPA, type AuditResult } from './core/audit'
 import { loadSettings, saveSettings, type Settings } from './core/settings'
 import type { Drill } from './types'
@@ -15,11 +14,11 @@ function auditOf(drill: Drill): AuditResult {
   return auditIPA(drill.sentences.map(sentence => sentence.ipa ?? '').join(' '), resolveAccent(drill.accent))
 }
 
-const openingDrill = loadPack()
+const emptyDrill: Drill = { theme: '', accent: DEFAULT_ACCENT, sentences: [], anchors: {} }
 
 export const state = {
-  drill: openingDrill,
-  audit: auditOf(openingDrill),
+  drill: emptyDrill,
+  audit: auditOf(emptyDrill),
   settings: loadSettings(),
   toggles: { ipa: true, vi: true, anchor: true, shadow: false } as Toggles,
   playing: false,

@@ -1,4 +1,8 @@
-import { loadPack } from '../content'
+import { DEFAULT_PACK, DEFAULT_PACK_TITLE, loadManifest, loadPack } from '../content/packs'
+import { itemKey, type PoolItem } from '../content/pool'
+import { drawForPeriod, withAssignment, withCompletion } from '../content/rotation'
+import { activeProfile, loadProgress, saveProgress } from '../core/profiles'
+import { dayKey, periodKey } from '../core/period'
 import { resolveAccent } from '../core/accents'
 import { buildAnnotatePrompt, buildForgePrompt } from '../core/prompts'
 import { loadLibrary, removeFromLibrary, saveToLibrary } from '../core/store'
@@ -7,7 +11,7 @@ import { GeminiError, MISSING_KEY } from '../providers/gemini/client'
 import type { Providers } from '../providers'
 import { setDrill, state } from '../state'
 import type { AccentCode, Drill, Sentence } from '../types'
-import { el, escapeHtml } from './dom'
+import { el, escapeHtml, fillSelect } from './dom'
 import type { Player } from './player'
 import { clearClips, renderDrill, setStatus } from './render'
 import { closeSheets } from './sheets'
@@ -15,6 +19,7 @@ import { STRINGS } from './strings'
 import { advanceTask, creepUntilDone, endTask, startTask } from './task'
 
 const FORGE_SECONDS = 22
+const TODAY_OPTION = '__today__'
 
 function toSentence(raw: unknown): Sentence | null {
   const source = raw as Partial<Sentence> | null
@@ -39,7 +44,34 @@ function toDrill(raw: unknown, fallbackTheme: string, accent: AccentCode): Drill
 }
 
 export function createActions(providers: Providers, player: Player) {
-  const themeInput = () => el<HTMLInputElement>('theme').value.trim() || 'The Beatles'
+  let scheduled: { item: PoolItem; period: string; title: string } | null = null
+
+  async function resolveScheduled(): Promise<void> {
+    scheduled = null
+    const daily = (await loadManifest()).pools.find(pool => pool.cadence === 'daily')
+    if (!daily) return
+
+    const profile = activeProfile()
+    const period = periodKey(daily.cadence, new Date())
+    const progress = loadProgress(profile.id)
+    const item = drawForPeriod(daily, progress, period, profile.id)
+    if (!item) return
+
+    saveProgress(profile.id, withAssignment(progress, period, item))
+    const title = (await loadManifest()).packs.find(pack => pack.id === item.packId)?.title ?? item.packId
+    scheduled = { item, period, title }
+  }
+
+  function isScheduledDone(): boolean {
+    if (!scheduled) return false
+    return loadProgress(activeProfile().id).completed[itemKey(scheduled.item)] !== undefined
+  }
+
+  function refreshMarkDone(): void {
+    const button = el<HTMLButtonElement>('markDone')
+    button.disabled = !scheduled || isScheduledDone()
+  }
+  const themeInput = () => el<HTMLInputElement>('theme').value.trim() || state.drill.theme || DEFAULT_PACK_TITLE
   const chosenAccent = () => el<HTMLSelectElement>('accent').value as AccentCode
 
   function present(drill: Drill): void {
@@ -175,9 +207,41 @@ export function createActions(providers: Providers, player: Player) {
       }
     },
 
-    reset: () => {
-      present(loadPack())
-      setStatus(STRINGS.backToPreset)
+    populatePackPicker: async () => {
+      const { packs } = await loadManifest()
+      await resolveScheduled()
+
+      const todayOption = scheduled
+        ? { value: TODAY_OPTION, label: STRINGS.todayOption(scheduled.title) }
+        : { value: TODAY_OPTION, label: STRINGS.nothingScheduled }
+      fillSelect(el('pack'), [todayOption, ...packs.map(({ id, title }) => ({ value: id, label: title }))])
+      el<HTMLSelectElement>('pack').options[0]!.disabled = !scheduled
+      refreshMarkDone()
+    },
+
+    scheduledPackId: () => scheduled?.item.packId ?? null,
+
+    markScheduledDone: () => {
+      if (!scheduled) {
+        setStatus(STRINGS.noScheduledItem, 'err')
+        return
+      }
+      if (isScheduledDone()) {
+        setStatus(STRINGS.alreadyDone)
+        return
+      }
+      const profile = activeProfile()
+      saveProgress(profile.id, withCompletion(loadProgress(profile.id), scheduled.item, dayKey(new Date())))
+      refreshMarkDone()
+      setStatus(STRINGS.markedDone(scheduled.title))
+    },
+
+    openPack: async (id: string) => {
+      const packId = id === TODAY_OPTION ? scheduled?.item.packId ?? DEFAULT_PACK : id
+      present(await loadPack(packId))
+      el<HTMLSelectElement>('pack').value = id === TODAY_OPTION && scheduled ? TODAY_OPTION : packId
+      refreshMarkDone()
+      setStatus(STRINGS.opened(state.drill.theme))
     },
 
     saveCurrent,

@@ -1,0 +1,127 @@
+{
+  "theme": "Rumi",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "The reed sings because it remembers the field it was cut from.",
+      "ipa": "/ðə ˈrid ˈsɪŋz bɪˈkɔz ɪt rɪˈmɛmbɚz ðə ˈfild ɪt wəz ˈkʌt frʌm/",
+      "vi": "Cây sáo hót lên vì nó còn nhớ cánh đồng nơi mình bị cắt ra.",
+      "tips": [
+        "reed /rid/ dài, không phải /rɪd/",
+        "/ɚ/ trong remembers — cong lưỡi",
+        "field: dark L cuối"
+      ]
+    },
+    {
+      "en": "Your wound is the door where the light chooses to enter.",
+      "ipa": "/jʊr ˈwund ɪz ðə ˈdɔr wɛr ðə ˈlaɪt ˈtʃuzɪz tu ˈɛntɚ/",
+      "vi": "Vết thương của bạn chính là cánh cửa ánh sáng chọn để bước vào.",
+      "tips": [
+        "wound /wund/ không phải /waʊnd/",
+        "chooses /ˈtʃuzɪz/ — /tʃ/ rồi /z/",
+        "door /dɔr/ bật /r/"
+      ]
+    },
+    {
+      "en": "Do not measure the journey in miles, but in what you were willing to lose.",
+      "ipa": "/du ˈnɑt ˈmɛʒɚ ðə ˈdʒɝni ɪn ˈmaɪlz | bət ɪn ˈwʌt ju wɚ ˈwɪlɪŋ tu ˈluz/",
+      "vi": "Đừng đo hành trình bằng số dặm, hãy đo bằng những gì bạn dám buông.",
+      "tips": [
+        "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+        "journey /ˈdʒɝni/ — /dʒ/ rồi /ɝ/",
+        "MILES ↗ … LOSE ↘"
+      ]
+    },
+    {
+      "en": "A thirsty jug thinks the water is far away.",
+      "ipa": "/ə ˈθɝsti ˈdʒʌɡ ˈθɪŋks ðə ˈwɔtɚ ɪz ˈfɑr əˈweɪ/",
+      "vi": "Cái bình đang khát cứ tưởng nước ở xa lắm.",
+      "tips": [
+        "thirsty /θ/ + /ɝ/ — lưỡi ra răng rồi cong",
+        "water: /t/ thành âm vỗ",
+        "far /fɑr/ bật /r/"
+      ]
+    },
+    {
+      "en": "Joy and grief share one house, and both are guests.",
+      "ipa": "/ˈdʒɔɪ ənd ˈɡrif ˈʃɛr ˈwʌn ˈhaʊs | ənd ˈboʊθ ɑr ˈɡɛsts/",
+      "vi": "Niềm vui và nỗi đau ở chung một nhà, cả hai đều là khách.",
+      "tips": [
+        "joy /dʒɔɪ/ vs share /ʃɛr/",
+        "both /boʊθ/ — /θ/ cuối",
+        "guests /sts/ bật gọn"
+      ]
+    },
+    {
+      "en": "Come, sit down, and let the noise of the world finish without you.",
+      "ipa": "/ˈkʌm | ˈsɪt ˈdaʊn | ənd ˈlɛt ðə ˈnɔɪz ʌv ðə ˈwɝld ˈfɪnɪʃ wɪˈðaʊt ju/",
+      "vi": "Lại đây, ngồi xuống, để tiếng ồn của thế gian tự tàn mà không cần bạn.",
+      "tips": [
+        "world /wɝld/ — /ɝ/ rồi dark L",
+        "without /wɪˈðaʊt/ — /ð/ rung",
+        "noise /nɔɪz/"
+      ]
+    },
+    {
+      "en": "What you are seeking is also seeking you, through the long night.",
+      "ipa": "/ˈwʌt ju ɑr ˈsikɪŋ ɪz ˈɔlsoʊ ˈsikɪŋ ju | θru ðə ˈlɔŋ ˈnaɪt/",
+      "vi": "Thứ bạn đang tìm cũng đang tìm bạn, suốt đêm dài.",
+      "tips": [
+        "seeking /ˈsikɪŋ/ — /i/ dài, /ŋ/ cuối",
+        "through /θru/ lưỡi ra răng",
+        "long /lɔŋ/ không /ɡ/"
+      ]
+    },
+    {
+      "en": "Burn the old map.",
+      "ipa": "/ˈbɝn ðə ˈoʊld ˈmæp/",
+      "vi": "Đốt tấm bản đồ cũ đi.",
+      "tips": [
+        "burn /bɝn/ — /ɝ/ cong lưỡi",
+        "old: dark L"
+      ]
+    },
+    {
+      "en": "The garden does not argue; it simply grows.",
+      "ipa": "/ðə ˈɡɑrdn dʌz ˈnɑt ˈɑrɡju | ɪt ˈsɪmpli ˈɡroʊz/",
+      "vi": "Khu vườn không tranh cãi; nó chỉ lớn lên.",
+      "tips": [
+        "garden /ˈɡɑrdn/ — /n/ âm tiết",
+        "argue /ˈɑrɡju/ giữ /j/"
+      ]
+    },
+    {
+      "en": "Be quiet now.",
+      "ipa": "/ˈbi ˈkwaɪət ˈnaʊ/",
+      "vi": "Giờ thì lặng đi.",
+      "tips": [
+        "quiet hai âm tiết /ˈkwaɪ-ət/",
+        "/naʊ/ mở rộng"
+      ]
+    }
+  ],
+  "anchors": {
+    "reed": "/rid/ — /i/ dài",
+    "remembers": "/rɪˈmɛmbɚz/ — /ɚ/ cong lưỡi",
+    "wound": "/wund/ không phải /waʊnd/",
+    "chooses": "/ˈtʃuzɪz/ — /tʃ/ đầu, /z/ cuối",
+    "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+    "journey": "/ˈdʒɝni/ — /dʒ/ + /ɝ/",
+    "thirsty": "/ˈθɝsti/ — /θ/ rồi /ɝ/",
+    "water": "/t/ giữa hai nguyên âm thành âm vỗ",
+    "joy": "/dʒɔɪ/",
+    "both": "/boʊθ/ — /θ/ cuối",
+    "world": "/wɝld/ — /ɝ/ rồi dark L",
+    "without": "/wɪˈðaʊt/ — /ð/ rung",
+    "through": "/θru/ lưỡi ra răng",
+    "long": "/lɔŋ/ không thêm /ɡ/",
+    "burn": "/bɝn/ — /ɝ/ cong lưỡi",
+    "garden": "/ˈɡɑrdn/ — /n/ âm tiết",
+    "argue": "/ˈɑrɡju/ giữ /j/",
+    "quiet": "hai âm tiết /ˈkwaɪ-ət/",
+    "noise": "/nɔɪz/",
+    "old": "dark L",
+    "grows": "/ɡroʊz/",
+    "far": "/fɑr/ bật /r/ rõ"
+  }
+}

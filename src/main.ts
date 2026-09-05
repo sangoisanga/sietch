@@ -1,4 +1,7 @@
 import './styles.css'
+import { DEFAULT_PACK } from './content/packs'
+
+const TODAY_OPTION = '__today__'
 import { THEME_SUGGESTIONS } from './content/themes'
 import { ACCENTS, ACCENT_CODES } from './core/accents'
 import { createProviders } from './providers'
@@ -6,11 +9,13 @@ import { GEMINI_VOICES } from './providers/tts/gemini'
 import type { SpeakingStyle } from './providers/tts/types'
 import { state, updateSettings } from './state'
 import { createActions } from './ui/actions'
+import { createProfilesUi } from './ui/profiles'
 import { el, fillSelect } from './ui/dom'
 import { createPlayer } from './ui/player'
-import { applyToggles, installAnchorTaps, renderDrill } from './ui/render'
+import { applyToggles, installAnchorTaps, setStatus } from './ui/render'
 import { installSheetDismissal, keepContentClearOfBar, openSheet } from './ui/sheets'
 import { installTaskCancel } from './ui/task'
+import { STRINGS } from './ui/strings'
 import type { Toggles } from './state'
 
 const providers = createProviders({
@@ -23,6 +28,26 @@ const providers = createProviders({
 
 const player = createPlayer(providers)
 const actions = createActions(providers, player)
+const profilesUi = createProfilesUi()
+
+async function openPack(id: string): Promise<void> {
+  try {
+    await actions.openPack(id)
+  } catch (error) {
+    setStatus(STRINGS.packLoadFailed(error instanceof Error ? error.message : String(error)), 'err')
+  }
+}
+
+async function bootstrap(): Promise<void> {
+  setStatus(STRINGS.loading)
+  try {
+    await actions.populatePackPicker()
+  } catch (error) {
+    setStatus(STRINGS.packLoadFailed(error instanceof Error ? error.message : String(error)), 'err')
+    return
+  }
+  await openPack(actions.scheduledPackId() ? TODAY_OPTION : DEFAULT_PACK)
+}
 
 function populateSelects(): void {
   fillSelect(el('accent'), ACCENT_CODES.map(code => ({ value: code, label: ACCENTS[code].label })))
@@ -102,7 +127,6 @@ function bindControls(): void {
   el('useOwn').onclick = () => void actions.useOwnText()
   el('copyPrompt').onclick = () => void actions.copyPrompt()
   el('loadJson').onclick = () => actions.loadPastedJson()
-  el('reset').onclick = () => actions.reset()
   el('save').onclick = () => actions.saveCurrent()
   el('save2').onclick = () => actions.saveCurrent()
   el('genAll').onclick = () => void actions.generateAllAudio()
@@ -111,6 +135,9 @@ function bindControls(): void {
   el('stopBtn').onclick = () => player.stop()
   el('openSet').onclick = () => openSheet('sheetSet')
   el('openLib').onclick = () => { actions.renderLibrary(); openSheet('sheetLib') }
+  el('openProfiles').onclick = () => { profilesUi.render(); openSheet('sheetProfiles') }
+  el('markDone').onclick = () => actions.markScheduledDone()
+  el<HTMLSelectElement>('pack').onchange = event => void openPack((event.target as HTMLSelectElement).value)
 }
 
 populateSelects()
@@ -124,7 +151,9 @@ installSheetDismissal()
 installTaskCancel()
 keepContentClearOfBar()
 actions.renderLibrary()
-renderDrill()
+profilesUi.render()
+profilesUi.install(() => void bootstrap())
+void bootstrap()
 
 // the voice list arrives asynchronously in Chrome, and an empty list means no accent match
 speechSynthesis?.getVoices()

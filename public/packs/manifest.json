@@ -1,0 +1,216 @@
+{
+  "packs": [
+    {
+      "id": "beatles",
+      "title": "The Beatles",
+      "accent": "GA",
+      "tags": [
+        "music",
+        "sixties"
+      ],
+      "words": 115,
+      "sentences": 11
+    },
+    {
+      "id": "dylan",
+      "title": "Bob Dylan",
+      "accent": "GA",
+      "tags": [
+        "music",
+        "protest"
+      ],
+      "words": 84,
+      "sentences": 9
+    },
+    {
+      "id": "cohen",
+      "title": "Leonard Cohen",
+      "accent": "GA",
+      "tags": [
+        "music",
+        "poetry"
+      ],
+      "words": 85,
+      "sentences": 9
+    },
+    {
+      "id": "andersen",
+      "title": "Hans Christian Andersen",
+      "accent": "GA",
+      "tags": [
+        "fairytale",
+        "nordic"
+      ],
+      "words": 88,
+      "sentences": 9
+    },
+    {
+      "id": "aesop",
+      "title": "Aesop's Fables",
+      "accent": "GA",
+      "tags": [
+        "fable",
+        "moral"
+      ],
+      "words": 75,
+      "sentences": 9
+    },
+    {
+      "id": "grimm",
+      "title": "Grimm Brothers",
+      "accent": "GA",
+      "tags": [
+        "fairytale",
+        "forest"
+      ],
+      "words": 93,
+      "sentences": 9
+    },
+    {
+      "id": "holmes",
+      "title": "Sherlock Holmes",
+      "accent": "GA",
+      "tags": [
+        "mystery",
+        "london"
+      ],
+      "words": 91,
+      "sentences": 10
+    },
+    {
+      "id": "ghibli",
+      "title": "Studio Ghibli",
+      "accent": "GA",
+      "tags": [
+        "animation",
+        "wind"
+      ],
+      "words": 89,
+      "sentences": 9
+    },
+    {
+      "id": "pratchett",
+      "title": "Terry Pratchett",
+      "accent": "GA",
+      "tags": [
+        "fantasy",
+        "satire"
+      ],
+      "words": 83,
+      "sentences": 9
+    },
+    {
+      "id": "rumi",
+      "title": "Rumi",
+      "accent": "GA",
+      "tags": [
+        "poetry",
+        "sufi"
+      ],
+      "words": 97,
+      "sentences": 10
+    },
+    {
+      "id": "austen",
+      "title": "Jane Austen",
+      "accent": "GA",
+      "tags": [
+        "classic",
+        "manners"
+      ],
+      "words": 98,
+      "sentences": 9
+    },
+    {
+      "id": "floyd",
+      "title": "Pink Floyd",
+      "accent": "GA",
+      "tags": [
+        "music",
+        "psychedelic"
+      ],
+      "words": 76,
+      "sentences": 9
+    }
+  ],
+  "pools": [
+    {
+      "id": "daily-passages",
+      "title": "Daily passage",
+      "cadence": "daily",
+      "items": [
+        {
+          "kind": "passage",
+          "packId": "beatles"
+        },
+        {
+          "kind": "passage",
+          "packId": "dylan"
+        },
+        {
+          "kind": "passage",
+          "packId": "cohen"
+        },
+        {
+          "kind": "passage",
+          "packId": "andersen"
+        },
+        {
+          "kind": "passage",
+          "packId": "aesop"
+        },
+        {
+          "kind": "passage",
+          "packId": "grimm"
+        },
+        {
+          "kind": "passage",
+          "packId": "holmes"
+        },
+        {
+          "kind": "passage",
+          "packId": "ghibli"
+        },
+        {
+          "kind": "passage",
+          "packId": "pratchett"
+        },
+        {
+          "kind": "passage",
+          "packId": "rumi"
+        },
+        {
+          "kind": "passage",
+          "packId": "austen"
+        },
+        {
+          "kind": "passage",
+          "packId": "floyd"
+        }
+      ]
+    },
+    {
+      "id": "weekly-long",
+      "title": "Weekly deep drill",
+      "cadence": "weekly",
+      "items": [
+        {
+          "kind": "passage",
+          "packId": "beatles"
+        },
+        {
+          "kind": "passage",
+          "packId": "austen"
+        },
+        {
+          "kind": "passage",
+          "packId": "rumi"
+        },
+        {
+          "kind": "passage",
+          "packId": "grimm"
+        }
+      ]
+    }
+  ]
+}

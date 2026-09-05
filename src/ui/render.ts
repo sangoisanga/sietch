@@ -74,6 +74,7 @@ export function renderAudit(): void {
     : `<b style="color:var(--green)">${STRINGS.coverageComplete}</b>`
   el('auditNote').innerHTML = `${summary} ${verdict}`
 
+  el('soundCount').textContent = String(audit.inventory.length)
   el('grid').innerHTML = audit.inventory
     .map(phoneme => `<span class="ph ${audit.found[phoneme] ? 'ok' : 'no'}">${escapeHtml(phoneme)}</span>`)
     .join('')

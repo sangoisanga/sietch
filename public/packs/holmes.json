@@ -1,0 +1,120 @@
+{
+  "theme": "Sherlock Holmes",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "You see everything, but you observe almost nothing.",
+      "ipa": "/ju ˈsi ˈɛvriθɪŋ | bət ju əbˈzɝv ˈɔlmoʊst ˈnʌθɪŋ/",
+      "vi": "Anh nhìn thấy mọi thứ, nhưng gần như chẳng quan sát được gì.",
+      "tips": [
+        "observe /əbˈzɝv/ — trọng âm sau, /ɝ/",
+        "everything, nothing: /θ/ + /ŋ/"
+      ]
+    },
+    {
+      "en": "The fog was thick enough to hide a judge or a thief.",
+      "ipa": "/ðə ˈfɔɡ wəz ˈθɪk ɪˈnʌf tu ˈhaɪd ə ˈdʒʌdʒ ɔr ə ˈθif/",
+      "vi": "Sương dày đủ để giấu một quan tòa hay một tên trộm.",
+      "tips": [
+        "judge /dʒʌdʒ/ — /dʒ/ hai đầu",
+        "thief /θif/ vs thick /θɪk/"
+      ]
+    },
+    {
+      "en": "A muddy boot told me more than a long confession.",
+      "ipa": "/ə ˈmʌdi ˈbut ˈtoʊld mi ˈmɔr ðən ə ˈlɔŋ kənˈfɛʃən/",
+      "vi": "Một chiếc ủng dính bùn nói cho tôi nhiều hơn cả một lời thú tội dài.",
+      "tips": [
+        "muddy: /t/? không — /d/ giữa thành âm vỗ",
+        "confession /kənˈfɛʃən/ — /ʃ/"
+      ]
+    },
+    {
+      "en": "Measure the ash, weigh the silence, and the answer arrives.",
+      "ipa": "/ˈmɛʒɚ ði ˈæʃ | ˈweɪ ðə ˈsaɪləns | ənd ði ˈænsɚ əˈraɪvz/",
+      "vi": "Cân tro, đo sự im lặng, rồi câu trả lời tự đến.",
+      "tips": [
+        "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+        "ash /æʃ/ — /ʃ/ cuối",
+        "arrives /z/ cuối"
+      ]
+    },
+    {
+      "en": "Choice is a luxury the guilty rarely enjoy.",
+      "ipa": "/ˈtʃɔɪs ɪz ə ˈlʌkʃəri ðə ˈɡɪlti ˈrɛrli ɛnˈdʒɔɪ/",
+      "vi": "Lựa chọn là thứ xa xỉ mà kẻ có tội hiếm khi được hưởng.",
+      "tips": [
+        "choice /tʃɔɪs/ vs enjoy /ɛnˈdʒɔɪ/",
+        "guilty: dark L"
+      ]
+    },
+    {
+      "en": "Now look down at the ground, not out at the crowd.",
+      "ipa": "/ˈnaʊ ˈlʊk ˈdaʊn ət ðə ˈɡraʊnd | ˈnɑt ˈaʊt ət ðə ˈkraʊd/",
+      "vi": "Giờ nhìn xuống mặt đất, đừng nhìn ra đám đông.",
+      "tips": [
+        "/aʊ/ năm lần liền — mở miệng rộng",
+        "look /lʊk/ ngắn"
+      ]
+    },
+    {
+      "en": "The good doctor thinks I am cold; I am merely awake.",
+      "ipa": "/ðə ˈɡʊd ˈdɑktɚ ˈθɪŋks aɪ æm ˈkoʊld | aɪ æm ˈmɪrli əˈweɪk/",
+      "vi": "Vị bác sĩ tốt bụng nghĩ tôi lạnh lùng; tôi chỉ đang tỉnh táo.",
+      "tips": [
+        "doctor /ˈdɑktɚ/ — /ɑ/ rồi /ɚ/",
+        "cold: dark L"
+      ]
+    },
+    {
+      "en": "Every case begins with a question no one wished to ask.",
+      "ipa": "/ˈɛvri ˈkeɪs bɪˈɡɪnz wɪð ə ˈkwɛstʃən ˈnoʊ ˈwʌn ˈwɪʃt tu ˈæsk/",
+      "vi": "Vụ nào cũng bắt đầu bằng một câu hỏi chẳng ai muốn hỏi.",
+      "tips": [
+        "question /ˈkwɛstʃən/ — /tʃ/ giữa",
+        "wished /wɪʃt/ — /ʃt/"
+      ]
+    },
+    {
+      "en": "Bring your coat; the game moves.",
+      "ipa": "/ˈbrɪŋ jʊr ˈkoʊt | ðə ˈɡeɪm ˈmuvz/",
+      "vi": "Mang áo khoác đi; ván cờ đã động.",
+      "tips": [
+        "bring /brɪŋ/ — /ŋ/ cuối",
+        "moves /muvz/ — /v/ rồi /z/"
+      ]
+    },
+    {
+      "en": "The truth is patient.",
+      "ipa": "/ðə ˈtruθ ɪz ˈpeɪʃənt/",
+      "vi": "Sự thật rất kiên nhẫn.",
+      "tips": [
+        "truth /truθ/ — /θ/ cuối",
+        "patient /ˈpeɪʃənt/ — /ʃ/"
+      ]
+    }
+  ],
+  "anchors": {
+    "observe": "/əbˈzɝv/ — trọng âm sau, /ɝ/",
+    "everything": "/θ/ + /ŋ/",
+    "nothing": "/θ/ + /ŋ/",
+    "judge": "/dʒʌdʒ/ — /dʒ/ cả hai đầu",
+    "thief": "/θif/ — /i/ dài",
+    "fog": "/fɔɡ/",
+    "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+    "ash": "/æʃ/ — /ʃ/ cuối",
+    "choice": "/tʃɔɪs/",
+    "enjoy": "/ɛnˈdʒɔɪ/ trọng âm sau",
+    "guilty": "dark L",
+    "doctor": "/ˈdɑktɚ/ — /ɑ/ rồi /ɚ/",
+    "cold": "dark L",
+    "question": "/ˈkwɛstʃən/ — /tʃ/ giữa",
+    "wished": "/wɪʃt/ — /ʃt/ dứt khoát",
+    "bring": "/brɪŋ/ — /ŋ/ cuối",
+    "truth": "/truθ/ — /θ/ cuối",
+    "patient": "/ˈpeɪʃənt/ — /ʃ/",
+    "crowd": "/kraʊd/",
+    "ground": "/ɡraʊnd/",
+    "moves": "/muvz/"
+  }
+}

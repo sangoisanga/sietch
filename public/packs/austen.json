@@ -1,0 +1,111 @@
+{
+  "theme": "Jane Austen",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "It is a truth universally ignored that charm rarely pays the rent.",
+      "ipa": "/ɪt ɪz ə ˈtruθ ˌjunɪˈvɝsəli ɪɡˈnɔrd ðət ˈtʃɑrm ˈrɛrli ˈpeɪz ðə ˈrɛnt/",
+      "vi": "Có một sự thật ai cũng lờ đi: duyên dáng hiếm khi trả nổi tiền nhà.",
+      "tips": [
+        "truth /truθ/ — /θ/ cuối",
+        "universally /ˌjunɪˈvɝsəli/ — /j/ rồi /ɝ/",
+        "charm /tʃɑrm/ bật /r/"
+      ]
+    },
+    {
+      "en": "She judged him by his boots, which was fair, and by his silence, which was not.",
+      "ipa": "/ʃi ˈdʒʌdʒd ɪm baɪ ɪz ˈbuts | ˈwɪtʃ wəz ˈfɛr | ənd baɪ ɪz ˈsaɪləns | ˈwɪtʃ wəz ˈnɑt/",
+      "vi": "Nàng đánh giá chàng qua đôi giày, điều đó công bằng, và qua sự im lặng, điều đó thì không.",
+      "tips": [
+        "judged /dʒʌdʒd/ vs which /wɪtʃ/",
+        "silence /ˈsaɪləns/ — dark L"
+      ]
+    },
+    {
+      "en": "A young man with a good coat and no opinions is a great pleasure at dinner.",
+      "ipa": "/ə ˈjʌŋ ˈmæn wɪð ə ˈɡʊd ˈkoʊt ənd ˈnoʊ əˈpɪnjənz ɪz ə ˈɡreɪt ˈplɛʒɚ æt ˈdɪnɚ/",
+      "vi": "Một chàng trai có áo khoác đẹp và không có chính kiến là niềm vui lớn trong bữa tối.",
+      "tips": [
+        "young /jʌŋ/ — /j/ rồi /ŋ/",
+        "opinions /əˈpɪnjənz/ — /nj/",
+        "pleasure /ˈplɛʒɚ/ — /ʒ/"
+      ]
+    },
+    {
+      "en": "Do not mistake a loud house for a happy one.",
+      "ipa": "/du ˈnɑt mɪˈsteɪk ə ˈlaʊd ˈhaʊs fɔr ə ˈhæpi ˈwʌn/",
+      "vi": "Đừng nhầm một ngôi nhà ồn ào với một ngôi nhà hạnh phúc.",
+      "tips": [
+        "loud /laʊd/, house /haʊs/ — /aʊ/",
+        "happy /ˈhæpi/ — /æ/ mở"
+      ]
+    },
+    {
+      "en": "Her mother thought the whole business a joy; her father thought it noise.",
+      "ipa": "/hɚ ˈmʌðɚ ˈθɔt ðə ˈhoʊl ˈbɪznəs ə ˈdʒɔɪ | hɚ ˈfɑðɚ ˈθɔt ɪt ˈnɔɪz/",
+      "vi": "Mẹ nàng thấy cả chuyện này là niềm vui; cha nàng thấy đó là tiếng ồn.",
+      "tips": [
+        "thought /θɔt/ — /θ/ vs mother /ˈmʌðɚ/ — /ð/",
+        "joy /dʒɔɪ/ vs noise /nɔɪz/"
+      ]
+    },
+    {
+      "en": "We are civil, and therefore we are cruel, but slowly.",
+      "ipa": "/wi ɑr ˈsɪvəl | ənd ˈðɛrfɔr wi ɑr ˈkruəl | bət ˈsloʊli/",
+      "vi": "Chúng ta lịch sự, và vì thế chúng ta tàn nhẫn, chỉ là từ từ thôi.",
+      "tips": [
+        "civil /ˈsɪvəl/ — dark L",
+        "cruel /ˈkruəl/ hai âm tiết"
+      ]
+    },
+    {
+      "en": "Everyone wishes to be understood; almost no one wishes to be known.",
+      "ipa": "/ˈɛvriwʌn ˈwɪʃɪz tu bi ˌʌndɚˈstʊd | ˈɔlmoʊst ˈnoʊ ˈwʌn ˈwɪʃɪz tu bi ˈnoʊn/",
+      "vi": "Ai cũng muốn được thấu hiểu; gần như không ai muốn bị nhìn thấu.",
+      "tips": [
+        "wishes /ˈwɪʃɪz/ — /ʃ/ rồi /z/",
+        "understood /ˌʌndɚˈstʊd/ — /ɚ/ rồi /ʊ/"
+      ]
+    },
+    {
+      "en": "The letter came late.",
+      "ipa": "/ðə ˈlɛtɚ ˈkeɪm ˈleɪt/",
+      "vi": "Lá thư đến muộn.",
+      "tips": [
+        "letter: /t/ giữa thành âm vỗ",
+        "late /leɪt/ — /t/ dứt"
+      ]
+    },
+    {
+      "en": "She smiled, and said nothing.",
+      "ipa": "/ʃi ˈsmaɪld | ənd ˈsɛd ˈnʌθɪŋ/",
+      "vi": "Nàng mỉm cười, và không nói gì.",
+      "tips": [
+        "smiled /smaɪld/ — dark L",
+        "nothing: /θ/ + /ŋ/"
+      ]
+    }
+  ],
+  "anchors": {
+    "truth": "/truθ/ — /θ/ cuối",
+    "universally": "/ˌjunɪˈvɝsəli/ — /j/ rồi /ɝ/",
+    "charm": "/tʃɑrm/ bật /r/",
+    "judged": "/dʒʌdʒd/",
+    "silence": "dark L",
+    "young": "/jʌŋ/ — /j/ rồi /ŋ/",
+    "opinions": "/əˈpɪnjənz/ — /nj/",
+    "pleasure": "/ˈplɛʒɚ/ — /ʒ/ rung",
+    "loud": "/laʊd/",
+    "house": "/haʊs/",
+    "mother": "/ˈmʌðɚ/ — /ð/ rung",
+    "thought": "/θɔt/ — /θ/ đầu",
+    "joy": "/dʒɔɪ/",
+    "noise": "/nɔɪz/",
+    "civil": "dark L",
+    "cruel": "/ˈkruəl/ hai âm tiết",
+    "understood": "/ˌʌndɚˈstʊd/",
+    "wishes": "/ˈwɪʃɪz/",
+    "letter": "/t/ giữa thành âm vỗ",
+    "nothing": "/θ/ + /ŋ/"
+  }
+}

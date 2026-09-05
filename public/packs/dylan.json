@@ -1,0 +1,107 @@
+{
+  "theme": "Bob Dylan",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "The answer was never hiding; it was just louder than the question.",
+      "ipa": "/ði ˈænsɚ wəz ˈnɛvɚ ˈhaɪdɪŋ | ɪt wəz ˈdʒʌst ˈlaʊdɚ ðən ðə ˈkwɛstʃən/",
+      "vi": "Câu trả lời chưa từng trốn; nó chỉ ồn hơn câu hỏi.",
+      "tips": [
+        "question /ˈkwɛstʃən/ — /tʃ/ giữa",
+        "louder /ˈlaʊdɚ/ — /aʊ/ rồi /ɚ/"
+      ]
+    },
+    {
+      "en": "Old roads judge you by your shoes, not your reasons.",
+      "ipa": "/ˈoʊld ˈroʊdz ˈdʒʌdʒ ju baɪ jʊr ˈʃuz | ˈnɑt jʊr ˈrizənz/",
+      "vi": "Những con đường cũ đánh giá bạn qua đôi giày, không qua lý lẽ.",
+      "tips": [
+        "judge /dʒʌdʒ/ — /dʒ/ hai đầu",
+        "shoes /ʃuz/ — /ʃ/ rồi /u/"
+      ]
+    },
+    {
+      "en": "Something is happening here, and the paper will print it wrong.",
+      "ipa": "/ˈsʌmθɪŋ ɪz ˈhæpənɪŋ ˈhɪr | ənd ðə ˈpeɪpɚ wɪl ˈprɪnt ɪt ˈrɔŋ/",
+      "vi": "Có chuyện đang xảy ra ở đây, và báo chí sẽ in sai.",
+      "tips": [
+        "something: /θ/ + /ŋ/",
+        "wrong /rɔŋ/ câm w"
+      ]
+    },
+    {
+      "en": "A good song is a coin: one face pleasure, one face warning.",
+      "ipa": "/ə ˈɡʊd ˈsɔŋ ɪz ə ˈkɔɪn | ˈwʌn ˈfeɪs ˈplɛʒɚ | ˈwʌn ˈfeɪs ˈwɔrnɪŋ/",
+      "vi": "Bài hát hay là đồng xu: một mặt khoái cảm, một mặt cảnh báo.",
+      "tips": [
+        "coin /kɔɪn/ — /ɔɪ/",
+        "pleasure /ˈplɛʒɚ/ — /ʒ/ rung"
+      ]
+    },
+    {
+      "en": "They wanted a prophet; he bought a motorcycle.",
+      "ipa": "/ðeɪ ˈwɔntɪd ə ˈprɑfət | hi ˈbɔt ə ˈmoʊtɚsaɪkəl/",
+      "vi": "Họ muốn một nhà tiên tri; anh ta mua một chiếc mô tô.",
+      "tips": [
+        "bought /bɔt/ — /ɔ/ dài",
+        "motorcycle: /t/ thành âm vỗ"
+      ]
+    },
+    {
+      "en": "Truth moves through a crowd like weather through a field.",
+      "ipa": "/ˈtruθ ˈmuvz θru ə ˈkraʊd ˈlaɪk ˈwɛðɚ θru ə ˈfild/",
+      "vi": "Sự thật đi qua đám đông như thời tiết đi qua cánh đồng.",
+      "tips": [
+        "truth /truθ/ và through /θru/ — /θ/",
+        "weather /ˈwɛðɚ/ — /ð/ rung"
+      ]
+    },
+    {
+      "en": "Take what you can carry and leave the rest burning.",
+      "ipa": "/ˈteɪk ˈwʌt ju kən ˈkæri ənd ˈliv ðə ˈrɛst ˈbɝnɪŋ/",
+      "vi": "Mang theo thứ bạn vác nổi và để phần còn lại cháy.",
+      "tips": [
+        "carry /ˈkæri/ — /æ/ mở",
+        "burning /ˈbɝnɪŋ/ — /ɝ/"
+      ]
+    },
+    {
+      "en": "The times were always changing; we just noticed.",
+      "ipa": "/ðə ˈtaɪmz wɚ ˈɔlweɪz ˈtʃeɪndʒɪŋ | wi ˈdʒʌst ˈnoʊtɪst/",
+      "vi": "Thời thế vẫn luôn đổi; chỉ là ta mới để ý.",
+      "tips": [
+        "changing /ˈtʃeɪndʒɪŋ/ — /tʃ/ đầu, /dʒ/ giữa",
+        "noticed: /t/ thành âm vỗ"
+      ]
+    },
+    {
+      "en": "Sing it plain.",
+      "ipa": "/ˈsɪŋ ɪt ˈpleɪn/",
+      "vi": "Hát mộc thôi.",
+      "tips": [
+        "sing /sɪŋ/ — /ŋ/ cuối",
+        "plain /pleɪn/ — /pl/"
+      ]
+    }
+  ],
+  "anchors": {
+    "question": "/ˈkwɛstʃən/ — /tʃ/ giữa",
+    "louder": "/ˈlaʊdɚ/",
+    "judge": "/dʒʌdʒ/ — /dʒ/ hai đầu",
+    "shoes": "/ʃuz/",
+    "something": "/θ/ + /ŋ/",
+    "wrong": "/rɔŋ/ câm w",
+    "coin": "/kɔɪn/",
+    "pleasure": "/ˈplɛʒɚ/ — /ʒ/ rung",
+    "bought": "/bɔt/",
+    "motorcycle": "/t/ thành âm vỗ",
+    "truth": "/truθ/",
+    "through": "/θru/ lưỡi ra răng",
+    "weather": "/ˈwɛðɚ/ — /ð/ rung",
+    "carry": "/ˈkæri/",
+    "burning": "/ˈbɝnɪŋ/ — /ɝ/",
+    "changing": "/ˈtʃeɪndʒɪŋ/",
+    "sing": "/sɪŋ/",
+    "warning": "/ˈwɔrnɪŋ/ bật /r/"
+  }
+}

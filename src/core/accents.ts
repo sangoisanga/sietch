@@ -22,9 +22,9 @@ export const ACCENTS: Record<AccentCode, Accent> = {
   Australian: { code: 'Australian', label: 'Australian', bcp47: 'en-AU', ttsDescription: 'Australian English', vowels: RP_VOWELS, consonants: SHARED_CONSONANTS },
 }
 
-export const ACCENT_CODES = Object.keys(ACCENTS) as AccentCode[]
+export const ACCENT_CODES: AccentCode[] = ['GA', 'RP', 'Liverpool', 'Scottish', 'Australian']
 
-export const DEFAULT_ACCENT: AccentCode = 'RP'
+export const DEFAULT_ACCENT: AccentCode = 'GA'
 
 export function resolveAccent(code: string): Accent {
   return ACCENTS[code as AccentCode] ?? ACCENTS[DEFAULT_ACCENT]

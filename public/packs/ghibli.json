@@ -1,0 +1,108 @@
+{
+  "theme": "Studio Ghibli",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "The wind remembers the shape of every wing that used it.",
+      "ipa": "/ðə ˈwɪnd rɪˈmɛmbɚz ðə ˈʃeɪp ʌv ˈɛvri ˈwɪŋ ðət ˈjuzd ɪt/",
+      "vi": "Gió nhớ hình dáng của từng đôi cánh từng mượn nó.",
+      "tips": [
+        "shape /ʃeɪp/ — /ʃ/ đầu",
+        "wing /wɪŋ/ — /ŋ/ cuối",
+        "used /juzd/ giữ /j/"
+      ]
+    },
+    {
+      "en": "A bathhouse full of gods still needs someone to scrub the floor.",
+      "ipa": "/ə ˈbæθhaʊs ˈfʊl ʌv ˈɡɑdz ˈstɪl ˈnidz ˈsʌmwʌn tu ˈskrʌb ðə ˈflɔr/",
+      "vi": "Nhà tắm đầy thần linh vẫn cần ai đó cọ sàn.",
+      "tips": [
+        "bathhouse /ˈbæθhaʊs/ — /θ/ rồi /h/",
+        "full /fʊl/ — /ʊ/ rồi dark L"
+      ]
+    },
+    {
+      "en": "Courage is quiet; it looks like a girl choosing the longer road home.",
+      "ipa": "/ˈkɝɪdʒ ɪz ˈkwaɪət | ɪt ˈlʊks ˈlaɪk ə ˈɡɝl ˈtʃuzɪŋ ðə ˈlɔŋɡɚ ˈroʊd ˈhoʊm/",
+      "vi": "Can đảm thì lặng lẽ; nó giống một cô bé chọn con đường về xa hơn.",
+      "tips": [
+        "courage /ˈkɝɪdʒ/ — /ɝ/ rồi /dʒ/",
+        "choosing /ˈtʃuzɪŋ/ — /tʃ/ đầu"
+      ]
+    },
+    {
+      "en": "The forest is not evil; it is simply older than your opinion of it.",
+      "ipa": "/ðə ˈfɔrəst ɪz ˈnɑt ˈivəl | ɪt ɪz ˈsɪmpli ˈoʊldɚ ðən jʊr əˈpɪnjən ʌv ɪt/",
+      "vi": "Khu rừng không ác; nó chỉ già hơn ý kiến của bạn về nó.",
+      "tips": [
+        "evil /ˈivəl/ — dark L",
+        "older /ˈoʊldɚ/ — /ɚ/"
+      ]
+    },
+    {
+      "en": "Measure a life in warm bread, clean water, and one good friend.",
+      "ipa": "/ˈmɛʒɚ ə ˈlaɪf ɪn ˈwɔrm ˈbrɛd | ˈklin ˈwɔtɚ | ənd ˈwʌn ˈɡʊd ˈfrɛnd/",
+      "vi": "Hãy đo một đời bằng bánh mì ấm, nước sạch, và một người bạn tốt.",
+      "tips": [
+        "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+        "water: /t/ thành âm vỗ"
+      ]
+    },
+    {
+      "en": "Flying is mostly falling with better manners.",
+      "ipa": "/ˈflaɪɪŋ ɪz ˈmoʊstli ˈfɔlɪŋ wɪð ˈbɛtɚ ˈmænɚz/",
+      "vi": "Bay phần lớn là rơi một cách lịch sự hơn.",
+      "tips": [
+        "flying /ˈflaɪɪŋ/ hai âm tiết",
+        "manners /ˈmænɚz/ — /ɚ/"
+      ]
+    },
+    {
+      "en": "Say thank you to the house before you leave it.",
+      "ipa": "/ˈseɪ ˈθæŋk ju tu ðə ˈhaʊs bɪˈfɔr ju ˈliv ɪt/",
+      "vi": "Hãy cảm ơn ngôi nhà trước khi rời đi.",
+      "tips": [
+        "thank /θæŋk/ — /θ/ rồi /ŋ/",
+        "house /haʊs/ — /aʊ/"
+      ]
+    },
+    {
+      "en": "The soot sprites enjoy their work.",
+      "ipa": "/ðə ˈsut ˈspraɪts ɛnˈdʒɔɪ ðɛr ˈwɝk/",
+      "vi": "Lũ bụi than rất khoái việc của mình.",
+      "tips": [
+        "enjoy /ɛnˈdʒɔɪ/ — /dʒ/ rồi /ɔɪ/",
+        "work /wɝk/ — /ɝ/"
+      ]
+    },
+    {
+      "en": "Now catch the train.",
+      "ipa": "/ˈnaʊ ˈkætʃ ðə ˈtreɪn/",
+      "vi": "Giờ thì bắt chuyến tàu đi.",
+      "tips": [
+        "catch /kætʃ/ — /tʃ/ cuối",
+        "train /treɪn/ — /tr/"
+      ]
+    }
+  ],
+  "anchors": {
+    "shape": "/ʃeɪp/ — /ʃ/ đầu",
+    "wing": "/wɪŋ/ — /ŋ/ cuối",
+    "used": "/juzd/ giữ /j/",
+    "bathhouse": "/ˈbæθhaʊs/ — /θ/ rồi /h/",
+    "full": "/fʊl/ — dark L",
+    "courage": "/ˈkɝɪdʒ/ — /ɝ/ rồi /dʒ/",
+    "choosing": "/ˈtʃuzɪŋ/",
+    "evil": "dark L",
+    "older": "/ˈoʊldɚ/ — /ɚ/",
+    "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+    "water": "/t/ thành âm vỗ",
+    "flying": "/ˈflaɪɪŋ/ hai âm tiết",
+    "manners": "/ˈmænɚz/",
+    "thank": "/θæŋk/ — /θ/ rồi /ŋ/",
+    "house": "/haʊs/",
+    "enjoy": "/ɛnˈdʒɔɪ/",
+    "work": "/wɝk/ — /ɝ/",
+    "catch": "/kætʃ/ — /tʃ/ cuối"
+  }
+}

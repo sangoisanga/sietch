@@ -1,0 +1,105 @@
+{
+  "theme": "Leonard Cohen",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "There is a crack in every honest thing; that is the door.",
+      "ipa": "/ðɛr ɪz ə ˈkræk ɪn ˈɛvri ˈɑnəst ˈθɪŋ | ˈðæt ɪz ðə ˈdɔr/",
+      "vi": "Thứ gì thật thà cũng có một vết nứt; đó chính là cánh cửa.",
+      "tips": [
+        "thing /θɪŋ/ — /θ/ rồi /ŋ/",
+        "that /ðæt/ — /ð/ rung"
+      ]
+    },
+    {
+      "en": "He sang low because the high notes were already taken.",
+      "ipa": "/hi ˈsæŋ ˈloʊ bɪˈkɔz ðə ˈhaɪ ˈnoʊts wɚ ɔlˈrɛdi ˈteɪkən/",
+      "vi": "Ông hát trầm vì những nốt cao đã có người lấy mất.",
+      "tips": [
+        "sang /sæŋ/ — /æ/ rồi /ŋ/",
+        "low /loʊ/ vs high /haɪ/"
+      ]
+    },
+    {
+      "en": "Love is not a victory march; it is a long apprenticeship.",
+      "ipa": "/ˈlʌv ɪz ˈnɑt ə ˈvɪktəri ˈmɑrtʃ | ɪt ɪz ə ˈlɔŋ əˈprɛntɪsʃɪp/",
+      "vi": "Tình yêu không phải khúc khải hoàn; nó là một cuộc học nghề dài.",
+      "tips": [
+        "march /mɑrtʃ/ — /tʃ/ cuối",
+        "apprenticeship: /sʃ/ đừng nuốt"
+      ]
+    },
+    {
+      "en": "The saints and the drunks judge nothing; both leave a coin.",
+      "ipa": "/ðə ˈseɪnts ənd ðə ˈdrʌŋks ˈdʒʌdʒ ˈnʌθɪŋ | ˈboʊθ ˈliv ə ˈkɔɪn/",
+      "vi": "Thánh nhân và kẻ say chẳng phán xét ai; cả hai đều để lại một đồng xu.",
+      "tips": [
+        "drunks /drʌŋks/ — /ŋks/",
+        "both /boʊθ/ — /θ/ cuối"
+      ]
+    },
+    {
+      "en": "Measure your sorrow in music, and it will pay rent.",
+      "ipa": "/ˈmɛʒɚ jʊr ˈsɑroʊ ɪn ˈmjuzɪk | ənd ɪt wɪl ˈpeɪ ˈrɛnt/",
+      "vi": "Hãy đo nỗi buồn bằng âm nhạc, rồi nó sẽ trả tiền nhà.",
+      "tips": [
+        "measure /ˈmɛʒɚ/ — /ʒ/ rung",
+        "music /ˈmjuzɪk/ giữ /j/"
+      ]
+    },
+    {
+      "en": "A good coat, a cheap room, and a woman's laughter down the hall.",
+      "ipa": "/ə ˈɡʊd ˈkoʊt | ə ˈtʃip ˈrum | ənd ə ˈwʊmənz ˈlæftɚ ˈdaʊn ðə ˈhɔl/",
+      "vi": "Một áo khoác tốt, một căn phòng rẻ, và tiếng cười đàn bà cuối hành lang.",
+      "tips": [
+        "cheap /tʃip/ — /tʃ/ đầu",
+        "woman's /ˈwʊmənz/ — /ʊ/ ngắn"
+      ]
+    },
+    {
+      "en": "You want it darker; the light was never yours to dim.",
+      "ipa": "/ju ˈwɔnt ɪt ˈdɑrkɚ | ðə ˈlaɪt wəz ˈnɛvɚ ˈjʊrz tu ˈdɪm/",
+      "vi": "Bạn muốn nó tối hơn; ánh sáng vốn chưa từng thuộc về bạn để mà vặn nhỏ.",
+      "tips": [
+        "darker /ˈdɑrkɚ/ — /ɑr/ rồi /ɚ/",
+        "yours /jʊrz/ giữ /j/"
+      ]
+    },
+    {
+      "en": "Sing the broken word.",
+      "ipa": "/ˈsɪŋ ðə ˈbroʊkən ˈwɝd/",
+      "vi": "Hãy hát cái từ đã vỡ.",
+      "tips": [
+        "word /wɝd/ — /ɝ/ cong lưỡi",
+        "sing /sɪŋ/ — /ŋ/"
+      ]
+    },
+    {
+      "en": "That is enough.",
+      "ipa": "/ˈðæt ɪz ɪˈnʌf/",
+      "vi": "Thế là đủ.",
+      "tips": [
+        "enough /ɪˈnʌf/ trọng âm sau"
+      ]
+    }
+  ],
+  "anchors": {
+    "thing": "/θɪŋ/ — /θ/ rồi /ŋ/",
+    "sang": "/sæŋ/",
+    "march": "/mɑrtʃ/ — /tʃ/ cuối",
+    "drunks": "/drʌŋks/ — /ŋks/",
+    "both": "/boʊθ/ — /θ/ cuối",
+    "judge": "/dʒʌdʒ/",
+    "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+    "music": "/ˈmjuzɪk/ giữ /j/",
+    "cheap": "/tʃip/",
+    "woman's": "/ˈwʊmənz/ — /ʊ/ ngắn",
+    "darker": "/ˈdɑrkɚ/",
+    "yours": "/jʊrz/ giữ /j/",
+    "word": "/wɝd/ — /ɝ/",
+    "enough": "/ɪˈnʌf/ trọng âm sau",
+    "coin": "/kɔɪn/",
+    "laughter": "/ˈlæftɚ/",
+    "already": "/ɔlˈrɛdi/"
+  }
+}

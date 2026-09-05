@@ -1,0 +1,110 @@
+{
+  "theme": "Hans Christian Andersen",
+  "accent": "GA",
+  "sentences": [
+    {
+      "en": "The duckling was not ugly; the pond was simply the wrong mirror.",
+      "ipa": "/ðə ˈdʌklɪŋ wəz ˈnɑt ˈʌɡli | ðə ˈpɑnd wəz ˈsɪmpli ðə ˈrɔŋ ˈmɪrɚ/",
+      "vi": "Con vịt con không hề xấu; cái ao chỉ là tấm gương sai.",
+      "tips": [
+        "duckling /ˈdʌklɪŋ/ — /ŋ/ cuối",
+        "wrong /rɔŋ/ câm w",
+        "mirror /ˈmɪrɚ/ — /ɚ/"
+      ]
+    },
+    {
+      "en": "A tin soldier loves best when he cannot move or speak.",
+      "ipa": "/ə ˈtɪn ˈsoʊldʒɚ ˈlʌvz ˈbɛst wɛn hi ˈkænɑt ˈmuv ɔr ˈspik/",
+      "vi": "Chàng lính chì yêu sâu nhất khi không thể cử động hay cất lời.",
+      "tips": [
+        "soldier /ˈsoʊldʒɚ/ — /dʒ/ giữa",
+        "loves /lʌvz/ — /v/ rồi /z/"
+      ]
+    },
+    {
+      "en": "She traded her voice for legs, and found the shore was also a kind of sea.",
+      "ipa": "/ʃi ˈtreɪdɪd hɚ ˈvɔɪs fɔr ˈlɛɡz | ənd ˈfaʊnd ðə ˈʃɔr wəz ˈɔlsoʊ ə ˈkaɪnd ʌv ˈsi/",
+      "vi": "Nàng đổi giọng lấy đôi chân, rồi nhận ra bờ cũng là một thứ biển.",
+      "tips": [
+        "voice /vɔɪs/",
+        "shore /ʃɔr/ — /ʃ/ rồi /r/",
+        "found /faʊnd/ — /aʊ/"
+      ]
+    },
+    {
+      "en": "Every winter the garden pretends to be finished.",
+      "ipa": "/ˈɛvri ˈwɪntɚ ðə ˈɡɑrdn prɪˈtɛndz tu bi ˈfɪnɪʃt/",
+      "vi": "Mùa đông nào khu vườn cũng giả vờ như đã hết.",
+      "tips": [
+        "garden /ˈɡɑrdn/ — /n/ âm tiết",
+        "finished /ˈfɪnɪʃt/ — /ʃt/"
+      ]
+    },
+    {
+      "en": "The emperor's new clothes were a measure of the crowd, not the thread.",
+      "ipa": "/ði ˈɛmpərɚz ˈnu ˈkloʊðz wɚ ə ˈmɛʒɚ ʌv ðə ˈkraʊd | ˈnɑt ðə ˈθrɛd/",
+      "vi": "Bộ đồ mới của hoàng đế là thước đo đám đông, không phải thước đo sợi vải.",
+      "tips": [
+        "clothes /kloʊðz/ — /ðz/ khó, đừng bỏ",
+        "measure /ˈmɛʒɚ/ — /ʒ/",
+        "thread /θrɛd/ — /θr/"
+      ]
+    },
+    {
+      "en": "Grief is a swan that arrives young.",
+      "ipa": "/ˈɡrif ɪz ə ˈswɑn ðət əˈraɪvz ˈjʌŋ/",
+      "vi": "Nỗi đau là con thiên nga đến sớm.",
+      "tips": [
+        "grief /ɡrif/ — /i/ dài",
+        "young /jʌŋ/ — /j/ rồi /ŋ/"
+      ]
+    },
+    {
+      "en": "Put your ear to the cold stove; the story is still burning.",
+      "ipa": "/ˈpʊt jʊr ˈɪr tu ðə ˈkoʊld ˈstoʊv | ðə ˈstɔri ɪz ˈstɪl ˈbɝnɪŋ/",
+      "vi": "Ghé tai vào cái lò lạnh ngắt; câu chuyện vẫn đang cháy.",
+      "tips": [
+        "put /pʊt/ — /ʊ/ ngắn",
+        "burning /ˈbɝnɪŋ/ — /ɝ/ cong lưỡi"
+      ]
+    },
+    {
+      "en": "Beauty chose the long road.",
+      "ipa": "/ˈbjuti ˈtʃoʊz ðə ˈlɔŋ ˈroʊd/",
+      "vi": "Cái đẹp chọn con đường dài.",
+      "tips": [
+        "beauty /ˈbjuti/ giữ /j/",
+        "chose /tʃoʊz/ — /tʃ/"
+      ]
+    },
+    {
+      "en": "Wait for the thaw.",
+      "ipa": "/ˈweɪt fɔr ðə ˈθɔ/",
+      "vi": "Hãy đợi băng tan.",
+      "tips": [
+        "thaw /θɔ/ — /θ/ rồi /ɔ/, không có /r/"
+      ]
+    }
+  ],
+  "anchors": {
+    "duckling": "/ˈdʌklɪŋ/ — /ŋ/ cuối",
+    "wrong": "/rɔŋ/ câm w",
+    "mirror": "/ˈmɪrɚ/ — /ɚ/",
+    "soldier": "/ˈsoʊldʒɚ/ — /dʒ/ giữa",
+    "voice": "/vɔɪs/",
+    "shore": "/ʃɔr/ — /ʃ/ rồi /r/",
+    "garden": "/ˈɡɑrdn/ — /n/ âm tiết",
+    "clothes": "/kloʊðz/ — /ðz/ đừng bỏ",
+    "measure": "/ˈmɛʒɚ/ — /ʒ/ rung",
+    "thread": "/θrɛd/ — /θr/",
+    "grief": "/ɡrif/ — /i/ dài",
+    "young": "/jʌŋ/",
+    "put": "/pʊt/ — /ʊ/ ngắn",
+    "burning": "/ˈbɝnɪŋ/ — /ɝ/",
+    "beauty": "/ˈbjuti/ giữ /j/",
+    "chose": "/tʃoʊz/",
+    "thaw": "/θɔ/ không có /r/",
+    "crowd": "/kraʊd/",
+    "finished": "/ˈfɪnɪʃt/ — /ʃt/"
+  }
+}
