@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { createProviders } from '../providers'
-  import { boot, reportError, updateSettings } from '../state/actions'
+  import { boot, providers, reportError } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import { createPlayer } from '../state/player'
   import ForgeBox from './ForgeBox.svelte'
@@ -16,10 +15,6 @@
 
   const FORGE_SECONDS = 22
 
-  const providers = createProviders({
-    getSettings: () => app.settings,
-    rememberTextModel: model => void updateSettings({ textModel: model }),
-  })
   const player = createPlayer(providers)
 
   let settingsOpen = $state(false)

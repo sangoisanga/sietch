@@ -16,7 +16,7 @@ import { exportPool, findConflict, installPool, listPools, loadDrill, toRotation
 import { assignForPeriod, loadProgress, markCompleted } from '../data/progress'
 import { loadSettings, saveSettings } from '../data/settings'
 import { GeminiError, MISSING_KEY } from '../providers/gemini/client'
-import type { Providers } from '../providers'
+import { createProviders } from '../providers'
 import type { AccentCode, Drill, Sentence } from '../types'
 import { STRINGS } from '../ui/strings'
 import { app, setStatus, type PackChoice } from './app.svelte'
@@ -24,11 +24,10 @@ import { app, setStatus, type PackChoice } from './app.svelte'
 const STARTER_POOL_URL = `${import.meta.env.BASE_URL}pools/starter${POOL_EXTENSION}`
 const STARTER_POOL_ID = 'drill-forge-starter'
 
-let providers: Providers
-
-export function useProviders(instance: Providers): void {
-  providers = instance
-}
+export const providers = createProviders({
+  getSettings: () => app.settings,
+  rememberTextModel: model => void updateSettings({ textModel: model }),
+})
 
 export function reportError(error: unknown): void {
   if (error instanceof GeminiError && error.message === MISSING_KEY) {
@@ -61,7 +60,7 @@ function toDrill(raw: unknown, fallbackTheme: string, accent: AccentCode): Drill
 }
 
 export function present(drill: Drill): void {
-  providers?.tts.forEach(provider => provider.release?.())
+  providers.tts.forEach(provider => provider.release?.())
   app.drill = drill
   app.clips = {}
   app.activeCard = -1

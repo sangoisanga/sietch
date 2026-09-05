@@ -11,6 +11,8 @@ function wordStartOffsets(text: string): number[] {
   return offsets
 }
 
+const hasSpeechSynthesis = (): boolean => typeof window !== 'undefined' && 'speechSynthesis' in window
+
 function pickVoice(bcp47: string): SpeechSynthesisVoice | undefined {
   return speechSynthesis.getVoices().find(voice => voice.lang.replace('_', '-') === bcp47)
 }
@@ -19,10 +21,10 @@ export function createBrowserTts(): TtsProvider {
   return {
     id: 'browser',
     label: 'Browser voice',
-    isConfigured: () => 'speechSynthesis' in window,
+    isConfigured: hasSpeechSynthesis,
 
     speak(text: string, options: SpeakOptions, onWordIndex: WordIndexListener): SpeechHandle {
-      if (!('speechSynthesis' in window)) {
+      if (!hasSpeechSynthesis()) {
         return { finished: Promise.reject(new Error('This browser has no speech synthesis.')), stop: () => {} }
       }
 
