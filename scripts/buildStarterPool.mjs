@@ -2,7 +2,7 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const SOURCE_DIR = join(process.cwd(), 'content', 'packs')
-const OUTPUT = join(process.cwd(), 'public', 'pools', 'starter.dfpool.json')
+const OUTPUT = join(process.cwd(), 'public', 'pools', 'starter.sietch.json')
 
 function canonicalJson(value) {
   if (value === null || typeof value !== 'object') return JSON.stringify(value) ?? 'null'
@@ -27,11 +27,11 @@ const packs = files
 
 const unsigned = {
   schema: 1,
-  id: 'drill-forge-starter',
-  title: 'Drill Forge starter',
+  id: 'sietch-starter',
+  title: 'Sietch starter',
   version: 1,
   cadence: 'daily',
-  author: 'Drill Forge',
+  author: 'Sietch',
   license: 'CC-BY-4.0',
   updatedAt: new Date().toISOString().slice(0, 10) + 'T00:00:00.000Z',
   packs,
@@ -43,4 +43,4 @@ writeFileSync(OUTPUT, JSON.stringify(pool, null, 2) + '\n')
 
 const words = packs.reduce((total, pack) =>
   total + pack.sentences.reduce((n, sentence) => n + sentence.en.split(/\s+/).filter(Boolean).length, 0), 0)
-console.log(`starter.dfpool.json — ${packs.length} packs, ${words} words, ${pool.checksum.slice(0, 20)}…`)
+console.log(`starter.sietch.json — ${packs.length} packs, ${words} words, ${pool.checksum.slice(0, 20)}…`)

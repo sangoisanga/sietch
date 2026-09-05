@@ -26,8 +26,8 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
-        name: 'Drill Forge',
-        short_name: 'Drill Forge',
+        name: 'Sietch',
+        short_name: 'Sietch',
         description: 'Daily English pronunciation drills covering every sound.',
         start_url: './',
         scope: './',

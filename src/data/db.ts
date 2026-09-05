@@ -2,7 +2,7 @@ import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
 import type { Settings } from '../core/settings'
 import type { Drill, Profile } from '../types'
 
-export const DB_NAME = 'drill-forge'
+export const DB_NAME = 'sietch'
 export const DB_VERSION = 2
 
 export const ACTIVE_PROFILE_KEY = 'activeProfile'
@@ -61,7 +61,7 @@ export interface MetaRecord {
   value: unknown
 }
 
-interface DrillForgeDB extends DBSchema {
+interface SietchDB extends DBSchema {
   profiles: { key: string; value: ProfileRecord }
   progress: { key: [string, string]; value: ProgressRecord; indexes: { byProfile: string } }
   assignments: { key: [string, string]; value: AssignmentRecord; indexes: { byProfile: string } }
@@ -73,13 +73,13 @@ interface DrillForgeDB extends DBSchema {
   profilePrefs: { key: string; value: ProfilePrefsRecord }
 }
 
-export type DrillForgeDatabase = IDBPDatabase<DrillForgeDB>
+export type SietchDatabase = IDBPDatabase<SietchDB>
 
-function createProfilePrefsStore(db: DrillForgeDatabase): void {
+function createProfilePrefsStore(db: SietchDatabase): void {
   db.createObjectStore('profilePrefs', { keyPath: 'profileId' })
 }
 
-function createInitialStores(db: DrillForgeDatabase): void {
+function createInitialStores(db: SietchDatabase): void {
   db.createObjectStore('profiles', { keyPath: 'id' })
   db.createObjectStore('progress', { keyPath: ['profileId', 'itemKey'] })
     .createIndex('byProfile', 'profileId')
@@ -92,18 +92,32 @@ function createInitialStores(db: DrillForgeDatabase): void {
   db.createObjectStore('meta', { keyPath: 'key' })
 }
 
-let connection: Promise<DrillForgeDatabase> | null = null
+let connection: Promise<SietchDatabase> | null = null
 
-export function openDb(): Promise<DrillForgeDatabase> {
-  connection ??= openDB<DrillForgeDB>(DB_NAME, DB_VERSION, {
+export function openDb(): Promise<SietchDatabase> {
+  connection ??= openDB<SietchDB>(DB_NAME, DB_VERSION, {
     upgrade(db, oldVersion) {
       // one block per version step, never edited once shipped — someone's browser is still on it
-      const database = db as unknown as DrillForgeDatabase
+      const database = db as unknown as SietchDatabase
       if (oldVersion < 1) createInitialStores(database)
       if (oldVersion < 2) createProfilePrefsStore(database)
     },
   })
   return connection
+}
+
+// the app used to store everything under its old name; without this the orphaned
+// database sits in the browser forever holding data nothing can reach
+const RETIRED_DB_NAMES = ['drill-forge']
+
+export function deleteRetiredDatabases(): void {
+  for (const name of RETIRED_DB_NAMES) {
+    try {
+      indexedDB.deleteDatabase(name)
+    } catch {
+      // a blocked delete must never stop the app starting
+    }
+  }
 }
 
 export async function closeDb(): Promise<void> {

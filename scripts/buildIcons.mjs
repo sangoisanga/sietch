@@ -49,35 +49,29 @@ function encodePng(size, pixelAt) {
   ])
 }
 
-// an hourglass: two triangles meeting at the centre, matching the app's task overlay
-function hourglass(size) {
+// a dune horizon: a near crest overlapping a far one, separated by a thin accent
+// stroke because two flat colours alone would merge the two silhouettes
+function duneHorizon(size) {
   const border = Math.round(size * 0.09)
-  const capHeight = Math.round(size * 0.06)
-  const inset = Math.round(size * 0.22)
-  const centre = size / 2
+  const stroke = Math.max(2, Math.round(size * 0.022))
+
+  const hump = (t, centre, width, height) => height * Math.exp(-(((t - centre) / width) ** 2))
+  const farCrest = x => (0.68 - hump(x / size, 0.32, 0.30, 0.14)) * size
+  const nearCrest = x => (0.82 - hump(x / size, 0.70, 0.26, 0.13)) * size
 
   return (x, y) => {
     if (x < border || y < border || x >= size - border || y >= size - border) return INK
 
-    const top = border + capHeight * 2
-    const bottom = size - border - capHeight * 2
-    const withinGlass = x >= inset && x < size - inset
-    if (withinGlass && y >= border + capHeight && y < top) return INK
-    if (withinGlass && y >= bottom && y < size - border - capHeight) return INK
-
-    if (y >= top && y < bottom) {
-      const half = y < centre
-        ? (centre - y) / (centre - top) * (centre - inset)
-        : (y - centre) / (bottom - centre) * (centre - inset)
-      if (Math.abs(x - centre) <= half) return INK
-    }
-    return ACCENT
+    const far = farCrest(x)
+    const near = nearCrest(x)
+    if (y >= near) return y < near + stroke && y >= far ? ACCENT : INK
+    return y >= far ? INK : ACCENT
   }
 }
 
 mkdirSync(join(process.cwd(), 'public', 'icons'), { recursive: true })
 for (const size of [192, 512]) {
   const target = join(process.cwd(), 'public', 'icons', `icon-${size}.png`)
-  writeFileSync(target, encodePng(size, hourglass(size)))
+  writeFileSync(target, encodePng(size, duneHorizon(size)))
   console.log(`icon-${size}.png`)
 }

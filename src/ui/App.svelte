@@ -78,7 +78,7 @@
 
 <header class="hdr">
   <div class="hdr-in">
-    <div class="brand">Drill&nbsp;Forge</div>
+    <div class="brand">Sietch</div>
     <button class="mini" onclick={() => (profilesOpen = true)}>👤 {app.profile?.name ?? '…'}</button>
     <button class="ico" aria-label="Pools" onclick={() => (poolsOpen = true)}>⇅</button>
     <button class="ico" aria-label="Library" onclick={() => (libraryOpen = true)}>☰</button>
@@ -87,7 +87,7 @@
 </header>
 
 <div class="wrap" style:padding-bottom="{barHeight + 28}px">
-  <h1 class="lead">120 words.<br>{app.soundCount} sounds.<br>The world you pick.</h1>
+  <h1 class="lead">Every sound.<br>Every day.<br>Discipline is the water.</h1>
   <p class="sub">
     Pick the band, the author, or the fairy tale you love. The forge writes an original passage
     containing every sound in English, then audits itself.

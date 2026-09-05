@@ -2,7 +2,7 @@ import type { Drill } from '../types'
 import type { Pool } from './pool'
 
 export const POOL_SCHEMA = 1
-export const POOL_EXTENSION = '.dfpool.json'
+export const POOL_EXTENSION = '.sietch.json'
 
 export interface PackEntry extends Drill {
   id: string

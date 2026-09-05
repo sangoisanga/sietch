@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "id": "drill-forge-starter",
-  "title": "Drill Forge starter",
+  "id": "sietch-starter",
+  "title": "Sietch starter",
   "version": 1,
   "cadence": "daily",
-  "author": "Drill Forge",
+  "author": "Sietch",
   "license": "CC-BY-4.0",
   "updatedAt": "2026-09-05T00:00:00.000Z",
   "packs": [
@@ -1376,5 +1376,5 @@
       }
     }
   ],
-  "checksum": "sha256:1205c42a2d8643d96d17435010aa502d425eacafc61cacd288581764ea47b9c3"
+  "checksum": "sha256:6ddb070cf25336bb696b1783647709fe4805f8f9e5586e16304f1c4d553fc0bc"
 }

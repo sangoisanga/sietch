@@ -6,6 +6,7 @@ import { resolveAccent } from '../core/accents'
 import { dayKey, periodKey } from '../core/period'
 import { buildAnnotatePrompt, buildForgePrompt } from '../core/prompts'
 import { countWords, splitSentences } from '../core/text'
+import { deleteRetiredDatabases } from '../data/db'
 import { loadLibrary, removeFromLibrary, saveToLibrary } from '../data/library'
 import { migrateFromLocalStorage } from '../data/migrate'
 import { exportProfile, importProfile } from '../data/profileTransfer'
@@ -23,7 +24,7 @@ import { STRINGS } from '../ui/strings'
 import { app, setStatus, type PackChoice } from './app.svelte'
 
 const STARTER_POOL_URL = `${import.meta.env.BASE_URL}pools/starter${POOL_EXTENSION}`
-const STARTER_POOL_ID = 'drill-forge-starter'
+const STARTER_POOL_ID = 'sietch-starter'
 
 export const providers = createProviders({
   getSettings: () => app.settings,
@@ -162,6 +163,7 @@ export async function setShadowPace(pace: number): Promise<void> {
 
 export async function boot(): Promise<void> {
   setStatus(STRINGS.loading)
+  deleteRetiredDatabases()
   const migration = await migrateFromLocalStorage()
 
   app.settings = await loadSettings()
@@ -223,7 +225,7 @@ function downloadJson(filename: string, payload: unknown): void {
 export async function exportActiveProfile(): Promise<void> {
   if (!app.profile) return
   const payload = await exportProfile(app.profile.id)
-  downloadJson(`drill-forge-${app.profile.name.toLowerCase().replace(/\s+/g, '-')}.json`, payload)
+  downloadJson(`sietch-${app.profile.name.toLowerCase().replace(/\s+/g, '-')}.json`, payload)
   setStatus(STRINGS.profileExported(app.profile.name))
 }
 

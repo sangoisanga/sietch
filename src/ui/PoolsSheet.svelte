@@ -70,7 +70,7 @@
   <input
     bind:this={fileInput}
     type="file"
-    accept="application/json,.dfpool.json"
+    accept="application/json,.sietch.json"
     class="hide"
     onchange={async event => {
       const file = event.currentTarget.files?.[0]

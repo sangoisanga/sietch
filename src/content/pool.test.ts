@@ -8,7 +8,7 @@ import { computeChecksum, signPool, toPool, type PoolFile, type UnsignedPoolFile
 import { validatePool } from './validatePool'
 
 const starter = JSON.parse(
-  readFileSync(join(process.cwd(), 'public', 'pools', 'starter.dfpool.json'), 'utf8'),
+  readFileSync(join(process.cwd(), 'public', 'pools', 'starter.sietch.json'), 'utf8'),
 ) as PoolFile
 
 const clone = (): PoolFile => structuredClone(starter)
@@ -101,16 +101,16 @@ describe('validatePool warnings', () => {
 describe('installing', () => {
   it('installs the starter pool and serves its drills', async () => {
     await installPool(starter)
-    expect((await listPools()).map(pool => pool.id)).toEqual(['drill-forge-starter'])
-    expect((await loadDrill('drill-forge-starter', 'rumi')).theme).toBe('Rumi')
-    expect((await toRotationPool('drill-forge-starter'))!.items).toHaveLength(12)
+    expect((await listPools()).map(pool => pool.id)).toEqual(['sietch-starter'])
+    expect((await loadDrill('sietch-starter', 'rumi')).theme).toBe('Rumi')
+    expect((await toRotationPool('sietch-starter'))!.items).toHaveLength(12)
   })
 
   it('hands out a copy, so editing a drill cannot corrupt the store', async () => {
     await installPool(starter)
-    const drill = await loadDrill('drill-forge-starter', 'rumi')
+    const drill = await loadDrill('sietch-starter', 'rumi')
     drill.sentences.length = 0
-    expect((await loadDrill('drill-forge-starter', 'rumi')).sentences.length).toBeGreaterThan(0)
+    expect((await loadDrill('sietch-starter', 'rumi')).sentences.length).toBeGreaterThan(0)
   })
 
   it('reports a conflict when the id is already installed', async () => {
