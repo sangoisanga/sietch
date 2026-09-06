@@ -22,7 +22,6 @@ export function createPlayer(providers: Providers): Player {
 
   const speakOptions = (): SpeakOptions => ({
     accent: resolveAccent(app.drill.accent),
-    style: app.settings.style,
     rate: app.settings.rate,
   })
 

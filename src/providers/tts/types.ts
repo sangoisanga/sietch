@@ -1,11 +1,10 @@
 import type { Accent } from '../../core/accents'
-import type { SpeakingStyle } from '../../types'
+import type { Describable } from '../types'
 
-export type { SpeakingStyle }
-
+// delivery style is one provider's prompt trick, so it lives in that provider's
+// config rather than in the options every provider receives
 export interface SpeakOptions {
   accent: Accent
-  style: SpeakingStyle
   rate: number
 }
 
@@ -21,10 +20,7 @@ export interface SpeechHandle {
 
 export type WordIndexListener = (index: number | null) => void
 
-export interface TtsProvider {
-  id: string
-  label: string
-  isConfigured(): boolean
+export interface TtsProvider extends Describable {
   speak(text: string, options: SpeakOptions, onWordIndex: WordIndexListener): SpeechHandle
   prefetch?(text: string, options: SpeakOptions): Promise<PrefetchedAudio>
   release?(): void

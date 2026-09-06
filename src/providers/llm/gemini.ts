@@ -1,23 +1,22 @@
-import type { Settings } from '../../core/settings'
 import { GeminiError, MISSING_KEY, generateContent, partsOf } from '../gemini/client'
+import type { ProviderContext } from '../types'
 import { parseLooseJson } from './json'
 import type { LlmProvider } from './types'
 
 const TEXT_MODEL_CANDIDATES = ['gemini-flash-latest', 'gemini-3.1-flash', 'gemini-3.7-flash', 'gemini-2.5-flash']
 
-export interface GeminiLlmDeps {
-  getSettings: () => Settings
-  rememberTextModel: (model: string) => void
-}
-
-export function createGeminiLlm({ getSettings, rememberTextModel }: GeminiLlmDeps): LlmProvider {
+export function createGeminiLlm(context: ProviderContext): LlmProvider {
   return {
     id: 'gemini',
     label: 'Gemini',
-    isConfigured: () => Boolean(getSettings().apiKey),
+    isConfigured: () => Boolean(context.config().apiKey),
+    settingsFields: [
+      { key: 'apiKey', label: 'Gemini API key', type: 'password', placeholder: 'AIza…' },
+      { key: 'textModel', label: 'Text model', type: 'text', placeholder: 'auto-detect' },
+    ],
 
     async generateJson<T>(prompt: string, temperature: number): Promise<T> {
-      const { apiKey, textModel } = getSettings()
+      const { apiKey, textModel } = context.config()
       const body = {
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: { responseMimeType: 'application/json', temperature },
@@ -28,8 +27,8 @@ export function createGeminiLlm({ getSettings, rememberTextModel }: GeminiLlmDep
 
       for (const model of candidates) {
         try {
-          const response = await generateContent(model, apiKey, body)
-          rememberTextModel(model)
+          const response = await generateContent(model, apiKey ?? '', body)
+          context.update({ textModel: model })
           const text = partsOf(response).map(part => part.text ?? '').join('')
           return parseLooseJson<T>(text)
         } catch (error) {

@@ -21,6 +21,7 @@ export function createBrowserTts(): TtsProvider {
   return {
     id: 'browser',
     label: 'Browser voice',
+    settingsFields: [],
     isConfigured: hasSpeechSynthesis,
 
     speak(text: string, options: SpeakOptions, onWordIndex: WordIndexListener): SpeechHandle {

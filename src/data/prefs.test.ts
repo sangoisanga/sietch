@@ -73,7 +73,7 @@ describe('upgrading a version 1 database', () => {
     expect(upgraded.objectStoreNames).toContain('profilePrefs')
     expect((await listProfiles()).map(profile => profile.name)).toEqual(['Sang'])
     expect((await loadProgress('p1')).completed).toEqual({ 'passage:rumi': '2026-09-04' })
-    expect((await loadSettings()).voice).toBe('Puck')
+    expect((await loadSettings()).providers.gemini!.voice).toBe('Puck')
     expect((await loadPrefs('p1')).shadowPace).toBe(DEFAULT_SHADOW_PACE)
   })
 })

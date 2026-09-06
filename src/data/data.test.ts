@@ -114,13 +114,24 @@ describe('progress', () => {
 describe('settings', () => {
   it('round-trips and falls back to defaults', async () => {
     expect(await loadSettings()).toEqual(DEFAULT_SETTINGS)
-    await saveSettings({ ...DEFAULT_SETTINGS, voice: 'Puck', rate: 0.75 })
-    expect(await loadSettings()).toMatchObject({ voice: 'Puck', rate: 0.75 })
+    await saveSettings({ ...DEFAULT_SETTINGS, providers: { gemini: { ...DEFAULT_SETTINGS.providers.gemini!, voice: 'Puck' } }, rate: 0.75 })
+    const loaded = await loadSettings()
+    expect(loaded.rate).toBe(0.75)
+    expect(loaded.providers.gemini!.voice).toBe('Puck')
   })
 
-  it('backfills keys an older stored shape is missing', async () => {
-    await (await openDb()).put('settings', { id: 'settings', value: { voice: 'Puck' } as never, updatedAt: 1 })
-    expect(await loadSettings()).toEqual({ ...DEFAULT_SETTINGS, voice: 'Puck' })
+  it('migrates a flat v1 settings record into providers.gemini', async () => {
+    await (await openDb()).put('settings', { id: 'settings', value: { voice: 'Puck', apiKey: 'test-key' } as never, updatedAt: 1 })
+    const loaded = await loadSettings()
+    expect(loaded.providers.gemini!.voice).toBe('Puck')
+    expect(loaded.providers.gemini!.apiKey).toBe('test-key')
+    expect(loaded.providers.gemini!.ttsModel).toBe(DEFAULT_SETTINGS.providers.gemini!.ttsModel)
+  })
+
+  it('preserves an already-migrated record', async () => {
+    const migrated = { ...DEFAULT_SETTINGS, providers: { gemini: { ...DEFAULT_SETTINGS.providers.gemini!, voice: 'Puck', apiKey: 'test' } } }
+    await saveSettings(migrated)
+    expect(await loadSettings()).toEqual(migrated)
   })
 })
 
@@ -192,7 +203,7 @@ describe('migration from localStorage', () => {
     expect((await activeProfile()).id).toBe('p2')
     expect((await loadProgress('p1')).completed).toEqual({ 'passage:rumi': '2026-09-04' })
     expect((await loadProgress('p1')).assignments).toEqual({ '2026-09-04': 'passage:rumi' })
-    expect(await loadSettings()).toMatchObject({ voice: 'Puck' })
+    expect((await loadSettings()).providers.gemini!.voice).toBe('Puck')
     expect(await loadLibrary()).toHaveLength(1)
     expect(localStorage.getItem('df_profiles')).not.toBeNull()
   })
@@ -251,8 +262,8 @@ describe('writes accept reactive proxies', () => {
   })
 
   it('saves proxied settings', async () => {
-    await saveSettings(reactive({ ...DEFAULT_SETTINGS, voice: 'Puck' }))
-    expect((await loadSettings()).voice).toBe('Puck')
+    await saveSettings(reactive({ ...DEFAULT_SETTINGS, providers: { gemini: { ...DEFAULT_SETTINGS.providers.gemini!, voice: 'Puck' } } }))
+    expect((await loadSettings()).providers.gemini!.voice).toBe('Puck')
   })
 
   it('replaces progress from a proxied object', async () => {

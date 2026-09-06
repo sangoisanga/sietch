@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { GEMINI_VOICES } from '../providers/tts/gemini'
   import type { Providers } from '../providers'
+  import type { Describable, SettingField } from '../providers/types'
   import { updateSettings } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import type { Player } from '../state/player'
-  import type { SpeakingStyle } from '../types'
   import Sheet from './Sheet.svelte'
   import { STRINGS } from './strings'
 
@@ -15,11 +14,45 @@
     runSteppedTask: (label: string, total: number, work: (step: (done: number, detail: string) => void) => Promise<number>) => Promise<void>
   } = $props()
 
-  const STYLES: { value: SpeakingStyle; label: string }[] = [
-    { value: 'slow', label: 'Slow — for shadowing' },
-    { value: 'natural', label: 'Natural' },
-    { value: 'veryslow', label: 'Very slow — word by word' },
-  ]
+  interface ConfigSection {
+    id: string
+    label: string
+    fields: SettingField[]
+  }
+
+  function providerConfig(id: string): Record<string, string> {
+    return app.settings.providers[id] ?? {}
+  }
+
+  function updateProviderField(providerId: string, field: SettingField, value: string): void {
+    updateSettings({
+      providers: { ...app.settings.providers, [providerId]: { ...providerConfig(providerId), [field.key]: value } },
+    })
+    if (field.invalidatesAudio) player.releaseAudio()
+  }
+
+  // one provider can back both engines, and both would list its API key — show each field once
+  const sections = $derived.by(() => {
+    const chosen = [
+      providers.tts.find(provider => provider.id === app.settings.ttsProviderId),
+      providers.llm.find(provider => provider.id === app.settings.llmProviderId),
+    ]
+
+    const merged: ConfigSection[] = []
+    for (const provider of chosen as (Describable | undefined)[]) {
+      if (!provider?.settingsFields.length) continue
+
+      const existing = merged.find(section => section.id === provider.id)
+      if (!existing) {
+        merged.push({ id: provider.id, label: provider.label, fields: [...provider.settingsFields] })
+        continue
+      }
+      for (const field of provider.settingsFields) {
+        if (!existing.fields.some(known => known.key === field.key)) existing.fields.push(field)
+      }
+    }
+    return merged
+  })
 </script>
 
 <Sheet bind:open title="Settings">
@@ -38,38 +71,26 @@
     </div>
   </div>
 
-  <div style="margin-top:14px">
-    <label for="key">Gemini API key</label>
-    <input id="key" type="password" placeholder="AIza..." autocomplete="off"
-      value={app.settings.apiKey} onchange={e => updateSettings({ apiKey: e.currentTarget.value.trim() })}>
-  </div>
+  {#each sections as section (section.id)}
+    <div style="margin-top:16px">
+      {#each section.fields as field (field.key)}
+        {@const value = providerConfig(section.id)[field.key] ?? ''}
+        <div style="margin-top:10px">
+          <label for="{section.id}-{field.key}">{field.label}</label>
+          {#if field.type === 'select'}
+            <select id="{section.id}-{field.key}" {value} onchange={e => updateProviderField(section.id, field, e.currentTarget.value)}>
+              {#each field.options as option (option.value)}<option value={option.value}>{option.label}</option>{/each}
+            </select>
+          {:else}
+            <input id="{section.id}-{field.key}" type={field.type} placeholder={field.placeholder} autocomplete="off" {value}
+              onchange={e => updateProviderField(section.id, field, e.currentTarget.value.trim())}>
+          {/if}
+        </div>
+      {/each}
+    </div>
+  {/each}
+
   <p class="sub" style="margin-top:6px">Stored on your machine. Without a key the built-in passages still play through the browser voice.</p>
-
-  <div class="row" style="margin-top:14px">
-    <div>
-      <label for="txtModel">Text model</label>
-      <input id="txtModel" placeholder="auto-detect" value={app.settings.textModel} onchange={e => updateSettings({ textModel: e.currentTarget.value.trim() })}>
-    </div>
-    <div>
-      <label for="ttsModel">Voice model</label>
-      <input id="ttsModel" value={app.settings.ttsModel} onchange={e => { updateSettings({ ttsModel: e.currentTarget.value.trim() }); player.releaseAudio() }}>
-    </div>
-  </div>
-
-  <div class="row" style="margin-top:12px">
-    <div>
-      <label for="voice">Voice</label>
-      <select id="voice" value={app.settings.voice} onchange={e => { updateSettings({ voice: e.currentTarget.value }); player.releaseAudio() }}>
-        {#each GEMINI_VOICES as voice (voice)}<option value={voice}>{voice}</option>{/each}
-      </select>
-    </div>
-    <div>
-      <label for="style">Delivery</label>
-      <select id="style" value={app.settings.style} onchange={e => { updateSettings({ style: e.currentTarget.value as SpeakingStyle }); player.releaseAudio() }}>
-        {#each STYLES as style (style.value)}<option value={style.value}>{style.label}</option>{/each}
-      </select>
-    </div>
-  </div>
 
   <div class="row" style="margin-top:16px">
     <button class="pri" onclick={async () => {

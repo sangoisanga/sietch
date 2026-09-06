@@ -18,6 +18,7 @@ import { exportPool, findConflict, installPool, listPools, loadDrill, toRotation
 import { assignForPeriod, loadProgress, markCompleted } from '../data/progress'
 import { loadSettings, saveSettings } from '../data/settings'
 import { GeminiError, MISSING_KEY } from '../providers/gemini/client'
+import { MISSING_KEY as OPENROUTER_MISSING_KEY, OpenRouterError } from '../providers/openrouter/client'
 import { createProviders } from '../providers'
 import type { AccentCode, Drill, Sentence } from '../types'
 import { STRINGS } from '../ui/strings'
@@ -28,11 +29,13 @@ const STARTER_POOL_ID = 'sietch-starter'
 
 export const providers = createProviders({
   getSettings: () => app.settings,
-  rememberTextModel: model => void updateSettings({ textModel: model }),
+  updateSettings: patch => void updateSettings(patch),
 })
 
 export function reportError(error: unknown): void {
-  if (error instanceof GeminiError && error.message === MISSING_KEY) {
+  const missingKey = (error instanceof GeminiError && error.message === MISSING_KEY)
+    || (error instanceof OpenRouterError && error.message === OPENROUTER_MISSING_KEY)
+  if (missingKey) {
     setStatus(STRINGS.missingKey, 'err')
     return
   }
