@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PoolReport } from '../content/validatePool'
-  import type { PoolConflict } from '../data/pools'
+  import { poolAudioSize, type PoolConflict } from '../data/pools'
   import {
     acceptPool, deleteFromLibrary, deletePool, exportPoolFile, inspectPoolFile,
     openFromLibrary, openPack, renameLibraryDrill, saveOpenDrill,
@@ -18,6 +18,7 @@
   let { open = $bindable() }: { open: boolean } = $props()
 
   let entries = $state<ExerciseEntry[]>([])
+  let audioBytes = $state<Record<string, number>>({})
   let search = $state('')
   let renaming = $state('')
   let renameTo = $state('')
@@ -29,6 +30,8 @@
 
   async function refresh(): Promise<void> {
     entries = await listExercises()
+    audioBytes = Object.fromEntries(await Promise.all(
+      app.pools.map(async pool => [pool.id, await poolAudioSize(pool.id)] as const)))
   }
 
   $effect(() => {
@@ -96,6 +99,7 @@
         <b>{pool.title}</b>
         <span class="meta">v{pool.version} · {pool.packIds.length} packs</span>
         <Button size="mini" onclick={() => exportPoolFile(pool.id)}>↓ Export</Button>
+        <Button size="mini" onclick={() => exportPoolFile(pool.id, true)}>{STRINGS.exportWithAudio(audioBytes[pool.id] ?? 0)}</Button>
         <Button size="mini" aria-label="Remove pool" onclick={async () => { await deletePool(pool.id); await refresh() }}>✕</Button>
       </ListItem>
     {/each}
@@ -109,7 +113,7 @@
         {#if pending.report.ok}
           <h2>Import {pending.report.title}?</h2>
           <Note tone="ink">
-            {pending.report.packs} packs · {pending.report.words} words<br>
+            {pending.report.packs} packs · {pending.report.words} words{pending.report.clips ? ` · ${pending.report.clips} clips` : ''}<br>
             Checksum: {pending.report.checksumValid ? 'valid ✓' : 'invalid ✗'}<br>
             Coverage: {shortCoverage.length ? `${shortCoverage.length} pack(s) below 100%` : 'all packs 100% ✓'}
           </Note>

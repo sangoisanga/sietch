@@ -1,9 +1,13 @@
 import type { Pool } from '../content/pool'
-import { signPool, type PoolFile } from '../content/poolFile'
-import type { Drill } from '../types'
+import { decodeAudio, encodeAudio, POOL_SCHEMA, signPool, type PoolAudio, type PoolFile } from '../content/poolFile'
+import type { AccentCode, Drill } from '../types'
+import { cachedKeys, clipsForText, putClip } from './audioClips'
 import { now, openDb, toPlain, type PoolRecord } from './db'
 
 export type InstallDecision = 'replace' | 'keepBoth'
+
+// the recipient's own voice decides the key, so shared audio plays without re-paying for it
+export type ClipKeyFor = (text: string, accent: AccentCode) => string | null
 
 export interface PoolConflict {
   installed: PoolRecord
@@ -59,6 +63,27 @@ export async function installPool(file: PoolFile, decision: InstallDecision = 'r
   return poolId
 }
 
+export async function importPoolAudio(file: PoolFile, clipKeyFor: ClipKeyFor): Promise<number> {
+  const accentOf = new Map<string, AccentCode>()
+  for (const pack of file.packs) {
+    for (const sentence of pack.sentences) accentOf.set(sentence.en, pack.accent)
+  }
+
+  let imported = 0
+  for (const [text, audio] of Object.entries(file.audio ?? {})) {
+    const accent = accentOf.get(text)
+    const key = accent && clipKeyFor(text, accent)
+    if (!key) continue
+
+    // a clip already recorded here was made with this voice; the incoming one only guesses at it
+    if ((await cachedKeys([key])).has(key)) continue
+
+    await putClip({ key, text, blob: decodeAudio(audio), durationSeconds: audio.durationSeconds })
+    imported++
+  }
+  return imported
+}
+
 export async function removePool(poolId: string): Promise<void> {
   await removePacksOf(poolId)
   await (await openDb()).delete('pools', poolId)
@@ -81,7 +106,20 @@ export async function toRotationPool(poolId: string): Promise<Pool | null> {
   }
 }
 
-export async function exportPool(poolId: string): Promise<PoolFile> {
+async function collectAudio(packs: { sentences: { en: string }[] }[]): Promise<Record<string, PoolAudio>> {
+  const audio: Record<string, PoolAudio> = {}
+  for (const pack of packs) {
+    for (const { en } of pack.sentences) {
+      if (audio[en]) continue
+      const [clip] = await clipsForText(en)
+      if (!clip) continue
+      audio[en] = { mime: clip.blob.type, durationSeconds: clip.durationSeconds, data: await encodeAudio(clip.blob) }
+    }
+  }
+  return audio
+}
+
+export async function exportPool(poolId: string, withAudio = false): Promise<PoolFile> {
   const db = await openDb()
   const record = await db.get('pools', poolId)
   if (!record) throw new Error(`No pool ${poolId}`)
@@ -92,15 +130,37 @@ export async function exportPool(poolId: string): Promise<PoolFile> {
     return { id: packId, ...pack.drill }
   }))
 
+  const audio = withAudio ? await collectAudio(packs) : {}
+
   return signPool({
-    schema: 1,
+    schema: POOL_SCHEMA,
     id: record.id,
     title: record.title,
     version: record.version,
     cadence: record.cadence,
     updatedAt: new Date(record.updatedAt).toISOString(),
     packs,
+    ...(Object.keys(audio).length ? { audio } : {}),
     ...(record.author === undefined ? {} : { author: record.author }),
     ...(record.license === undefined ? {} : { license: record.license }),
   })
+}
+
+export async function poolAudioSize(poolId: string): Promise<number> {
+  const db = await openDb()
+  const record = await db.get('pools', poolId)
+  if (!record) return 0
+
+  let bytes = 0
+  const counted = new Set<string>()
+  for (const packId of record.packIds) {
+    const pack = await db.get('packs', packKey(poolId, packId))
+    for (const { en } of pack?.drill.sentences ?? []) {
+      if (counted.has(en)) continue
+      counted.add(en)
+      const [clip] = await clipsForText(en)
+      bytes += clip?.blob.size ?? 0
+    }
+  }
+  return bytes
 }

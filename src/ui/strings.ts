@@ -28,6 +28,8 @@ export const STRINGS = {
   lastProfile: 'That is the only profile — keep at least one.',
   nothingToRate: 'Open a pack from ☰ to rate it.',
   poolInstalled: 'Pool installed.',
+  poolInstalledWithAudio: (clips: number) => `Pool installed with ${clips} ready-made clips.`,
+  exportWithAudio: (bytes: number) => `↓ Export with audio (${(bytes / 1024 / 1024).toFixed(1)} MB)`,
   poolRejected: 'That pool was rejected.',
   starterMissing: 'Could not load the built-in pool.',
   noMatches: 'Nothing matches that.',

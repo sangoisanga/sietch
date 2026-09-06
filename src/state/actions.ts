@@ -16,7 +16,10 @@ import {
   activeProfile, createProfile, deleteProfile, listProfiles, renameProfile, setActiveProfile,
 } from '../data/profiles'
 import { loadPrefs, savePrefs } from '../data/prefs'
-import { exportPool, findConflict, installPool, listPools, loadDrill, removePool, toRotationPool, type InstallDecision } from '../data/pools'
+import {
+  exportPool, findConflict, importPoolAudio, installPool, listPools, loadDrill,
+  removePool, toRotationPool, type ClipKeyFor, type InstallDecision,
+} from '../data/pools'
 import { assignForPeriod, loadProgress, markCompleted } from '../data/progress'
 import { loadReviews, saveReview } from '../data/reviews'
 import { loadSettings, saveSettings } from '../data/settings'
@@ -292,15 +295,23 @@ export async function inspectPoolFile(file: File): Promise<{ report: PoolReport;
   return { report, raw, conflict }
 }
 
-export async function acceptPool(raw: unknown, decision: InstallDecision): Promise<void> {
-  await installPool(raw as PoolFile, decision)
-  await refreshPacks()
-  await refreshScheduled()
-  setStatus(STRINGS.poolInstalled)
+const clipKeyFor: ClipKeyFor = (text, accent) => {
+  const { cacheKey } = providers.activeTts()
+  return cacheKey ? cacheKey(text, { accent: resolveAccent(accent), rate: app.settings.rate }) : null
 }
 
-export async function exportPoolFile(poolId: string): Promise<void> {
-  const file = await exportPool(poolId)
+export async function acceptPool(raw: unknown, decision: InstallDecision): Promise<void> {
+  const file = raw as PoolFile
+  await installPool(file, decision)
+  const clips = await importPoolAudio(file, clipKeyFor)
+  await refreshPacks()
+  await refreshScheduled()
+  await refreshAudioState()
+  setStatus(clips ? STRINGS.poolInstalledWithAudio(clips) : STRINGS.poolInstalled)
+}
+
+export async function exportPoolFile(poolId: string, withAudio = false): Promise<void> {
+  const file = await exportPool(poolId, withAudio)
   downloadJson(`${poolId}${POOL_EXTENSION}`, file)
   setStatus(STRINGS.profileExported(file.title))
 }

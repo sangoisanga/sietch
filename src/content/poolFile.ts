@@ -1,21 +1,32 @@
 import type { Drill } from '../types'
 import type { Pool } from './pool'
 
-export const POOL_SCHEMA = 1
+export const POOL_SCHEMA = 2
+export const READABLE_SCHEMAS = [1, POOL_SCHEMA] as const
 export const POOL_EXTENSION = '.sietch.json'
+
+export type PoolSchema = typeof READABLE_SCHEMAS[number]
 
 export interface PackEntry extends Drill {
   id: string
 }
 
+export interface PoolAudio {
+  mime: string
+  durationSeconds: number
+  data: string
+}
+
 export interface PoolFile {
-  schema: typeof POOL_SCHEMA
+  schema: PoolSchema
   id: string
   title: string
   version: number
   cadence: Pool['cadence']
   updatedAt: string
   packs: PackEntry[]
+  // keyed by sentence text, so reordering or re-splitting the packs never orphans a clip
+  audio?: Record<string, PoolAudio>
   author?: string
   license?: string
   checksum: string
@@ -41,6 +52,20 @@ export async function computeChecksum(file: UnsignedPoolFile): Promise<string> {
 
 export async function signPool(file: UnsignedPoolFile): Promise<PoolFile> {
   return { ...file, checksum: await computeChecksum(file) }
+}
+
+export async function encodeAudio(blob: Blob): Promise<string> {
+  const bytes = new Uint8Array(await blob.arrayBuffer())
+  let binary = ''
+  for (const byte of bytes) binary += String.fromCharCode(byte)
+  return btoa(binary)
+}
+
+export function decodeAudio(audio: PoolAudio): Blob {
+  const binary = atob(audio.data)
+  const bytes = new Uint8Array(binary.length)
+  for (let index = 0; index < binary.length; index++) bytes[index] = binary.charCodeAt(index)
+  return new Blob([bytes], { type: audio.mime })
 }
 
 export function toPool(file: PoolFile): Pool {

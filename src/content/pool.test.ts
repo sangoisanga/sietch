@@ -1,8 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { clearClips, getClip, putClip } from '../data/audioClips'
 import { closeDb, DB_NAME, openDb } from '../data/db'
-import { exportPool, findConflict, installPool, listPools, loadDrill, toRotationPool } from '../data/pools'
+import { exportPool, findConflict, importPoolAudio, installPool, listPools, loadDrill, toRotationPool } from '../data/pools'
 import { markCompleted, loadProgress } from '../data/progress'
 import { computeChecksum, signPool, toPool, type PoolFile, type UnsignedPoolFile } from './poolFile'
 import { validatePool } from './validatePool'
@@ -58,7 +59,7 @@ describe('the shipped starter pool', () => {
 
 describe('validatePool rejections', () => {
   const cases = [
-    { name: 'a future schema, naming the version', mutate: (p: PoolFile) => ({ ...p, schema: 2 }), match: /Unsupported pool schema: 2/ },
+    { name: 'a future schema, naming the version', mutate: (p: PoolFile) => ({ ...p, schema: 3 }), match: /Unsupported pool schema: 3/ },
     { name: 'a missing schema', mutate: (p: PoolFile) => { const { schema, ...rest } = p; return rest }, match: /Unsupported pool schema/ },
     { name: 'no packs', mutate: (p: PoolFile) => ({ ...p, packs: [] }), match: /no packs/ },
     { name: 'an unknown cadence', mutate: (p: PoolFile) => ({ ...p, cadence: 'hourly' }), match: /Unknown cadence/ },
@@ -158,6 +159,65 @@ describe('exporting', () => {
 
     expect(report.ok).toBe(true)
     expect(report.packs).toBe(12)
+  })
+
+  it('still reads a schema 1 pool, which is what every shipped file is', async () => {
+    expect((await validatePool(starter)).ok).toBe(true)
+    expect(starter.schema).toBe(1)
+  })
+})
+
+describe('sharing audio inside the pool', () => {
+  const firstSentence = () => starter.packs[0]!.sentences[0]!.en
+  const keyFor = (text: string) => `test|${text}`
+
+  it('carries a clip out and back in, byte for byte', async () => {
+    await installPool(starter)
+    await putClip({ key: keyFor(firstSentence()), text: firstSentence(), blob: new Blob(['abc'], { type: 'audio/mpeg' }), durationSeconds: 2 })
+
+    const exported = await exportPool(starter.id, true)
+    expect(Object.keys(exported.audio ?? {})).toEqual([firstSentence()])
+    expect((await validatePool(exported)).clips).toBe(1)
+
+    await clearClips()
+    expect(await importPoolAudio(exported, keyFor)).toBe(1)
+
+    const restored = await getClip(keyFor(firstSentence()))
+    expect(await restored!.blob.text()).toBe('abc')
+    expect(restored!.blob.type).toBe('audio/mpeg')
+    expect(restored!.durationSeconds).toBe(2)
+  })
+
+  it('leaves a clip already recorded here alone', async () => {
+    await installPool(starter)
+    await putClip({ key: keyFor(firstSentence()), text: firstSentence(), blob: new Blob(['theirs']), durationSeconds: 2 })
+    const exported = await exportPool(starter.id, true)
+
+    await putClip({ key: keyFor(firstSentence()), text: firstSentence(), blob: new Blob(['mine']), durationSeconds: 9 })
+    expect(await importPoolAudio(exported, keyFor)).toBe(0)
+    expect(await (await getClip(keyFor(firstSentence())))!.blob.text()).toBe('mine')
+  })
+
+  it('imports nothing when the active voice cannot be keyed', async () => {
+    await installPool(starter)
+    await putClip({ key: keyFor(firstSentence()), text: firstSentence(), blob: new Blob(['abc']), durationSeconds: 2 })
+    const exported = await exportPool(starter.id, true)
+
+    await clearClips()
+    expect(await importPoolAudio(exported, () => null)).toBe(0)
+  })
+
+  it('rejects audio for a sentence the pool does not contain', async () => {
+    const tampered = { ...starter, audio: { 'Not in this pool.': { mime: 'audio/mpeg', durationSeconds: 1, data: 'YWJj' } } }
+    const report = await validatePool(tampered)
+
+    expect(report.ok).toBe(false)
+    expect(report.errors.join(' | ')).toMatch(/does not contain/)
+  })
+
+  it('omits the audio field entirely when nothing is cached', async () => {
+    await installPool(starter)
+    expect(await exportPool(starter.id, true)).not.toHaveProperty('audio')
   })
 })
 

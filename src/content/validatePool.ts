@@ -2,7 +2,7 @@ import { ACCENTS } from '../core/accents'
 import { auditIPA } from '../core/audit'
 import { countWords } from '../core/text'
 import type { AccentCode } from '../types'
-import { computeChecksum, POOL_SCHEMA, type PoolFile } from './poolFile'
+import { computeChecksum, READABLE_SCHEMAS, type PoolFile, type PoolSchema } from './poolFile'
 
 export interface PackCoverage {
   packId: string
@@ -19,20 +19,23 @@ export interface PoolReport {
   title: string
   packs: number
   words: number
+  clips: number
   coverage: PackCoverage[]
 }
 
 const failed = (errors: string[]): PoolReport => ({
-  ok: false, errors, warnings: [], checksumValid: false, title: '', packs: 0, words: 0, coverage: [],
+  ok: false, errors, warnings: [], checksumValid: false, title: '', packs: 0, words: 0, clips: 0, coverage: [],
 })
+
+const BASE64 = /^[A-Za-z0-9+/]*={0,2}$/
 
 export async function validatePool(raw: unknown): Promise<PoolReport> {
   if (!raw || typeof raw !== 'object') return failed(['That file is not a pool.'])
 
   const file = raw as Partial<PoolFile>
   // reported before any shape check, so an old app tells the user the version rather than a field name
-  if (file.schema !== POOL_SCHEMA) {
-    return failed([`Unsupported pool schema: ${String(file.schema)} (this app reads ${POOL_SCHEMA})`])
+  if (!READABLE_SCHEMAS.includes(file.schema as PoolSchema)) {
+    return failed([`Unsupported pool schema: ${String(file.schema)} (this app reads ${READABLE_SCHEMAS.join(' and ')})`])
   }
 
   const errors: string[] = []
@@ -71,6 +74,13 @@ export async function validatePool(raw: unknown): Promise<PoolReport> {
     if (audit.missing.length) warnings.push(`${label}: covers ${audit.pct}%, missing ${audit.missing.join(' ')}`)
   }
 
+  const spoken = new Set(packs.flatMap(pack => (pack?.sentences ?? []).map(sentence => sentence?.en)))
+  const audio = Object.entries(file.audio ?? {})
+  for (const [text, clip] of audio) {
+    if (!spoken.has(text)) { errors.push(`Audio for a sentence this pool does not contain: "${text.slice(0, 40)}"`); continue }
+    if (typeof clip?.data !== 'string' || !BASE64.test(clip.data)) errors.push(`Audio for "${text.slice(0, 40)}" is not base64.`)
+  }
+
   if (!file.author) warnings.push('Pool has no author.')
   if (!file.license) warnings.push('Pool has no license.')
 
@@ -86,6 +96,7 @@ export async function validatePool(raw: unknown): Promise<PoolReport> {
     title: file.title!,
     packs: packs.length,
     words: packs.reduce((total, pack) => total + countWords(pack?.sentences ?? []), 0),
+    clips: audio.length,
     coverage,
   }
 }
