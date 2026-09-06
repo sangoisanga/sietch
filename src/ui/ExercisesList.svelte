@@ -3,19 +3,17 @@
   import { poolAudioSize, type PoolConflict } from '../data/pools'
   import {
     acceptPool, deleteFromLibrary, deletePool, exportPoolFile, inspectPoolFile,
-    openFromLibrary, openPack, renameLibraryDrill, saveOpenDrill,
+    openFromLibrary, openPack, renameLibraryDrill,
   } from '../state/actions'
   import { app } from '../state/app.svelte'
   import { listExercises, matchesSearch, type ExerciseEntry } from '../state/exercises'
+  import { go } from '../state/route.svelte'
   import Box from './primitives/Box.svelte'
   import Button from './primitives/Button.svelte'
   import ListItem from './primitives/ListItem.svelte'
   import Note from './primitives/Note.svelte'
   import Row from './primitives/Row.svelte'
-  import Sheet from './Sheet.svelte'
   import { STRINGS } from './strings'
-
-  let { open = $bindable() }: { open: boolean } = $props()
 
   let entries = $state<ExerciseEntry[]>([])
   let audioBytes = $state<Record<string, number>>({})
@@ -34,14 +32,18 @@
       app.pools.map(async pool => [pool.id, await poolAudioSize(pool.id)] as const)))
   }
 
+  // saving happens up in the audit box, and installing a pool changes the packs, so the
+  // list follows those two stores rather than only refreshing after its own buttons
   $effect(() => {
-    if (open) void refresh()
+    void app.library.length
+    void app.pools.length
+    void refresh()
   })
 
   async function openEntry(entry: ExerciseEntry): Promise<void> {
     if (entry.from.kind === 'pool') await openPack(entry.from.poolId, entry.from.packId)
     else await openFromLibrary(entry.from.entryId)
-    open = false
+    go('practice')
   }
 
   async function commitRename(entryId: string): Promise<void> {
@@ -51,13 +53,8 @@
   }
 </script>
 
-<Sheet bind:open title="Exercises">
-  <Row>
-    <Button variant="accent" onclick={async () => { await saveOpenDrill(); await refresh() }}>
-      💾 Save the open passage
-    </Button>
-  </Row>
-
+<section>
+  <h2>Exercises</h2>
   <input class="search" bind:value={search} placeholder="Search by title or accent…" aria-label="Search exercises">
 
   <div class="list">
@@ -163,10 +160,10 @@
       if (file) pending = await inspectPoolFile(file)
     }}
   >
-</Sheet>
+</section>
 
 <style>
-  .search { margin-top: 14px }
+  .search { margin-top: 4px }
 
   .list { margin-top: 10px }
 

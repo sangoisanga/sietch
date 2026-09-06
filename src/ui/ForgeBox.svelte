@@ -1,11 +1,10 @@
 <script lang="ts">
   import { ACCENTS, ACCENT_CODES, DEFAULT_ACCENT } from '../core/accents'
-  import { RATINGS } from '../core/srs'
   import {
-    annotate, copyPrompt, forge, isLlmConfigured, loadPastedJson, openPack,
-    openScheduled, rateOpenDrill, saveOpenDrill, splitOwnTextLocally,
+    annotate, copyPrompt, forge, isLlmConfigured, loadPastedJson, saveOpenDrill, splitOwnTextLocally,
   } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
+  import { go } from '../state/route.svelte'
   import type { AccentCode } from '../types'
   import Box from './primitives/Box.svelte'
   import Button from './primitives/Button.svelte'
@@ -19,7 +18,6 @@
     'The Beatles', 'Bob Dylan', 'Leonard Cohen', 'Hans Christian Andersen', 'Aesop’s Fables', 'Grimm Brothers',
     'Sherlock Holmes', 'Studio Ghibli', 'Terry Pratchett', 'Rumi', 'Jane Austen', 'Pink Floyd',
   ]
-  const TODAY = '__today__'
 
   let theme = $state('')
   let accent = $state<AccentCode>(DEFAULT_ACCENT)
@@ -27,12 +25,12 @@
   let ownText = $state('')
   let pasted = $state('')
 
-  const selected = $derived(app.scheduled && app.openPackId === `${app.scheduled.poolId}/${app.scheduled.packId}` ? TODAY : app.openPackId)
-
-  async function choosePack(value: string) {
-    if (value === TODAY) return openScheduled()
-    const [poolId, packId] = value.split('/')
-    if (poolId && packId) await openPack(poolId, packId)
+  // you forged it to read it, so the drill is where you land
+  async function forgeAndPractise(missing: string[] = []): Promise<void> {
+    const detail = missing.length ? STRINGS.coverageGaps(missing) : `${theme || 'The Beatles'} · ${accent}`
+    const before = app.drill
+    await runTask(STRINGS.forgeTask, detail, () => forge(theme, accent, maxWords, missing))
+    if (app.drill !== before) go('practice')
   }
 </script>
 
@@ -64,27 +62,8 @@
   </Row>
 
   <Row style="margin-top:12px">
-    <Button variant="accent" onclick={() => runTask(STRINGS.forgeTask, `${theme || 'The Beatles'} · ${accent}`, () => forge(theme, accent, maxWords, []))}>
-      ⚒ Forge passage
-    </Button>
-    <select value={selected} onchange={event => choosePack((event.currentTarget as HTMLSelectElement).value)} aria-label="Drill pack">
-      <option value={TODAY} disabled={!app.scheduled}>
-        {app.scheduled ? STRINGS.todayOption(app.scheduled.title) : STRINGS.nothingScheduled}
-      </option>
-      {#each app.packChoices as choice (choice.poolId + choice.packId)}
-        <option value="{choice.poolId}/{choice.packId}">{choice.title}</option>
-      {/each}
-    </select>
+    <Button variant="accent" onclick={() => forgeAndPractise()}>⚒ Forge passage</Button>
   </Row>
-
-  {#if app.openPackId}
-    <Row style="margin-top:10px">
-      {#each RATINGS as rating (rating.value)}
-        <Button size="mini" onclick={() => rateOpenDrill(rating.value)}>{rating.label}</Button>
-      {/each}
-    </Row>
-    <Note>How did that one go? Rating it sets when it comes back.</Note>
-  {/if}
 
   <details class="detour">
     <summary>Or: use your own text</summary>
@@ -96,8 +75,13 @@
       <Button variant="accent" onclick={async () => {
         const passage = ownText.trim()
         if (!passage) { setStatus(STRINGS.pasteFirst, 'err'); return }
-        if (!isLlmConfigured()) { splitOwnTextLocally(passage, accent); return }
+        if (!isLlmConfigured()) {
+          if (splitOwnTextLocally(passage, accent)) go('practice')
+          return
+        }
+        const before = app.drill
         await runTask(STRINGS.annotateTask, passage.slice(0, 60), () => annotate(passage, accent))
+        if (app.drill !== before) go('practice')
       }}>✍ Use my text</Button>
     </Row>
   </details>
@@ -116,7 +100,11 @@
     </Row>
     <textarea class="json" bind:value={pasted} rows="4" placeholder={'{"theme":"...","sentences":[...]}'}></textarea>
     <Row style="margin-top:8px">
-      <Button size="mini" onclick={() => { if (loadPastedJson(pasted, accent, theme)) pasted = '' }}>⤵ Load JSON</Button>
+      <Button size="mini" onclick={() => {
+        if (!loadPastedJson(pasted, accent, theme)) return
+        pasted = ''
+        go('practice')
+      }}>⤵ Load JSON</Button>
     </Row>
   </details>
 </Box>
@@ -147,7 +135,7 @@
   <Row style="margin-top:12px">
     <Button size="mini" onclick={async () => {
       if (!app.audit.missing.length) { setStatus(STRINGS.nothingToPatch); return }
-      await runTask(STRINGS.forgeTask, STRINGS.coverageGaps(app.audit.missing), () => forge(theme, accent, maxWords, app.audit.missing))
+      await forgeAndPractise(app.audit.missing)
     }}>⚕ Patch the gaps</Button>
     <Button size="mini" onclick={saveOpenDrill}>💾 Save to library</Button>
   </Row>

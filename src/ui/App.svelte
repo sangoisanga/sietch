@@ -2,14 +2,12 @@
   import { boot, providers, reportError } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import { createPlayer } from '../state/player'
-  import ExercisesSheet from './ExercisesSheet.svelte'
-  import ForgeBox from './ForgeBox.svelte'
+  import { go, route } from '../state/route.svelte'
+  import LibraryPage from './LibraryPage.svelte'
   import PlayerBar from './PlayerBar.svelte'
-  import Box from './primitives/Box.svelte'
+  import PracticePage from './PracticePage.svelte'
   import Button from './primitives/Button.svelte'
-  import Note from './primitives/Note.svelte'
   import ProfilesSheet from './ProfilesSheet.svelte'
-  import SentenceCard from './SentenceCard.svelte'
   import SettingsSheet from './SettingsSheet.svelte'
   import TaskOverlay from './TaskOverlay.svelte'
   import UpdateBar from './UpdateBar.svelte'
@@ -20,9 +18,10 @@
   const player = createPlayer(providers)
 
   let settingsOpen = $state(false)
-  let exercisesOpen = $state(false)
   let profilesOpen = $state(false)
   let barHeight = $state(120)
+
+  const onPractice = $derived(route.current === 'practice')
 
   boot().catch(error => setStatus(STRINGS.failed(error instanceof Error ? error.message : String(error)), 'err'))
 
@@ -64,92 +63,35 @@
     }
   }
 
-  const canPrefetch = $derived(Boolean(providers.activeTts().prefetch))
-
-  const toggles = [
-    { key: 'ipa', label: 'IPA' },
-    { key: 'vi', label: 'Vietnamese' },
-    { key: 'anchor', label: 'Anchors' },
-    { key: 'shadow', label: 'Shadow mode' },
-  ] as const
-
-  $effect(() => {
-    if (app.activeCard < 0) return
-    document.getElementById(`c${app.activeCard}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  })
 </script>
 
 <header class="header">
   <div class="header-inner">
-    <div class="brand">Sietch</div>
+    <button class="brand" onclick={() => go('practice')}>Sietch</button>
     <Button size="mini" onclick={() => (profilesOpen = true)}>👤 {app.profile?.name ?? '…'}</Button>
-    <Button size="icon" aria-label="Exercises" onclick={() => (exercisesOpen = true)}>☰</Button>
+    <Button
+      size="icon"
+      active={!onPractice}
+      aria-label={onPractice ? 'Library' : 'Back to the drill'}
+      onclick={() => go(onPractice ? 'library' : 'practice')}
+    >{onPractice ? '☰' : '←'}</Button>
     <Button size="icon" aria-label="Settings" onclick={() => (settingsOpen = true)}>⚙</Button>
   </div>
 </header>
 
-<div class="wrap" style:padding-bottom="{barHeight + 28}px">
-  <h1 class="lead">Every sound.<br>Every day.<br>Discipline is the water.</h1>
-  <Note>
-    Pick the band, the author, or the fairy tale you love. The forge writes an original passage
-    containing every sound in English, then audits itself.
-  </Note>
-
-  <hr>
-
-  <ForgeBox {runTask} />
-
-  <div class="toggles">
-    {#each toggles as toggle (toggle.key)}
-      <Button size="mini" active={app.toggles[toggle.key]} onclick={() => (app.toggles[toggle.key] = !app.toggles[toggle.key])}>
-        {toggle.label}
-      </Button>
-    {/each}
-  </div>
-
-  <div class="drill-head">
-    <h2>{app.drill.theme} · {app.drill.accent}</h2>
-    {#if canPrefetch && app.drill.sentences.length}
-      <Button
-        variant="accent"
-        size="mini"
-        disabled={!app.missingAudio}
-        onclick={() => runSteppedTask(STRINGS.audioTask, app.drill.sentences.length, step => player.prefetchAll(step))}
-      >
-        {app.missingAudio ? STRINGS.loadAudio(app.missingAudio) : STRINGS.audioReady}
-      </Button>
-    {/if}
-  </div>
-
-  {#each app.drill.sentences as sentence, index (index)}
-    <SentenceCard
-      {sentence}
-      {index}
-      onplay={i => player.sayOne(i)}
-      onloop={i => player.loopThree(i)}
-      ongenerate={i => player.regenerate(i).catch(reportError)}
-    />
-  {/each}
-
-  <Box style="margin-top:16px">
-    <h2>The 90-second routine</h2>
-    <Note tone="ink">
-      <b>20s</b> — listen sentence by sentence at 0.6×, watching only the anchors.<br>
-      <b>40s</b> — turn on Shadow mode, read over the top of it, record yourself on your phone.<br>
-      <b>30s</b> — play it back and pick <b>one</b> mistake. Fix that one tomorrow.
-    </Note>
-  </Box>
-
-  <p class="foot">
-    P(fluent) = P(every sound) × P(linking right) × P(repeating for 60 days).<br>
-    The audit covers the first factor. Shadow mode covers the second. The third is yours.
-  </p>
+<div class="wrap" style:padding-bottom="{onPractice ? barHeight + 28 : 40}px">
+  {#if onPractice}
+    <PracticePage {player} {runSteppedTask} />
+  {:else}
+    <LibraryPage {runTask} />
+  {/if}
 </div>
 
-<PlayerBar {player} bind:height={barHeight} />
+{#if onPractice}
+  <PlayerBar {player} bind:height={barHeight} />
+{/if}
 
 <SettingsSheet bind:open={settingsOpen} {providers} />
-<ExercisesSheet bind:open={exercisesOpen} />
 <ProfilesSheet bind:open={profilesOpen} />
 <TaskOverlay />
 <UpdateBar />
@@ -175,39 +117,16 @@
 
   .brand {
     flex: 1;
+    font-family: inherit;
     font-weight: 700;
     font-size: .86rem;
     letter-spacing: .04em;
     text-transform: uppercase;
+    text-align: left;
+    background: none;
+    border: 0;
+    cursor: pointer;
   }
 
   .wrap { max-width: 36rem; margin: 0 auto; width: 100% }
-
-  .lead { margin-top: 22px }
-
-  .drill-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .drill-head h2 { margin-bottom: 0 }
-
-  .toggles { display: flex; gap: 6px; flex-wrap: wrap; margin: 18px 0 }
-
-  /* the toggles are components, so they carry no scoping class of ours */
-  .toggles > :global(button) { flex: 1 1 auto }
-
-  .foot {
-    font-size: .7rem;
-    color: var(--muted);
-    margin-top: 26px;
-    line-height: 1.7;
-  }
-
-  @media (min-width: 600px) {
-    .toggles > :global(button) { flex: 0 0 auto }
-  }
 </style>
