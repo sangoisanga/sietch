@@ -31,6 +31,7 @@ export const STRINGS = {
   poolInstalled: 'Pool installed.',
   poolRejected: 'That pool was rejected.',
   starterMissing: 'Could not load the built-in pool.',
+  noMatches: 'Nothing matches that.',
 
   todayOption: (title: string) => `Today · ${title}`,
   markedDone: (title: string) => `Marked done: ${title}`,
@@ -46,6 +47,10 @@ export const STRINGS = {
   loaded: (theme: string, words: number) => `Loaded: ${theme} · ${words} words`,
   audioDone: (done: number, total: number) => `Finished ${done}/${total} sentences.`,
   loadAudio: (missing: number) => `⚡ Load audio (${missing})`,
+  audioState: (state: 'none' | 'partial' | 'ready') =>
+    state === 'ready' ? 'Audio saved' : state === 'partial' ? 'Some audio saved' : 'No audio saved',
+  exerciseMeta: (accent: string, sentences: number, completedOn: string) =>
+    `${accent} · ${sentences}s${completedOn ? ` · done ${completedOn}` : ''}`,
   audioCacheSize: (count: number, bytes: number) =>
     count ? `${count} clips saved · ${(bytes / 1024 / 1024).toFixed(1)} MB` : 'No audio saved yet.',
   failed: (message: string) => `Error: ${message}`,

@@ -18,6 +18,13 @@ export async function saveToLibrary(drill: Drill): Promise<void> {
   await Promise.all(records.slice(LIBRARY_LIMIT).map(record => db.delete('library', record.id)))
 }
 
+export async function renameLibraryEntry(entryId: string, title: string): Promise<void> {
+  const db = await openDb()
+  const record = await db.get('library', entryId)
+  if (!record) return
+  await db.put('library', { ...record, drill: { ...record.drill, theme: title }, updatedAt: now() })
+}
+
 export async function removeFromLibrary(entryId: string): Promise<void> {
   await (await openDb()).delete('library', entryId)
 }

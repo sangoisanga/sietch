@@ -8,14 +8,14 @@ import { buildAnnotatePrompt, buildForgePrompt } from '../core/prompts'
 import { countWords, splitSentences } from '../core/text'
 import { cachedKeys, clearClips, getClip, putClip } from '../data/audioClips'
 import { deleteRetiredDatabases } from '../data/db'
-import { loadLibrary, removeFromLibrary, saveToLibrary } from '../data/library'
+import { loadLibrary, removeFromLibrary, renameLibraryEntry, saveToLibrary } from '../data/library'
 import { migrateFromLocalStorage } from '../data/migrate'
 import { exportProfile, importProfile } from '../data/profileTransfer'
 import {
   activeProfile, createProfile, deleteProfile, listProfiles, renameProfile, setActiveProfile,
 } from '../data/profiles'
 import { loadPrefs, savePrefs } from '../data/prefs'
-import { exportPool, findConflict, installPool, listPools, loadDrill, toRotationPool, type InstallDecision } from '../data/pools'
+import { exportPool, findConflict, installPool, listPools, loadDrill, removePool, toRotationPool, type InstallDecision } from '../data/pools'
 import { assignForPeriod, loadProgress, markCompleted } from '../data/progress'
 import { loadSettings, saveSettings } from '../data/settings'
 import { GeminiError, MISSING_KEY } from '../providers/gemini/client'
@@ -318,6 +318,18 @@ export async function openFromLibrary(entryId: string): Promise<void> {
 export async function deleteFromLibrary(entryId: string): Promise<void> {
   await removeFromLibrary(entryId)
   app.library = await loadLibrary()
+}
+
+export async function renameLibraryDrill(entryId: string, title: string): Promise<void> {
+  if (!title.trim()) return
+  await renameLibraryEntry(entryId, title.trim())
+  app.library = await loadLibrary()
+}
+
+export async function deletePool(poolId: string): Promise<void> {
+  await removePool(poolId)
+  await refreshPacks()
+  await refreshScheduled()
 }
 
 export function themeFallback(themeInput: string): string {

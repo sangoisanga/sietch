@@ -2,10 +2,9 @@
   import { boot, providers, reportError } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import { createPlayer } from '../state/player'
+  import ExercisesSheet from './ExercisesSheet.svelte'
   import ForgeBox from './ForgeBox.svelte'
-  import LibrarySheet from './LibrarySheet.svelte'
   import PlayerBar from './PlayerBar.svelte'
-  import PoolsSheet from './PoolsSheet.svelte'
   import Box from './primitives/Box.svelte'
   import Button from './primitives/Button.svelte'
   import Note from './primitives/Note.svelte'
@@ -21,9 +20,8 @@
   const player = createPlayer(providers)
 
   let settingsOpen = $state(false)
-  let libraryOpen = $state(false)
+  let exercisesOpen = $state(false)
   let profilesOpen = $state(false)
-  let poolsOpen = $state(false)
   let barHeight = $state(120)
 
   boot().catch(error => setStatus(STRINGS.failed(error instanceof Error ? error.message : String(error)), 'err'))
@@ -85,8 +83,7 @@
   <div class="header-inner">
     <div class="brand">Sietch</div>
     <Button size="mini" onclick={() => (profilesOpen = true)}>👤 {app.profile?.name ?? '…'}</Button>
-    <Button size="icon" aria-label="Pools" onclick={() => (poolsOpen = true)}>⇅</Button>
-    <Button size="icon" aria-label="Library" onclick={() => (libraryOpen = true)}>☰</Button>
+    <Button size="icon" aria-label="Exercises" onclick={() => (exercisesOpen = true)}>☰</Button>
     <Button size="icon" aria-label="Settings" onclick={() => (settingsOpen = true)}>⚙</Button>
   </div>
 </header>
@@ -152,9 +149,8 @@
 <PlayerBar {player} bind:height={barHeight} />
 
 <SettingsSheet bind:open={settingsOpen} {providers} />
-<LibrarySheet bind:open={libraryOpen} />
+<ExercisesSheet bind:open={exercisesOpen} />
 <ProfilesSheet bind:open={profilesOpen} />
-<PoolsSheet bind:open={poolsOpen} />
 <TaskOverlay />
 <UpdateBar />
 
