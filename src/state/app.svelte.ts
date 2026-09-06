@@ -4,6 +4,7 @@ import { DEFAULT_SETTINGS, type Settings } from '../core/settings'
 import { DEFAULT_SHADOW_PACE } from '../core/shadow'
 import { countWords } from '../core/text'
 import type { PoolRecord } from '../data/db'
+import type { SpeakOptions } from '../providers/tts/types'
 import type { Drill, Profile } from '../types'
 
 export type StatusKind = '' | 'err' | 'shadow'
@@ -60,6 +61,7 @@ class AppState {
   litWord = $state(-1)
   openNote = $state({ card: -1, word: -1 })
   clips = $state<Record<number, Clip>>({})
+  audioReady = $state<Set<string>>(new Set())
   task = $state<TaskState | null>(null)
 
   audit = $derived(auditIPA(
@@ -69,9 +71,15 @@ class AppState {
 
   words = $derived(countWords(this.drill.sentences))
   canMarkDone = $derived(this.scheduled !== null && !this.completedToday)
+  missingAudio = $derived(this.drill.sentences.filter(sentence => !this.audioReady.has(sentence.en)).length)
 }
 
 export const app = new AppState()
+
+export const speakOptions = (): SpeakOptions => ({
+  accent: resolveAccent(app.drill.accent),
+  rate: app.settings.rate,
+})
 
 export function setStatus(message: string, kind: StatusKind = ''): void {
   app.status = { message, kind }

@@ -3,7 +3,7 @@ import type { Settings } from '../core/settings'
 import type { Drill, Profile } from '../types'
 
 export const DB_NAME = 'sietch'
-export const DB_VERSION = 2
+export const DB_VERSION = 3
 
 export const ACTIVE_PROFILE_KEY = 'activeProfile'
 
@@ -56,6 +56,14 @@ export interface ProfilePrefsRecord extends Timestamped {
   shadowPace: number
 }
 
+export interface ClipRecord extends Timestamped {
+  key: string
+  text: string
+  blob: Blob
+  bytes: number
+  durationSeconds: number
+}
+
 export interface MetaRecord {
   key: string
   value: unknown
@@ -71,12 +79,19 @@ interface SietchDB extends DBSchema {
   library: { key: string; value: LibraryRecord }
   meta: { key: string; value: MetaRecord }
   profilePrefs: { key: string; value: ProfilePrefsRecord }
+  clips: { key: string; value: ClipRecord; indexes: { byText: string; byUpdated: number } }
 }
 
 export type SietchDatabase = IDBPDatabase<SietchDB>
 
 function createProfilePrefsStore(db: SietchDatabase): void {
   db.createObjectStore('profilePrefs', { keyPath: 'profileId' })
+}
+
+function createClipsStore(db: SietchDatabase): void {
+  const clips = db.createObjectStore('clips', { keyPath: 'key' })
+  clips.createIndex('byText', 'text')
+  clips.createIndex('byUpdated', 'updatedAt')
 }
 
 function createInitialStores(db: SietchDatabase): void {
@@ -101,6 +116,7 @@ export function openDb(): Promise<SietchDatabase> {
       const database = db as unknown as SietchDatabase
       if (oldVersion < 1) createInitialStores(database)
       if (oldVersion < 2) createProfilePrefsStore(database)
+      if (oldVersion < 3) createClipsStore(database)
     },
   })
   return connection

@@ -6,6 +6,7 @@ import { resolveAccent } from '../core/accents'
 import { dayKey, periodKey } from '../core/period'
 import { buildAnnotatePrompt, buildForgePrompt } from '../core/prompts'
 import { countWords, splitSentences } from '../core/text'
+import { cachedKeys, clearClips, getClip, putClip } from '../data/audioClips'
 import { deleteRetiredDatabases } from '../data/db'
 import { loadLibrary, removeFromLibrary, saveToLibrary } from '../data/library'
 import { migrateFromLocalStorage } from '../data/migrate'
@@ -23,7 +24,7 @@ import { MISSING_KEY as OPENROUTER_MISSING_KEY, OpenRouterError } from '../provi
 import { createProviders } from '../providers'
 import type { AccentCode, Drill, Sentence } from '../types'
 import { STRINGS } from '../ui/strings'
-import { app, setStatus, type PackChoice } from './app.svelte'
+import { app, setStatus, speakOptions, type PackChoice } from './app.svelte'
 
 const STARTER_POOL_URL = `${import.meta.env.BASE_URL}pools/starter${POOL_EXTENSION}`
 const STARTER_POOL_ID = 'sietch-starter'
@@ -31,6 +32,7 @@ const STARTER_POOL_ID = 'sietch-starter'
 export const providers = createProviders({
   getSettings: () => app.settings,
   updateSettings: patch => void updateSettings(patch),
+  clipStore: { get: getClip, put: putClip },
 })
 
 export function reportError(error: unknown): void {
@@ -72,6 +74,32 @@ export function present(drill: Drill): void {
   app.activeCard = -1
   app.litWord = -1
   app.openNote = { card: -1, word: -1 }
+  void refreshAudioState().catch(reportError)
+}
+
+export async function refreshAudioState(): Promise<void> {
+  const { cacheKey } = providers.activeTts()
+  const { sentences } = app.drill
+  if (!cacheKey) {
+    app.audioReady = new Set()
+    return
+  }
+
+  const keys = sentences.map(sentence => cacheKey(sentence.en, speakOptions()))
+  const cached = await cachedKeys(keys)
+  app.audioReady = new Set(sentences.filter((_, index) => cached.has(keys[index]!)).map(sentence => sentence.en))
+}
+
+// a voice change only changes the cache key, so clips recorded in the old voice stay worth keeping
+export async function forgetLoadedAudio(): Promise<void> {
+  providers.tts.forEach(provider => provider.release?.())
+  app.clips = {}
+  await refreshAudioState()
+}
+
+export async function clearAudio(): Promise<void> {
+  await clearClips()
+  await forgetLoadedAudio()
 }
 
 async function refreshPacks(): Promise<void> {

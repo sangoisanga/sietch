@@ -5,7 +5,8 @@ export const STRINGS = {
   annotating: 'Annotating your text…',
   stopped: 'Stopped.',
   cancelled: 'Cancelled.',
-  audioCleared: 'Audio cleared.',
+  audioCleared: 'Saved audio cleared.',
+  audioReady: '✓ Audio ready',
   coverageComplete: 'Fully covered.',
   nothingToPatch: 'Already fully covered, nothing to patch.',
   passageEnd: 'End of the passage. Record yourself and compare with yesterday.',
@@ -44,6 +45,9 @@ export const STRINGS = {
   annotated: (words: number) => `Done: ${words} words`,
   loaded: (theme: string, words: number) => `Loaded: ${theme} · ${words} words`,
   audioDone: (done: number, total: number) => `Finished ${done}/${total} sentences.`,
+  loadAudio: (missing: number) => `⚡ Load audio (${missing})`,
+  audioCacheSize: (count: number, bytes: number) =>
+    count ? `${count} clips saved · ${(bytes / 1024 / 1024).toFixed(1)} MB` : 'No audio saved yet.',
   failed: (message: string) => `Error: ${message}`,
   coverageGaps: (missing: string[]) => `Missing: ${missing.join(' ')}`,
   auditSummary: (words: number, sentences: number, missing: number, total: number) =>

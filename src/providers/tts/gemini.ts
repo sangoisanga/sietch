@@ -2,7 +2,7 @@ import type { SpeakingStyle } from '../../types'
 import { generateContent, partsOf } from '../gemini/client'
 import type { ProviderContext } from '../types'
 import { createClipPlayer } from './clipPlayer'
-import type { TtsProvider } from './types'
+import type { ClipStore, TtsProvider } from './types'
 import { base64ToBytes, pcmToWav, sampleRateFromMimeType } from './wav'
 
 export const GEMINI_VOICES = ['Kore', 'Puck', 'Charon', 'Zephyr', 'Fenrir', 'Aoede', 'Leda', 'Orus', 'Enceladus', 'Iapetus', 'Umbriel', 'Algieba', 'Despina', 'Erinome', 'Algenib', 'Rasalgethi', 'Laomedeia', 'Achernar', 'Alnilam', 'Schedar', 'Gacrux', 'Achird', 'Vindemiatrix', 'Sadachbia', 'Sulafat', 'Callirrhoe', 'Autonoe', 'Zubenelgenubi', 'Sadaltager', 'Pulcherrima']
@@ -13,7 +13,7 @@ const STYLE_INSTRUCTIONS: Record<SpeakingStyle, string> = {
   veryslow: 'Read very slowly, one word at a time, over-articulating every consonant, in a {ACCENT} accent:',
 }
 
-export function createGeminiTts(context: ProviderContext): TtsProvider {
+export function createGeminiTts(context: ProviderContext, store?: ClipStore): TtsProvider {
   const clipPlayer = createClipPlayer(
     async (text, options) => {
       const { apiKey, ttsModel, voice, style } = context.config()
@@ -32,7 +32,8 @@ export function createGeminiTts(context: ProviderContext): TtsProvider {
       const wav = pcmToWav(base64ToBytes(audioPart.inlineData.data), sampleRateFromMimeType(audioPart.inlineData.mimeType))
       return wav
     },
-    (text, options) => [text, context.config().style, context.config().voice, options.accent.code].join('|'),
+    (text, options) => ['gemini', text, context.config().style, context.config().voice, options.accent.code].join('|'),
+    store,
   )
 
   return {

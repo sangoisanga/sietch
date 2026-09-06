@@ -66,6 +66,8 @@
     }
   }
 
+  const canPrefetch = $derived(Boolean(providers.activeTts().prefetch))
+
   const toggles = [
     { key: 'ipa', label: 'IPA' },
     { key: 'vi', label: 'Vietnamese' },
@@ -108,7 +110,19 @@
     {/each}
   </div>
 
-  <h2>{app.drill.theme} · {app.drill.accent}</h2>
+  <div class="drill-head">
+    <h2>{app.drill.theme} · {app.drill.accent}</h2>
+    {#if canPrefetch && app.drill.sentences.length}
+      <Button
+        variant="accent"
+        size="mini"
+        disabled={!app.missingAudio}
+        onclick={() => runSteppedTask(STRINGS.audioTask, app.drill.sentences.length, step => player.prefetchAll(step))}
+      >
+        {app.missingAudio ? STRINGS.loadAudio(app.missingAudio) : STRINGS.audioReady}
+      </Button>
+    {/if}
+  </div>
 
   {#each app.drill.sentences as sentence, index (index)}
     <SentenceCard
@@ -137,7 +151,7 @@
 
 <PlayerBar {player} bind:height={barHeight} />
 
-<SettingsSheet bind:open={settingsOpen} {providers} {player} {runSteppedTask} />
+<SettingsSheet bind:open={settingsOpen} {providers} />
 <LibrarySheet bind:open={libraryOpen} />
 <ProfilesSheet bind:open={profilesOpen} />
 <PoolsSheet bind:open={poolsOpen} />
@@ -174,6 +188,16 @@
   .wrap { max-width: 36rem; margin: 0 auto; width: 100% }
 
   .lead { margin-top: 22px }
+
+  .drill-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .drill-head h2 { margin-bottom: 0 }
 
   .toggles { display: flex; gap: 6px; flex-wrap: wrap; margin: 18px 0 }
 

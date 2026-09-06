@@ -1,21 +1,22 @@
 <script lang="ts">
   import type { Providers } from '../providers'
   import type { Describable, SettingField } from '../providers/types'
-  import { updateSettings } from '../state/actions'
+  import { clipCacheSize } from '../data/audioClips'
+  import { clearAudio, forgetLoadedAudio, updateSettings } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
-  import type { Player } from '../state/player'
   import Button from './primitives/Button.svelte'
   import Note from './primitives/Note.svelte'
   import Row from './primitives/Row.svelte'
   import Sheet from './Sheet.svelte'
   import { STRINGS } from './strings'
 
-  let { open = $bindable(), providers, player, runSteppedTask }: {
-    open: boolean
-    providers: Providers
-    player: Player
-    runSteppedTask: (label: string, total: number, work: (step: (done: number, detail: string) => void) => Promise<number>) => Promise<void>
-  } = $props()
+  let { open = $bindable(), providers }: { open: boolean; providers: Providers } = $props()
+
+  let cacheSize = $state({ count: 0, bytes: 0 })
+
+  $effect(() => {
+    if (open) void clipCacheSize().then(size => (cacheSize = size))
+  })
 
   interface ConfigSection {
     id: string
@@ -31,7 +32,7 @@
     updateSettings({
       providers: { ...app.settings.providers, [providerId]: { ...providerConfig(providerId), [field.key]: value } },
     })
-    if (field.invalidatesAudio) player.releaseAudio()
+    if (field.invalidatesAudio) void forgetLoadedAudio()
   }
 
   // one provider can back both engines, and both would list its API key — show each field once
@@ -95,13 +96,13 @@
 
   <Note>Stored on your machine. Without a key the built-in passages still play through the browser voice.</Note>
 
-  <Row style="margin-top:16px">
-    <Button variant="accent" onclick={async () => {
-      open = false
-      const total = app.drill.sentences.length
-      await runSteppedTask(STRINGS.audioTask, total, step => player.prefetchAll(step))
-    }}>⚡ Generate all audio</Button>
-    <Button onclick={() => { player.releaseAudio(); setStatus(STRINGS.audioCleared) }}>✕ Clear audio</Button>
+  <Note style="margin-top:16px">{STRINGS.audioCacheSize(cacheSize.count, cacheSize.bytes)}</Note>
+  <Row style="margin-top:8px">
+    <Button onclick={async () => {
+      await clearAudio()
+      cacheSize = { count: 0, bytes: 0 }
+      setStatus(STRINGS.audioCleared)
+    }}>✕ Clear saved audio</Button>
   </Row>
 
   <Note style="margin-top:20px">Build {__BUILD_HASH__} · {__BUILD_TIME__}</Note>

@@ -1,5 +1,5 @@
 import { tokenize } from '../../core/text'
-import type { PrefetchedAudio, SpeakOptions, SpeechHandle, TtsProvider, WordIndexListener } from './types'
+import type { ClipStore, PrefetchedAudio, SpeakOptions, SpeechHandle, TtsProvider, WordIndexListener } from './types'
 
 interface Clip extends PrefetchedAudio {
   wordTimes: [number, number][]
@@ -46,7 +46,8 @@ async function measureDuration(blobUrl: string): Promise<number> {
 export function createClipPlayer(
   synthesize: (text: string, options: SpeakOptions) => Promise<Blob>,
   cacheKey: (text: string, options: SpeakOptions) => string,
-): Pick<TtsProvider, 'speak' | 'prefetch' | 'release'> {
+  store?: ClipStore,
+): Pick<TtsProvider, 'speak' | 'prefetch' | 'cacheKey' | 'release'> {
   const clips = new Map<string, Clip>()
 
   async function getClip(text: string, options: SpeakOptions): Promise<Clip> {
@@ -54,16 +55,19 @@ export function createClipPlayer(
     const cached = clips.get(key)
     if (cached) return cached
 
-    const blob = await synthesize(text, options)
+    const stored = await store?.get(key)
+    const blob = stored?.blob ?? await synthesize(text, options)
     const downloadUrl = URL.createObjectURL(blob)
-    const durationSeconds = await measureDuration(downloadUrl)
+    const durationSeconds = stored?.durationSeconds ?? await measureDuration(downloadUrl)
     const clip: Clip = { downloadUrl, durationSeconds, wordTimes: estimateWordTimes(text, durationSeconds) }
 
     clips.set(key, clip)
+    if (!stored) await store?.put({ key, text, blob, durationSeconds })
     return clip
   }
 
   return {
+    cacheKey,
     prefetch: (text, options) => getClip(text, options),
 
     speak(text: string, options: SpeakOptions, onWordIndex: WordIndexListener): SpeechHandle {

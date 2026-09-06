@@ -5,12 +5,13 @@ import { createOpenRouterLlm } from './openrouter/llm'
 import { createOpenRouterTts } from './openrouter/tts'
 import { createBrowserTts } from './tts/browser'
 import { createGeminiTts } from './tts/gemini'
-import type { TtsProvider } from './tts/types'
+import type { ClipStore, TtsProvider } from './tts/types'
 import type { ProviderContext } from './types'
 
 export interface ProviderDeps {
   getSettings: () => Settings
   updateSettings: (patch: Partial<Settings>) => void
+  clipStore?: ClipStore
 }
 
 export interface Providers {
@@ -37,11 +38,11 @@ function providerContext(getSettings: () => Settings, updateSettings: (patch: Pa
   }
 }
 
-export function createProviders({ getSettings, updateSettings }: ProviderDeps): Providers {
+export function createProviders({ getSettings, updateSettings, clipStore }: ProviderDeps): Providers {
   const gemini = providerContext(getSettings, updateSettings, 'gemini')
   const openrouter = providerContext(getSettings, updateSettings, 'openrouter')
 
-  const tts = [createGeminiTts(gemini), createOpenRouterTts(openrouter), createBrowserTts()]
+  const tts = [createGeminiTts(gemini, clipStore), createOpenRouterTts(openrouter, clipStore), createBrowserTts()]
   const llm = [createGeminiLlm(gemini), createOpenRouterLlm(openrouter)]
 
   return {

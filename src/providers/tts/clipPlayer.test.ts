@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { ACCENTS } from '../../core/accents'
 import { createClipPlayer } from './clipPlayer'
+import type { StoredClip } from './types'
 
 const options = { accent: ACCENTS.GA, rate: 1 }
 const rpOptions = { accent: ACCENTS.RP, rate: 1 }
@@ -68,5 +69,44 @@ describe('createClipPlayer', () => {
 
     await expect(player.prefetch!('one', options)).rejects.toThrow('upstream down')
     await expect(player.prefetch!('one', options)).resolves.toBeDefined()
+  })
+})
+
+describe('createClipPlayer with a store', () => {
+  function memoryStore() {
+    const saved = new Map<string, StoredClip>()
+    return {
+      saved,
+      get: async (key: string) => saved.get(key),
+      put: async (clip: StoredClip) => void saved.set(clip.key, clip),
+    }
+  }
+
+  it('saves what it synthesises', async () => {
+    const store = memoryStore()
+    const player = createClipPlayer(async () => new Blob(['audio']), text => text, store)
+
+    await player.prefetch!('Sing now.', options)
+
+    expect([...store.saved.keys()]).toEqual(['Sing now.'])
+    expect(store.saved.get('Sing now.')?.text).toBe('Sing now.')
+  })
+
+  it('plays a stored clip without paying for it again', async () => {
+    const store = memoryStore()
+    const synthesize = vi.fn(async () => new Blob(['audio']))
+    const first = createClipPlayer(synthesize, text => text, store)
+    await first.prefetch!('Sing now.', options)
+
+    const afterReload = createClipPlayer(synthesize, text => text, store)
+    const clip = await afterReload.prefetch!('Sing now.', options)
+
+    expect(synthesize).toHaveBeenCalledTimes(1)
+    expect(clip.downloadUrl).toMatch(/^blob:/)
+  })
+
+  it('exposes its cache key so callers can ask the store what is missing', async () => {
+    const player = createClipPlayer(async () => new Blob(['audio']), (text, opts) => `${text}|${opts.accent.code}`)
+    expect(player.cacheKey!('Sing now.', options)).toBe('Sing now.|GA')
   })
 })

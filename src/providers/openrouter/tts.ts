@@ -1,12 +1,12 @@
 import { createClipPlayer } from '../tts/clipPlayer'
-import type { TtsProvider } from '../tts/types'
+import type { ClipStore, TtsProvider } from '../tts/types'
 import type { ProviderContext } from '../types'
 import { callOpenRouter } from './client'
 
 export const DEFAULT_TTS_MODEL = 'openai/gpt-4o-mini-tts-2025-12-15'
 export const DEFAULT_VOICE = 'alloy'
 
-export function createOpenRouterTts(context: ProviderContext): TtsProvider {
+export function createOpenRouterTts(context: ProviderContext, store?: ClipStore): TtsProvider {
   const clipPlayer = createClipPlayer(
     async text => {
       const { apiKey, ttsModel, voice } = context.config()
@@ -21,7 +21,8 @@ export function createOpenRouterTts(context: ProviderContext): TtsProvider {
       return new Blob([await response.arrayBuffer()], { type: 'audio/mpeg' })
     },
     // playback speed is applied by the audio element, so it is not part of the key
-    (text, options) => [text, context.config().ttsModel, context.config().voice, options.accent.code].join('|'),
+    (text, options) => ['openrouter', text, context.config().ttsModel, context.config().voice, options.accent.code].join('|'),
+    store,
   )
 
   return {

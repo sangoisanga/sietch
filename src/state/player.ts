@@ -1,9 +1,9 @@
-import { resolveAccent } from '../core/accents'
 import { estimatedShadowGapMs, shadowGapMs } from '../core/shadow'
+import { deleteClip } from '../data/audioClips'
 import type { Providers } from '../providers'
-import type { SpeakOptions, SpeechHandle } from '../providers/tts/types'
+import type { SpeechHandle } from '../providers/tts/types'
 import { STRINGS } from '../ui/strings'
-import { app, setStatus } from './app.svelte'
+import { app, setStatus, speakOptions } from './app.svelte'
 
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -14,16 +14,10 @@ export interface Player {
   regenerate(index: number): Promise<void>
   prefetchAll(onStep: (done: number, sentence: string) => void): Promise<number>
   stop(): void
-  releaseAudio(): void
 }
 
 export function createPlayer(providers: Providers): Player {
   let speaking: SpeechHandle | null = null
-
-  const speakOptions = (): SpeakOptions => ({
-    accent: resolveAccent(app.drill.accent),
-    rate: app.settings.rate,
-  })
 
   async function speakSentence(index: number): Promise<void> {
     const sentence = app.drill.sentences[index]
@@ -76,6 +70,7 @@ export function createPlayer(providers: Providers): Player {
     const { prefetch } = providers.activeTts()
     if (!sentence || !prefetch) return
     app.clips = { ...app.clips, [index]: await prefetch(sentence.en, speakOptions()) }
+    app.audioReady = new Set(app.audioReady).add(sentence.en)
   }
 
   return {
@@ -115,7 +110,11 @@ export function createPlayer(providers: Providers): Player {
     },
 
     regenerate: async index => {
-      providers.activeTts().release?.()
+      const sentence = app.drill.sentences[index]
+      const { cacheKey, release } = providers.activeTts()
+      // without dropping the stored clip, a regenerate would just replay the take it is replacing
+      if (sentence && cacheKey) await deleteClip(cacheKey(sentence.en, speakOptions()))
+      release?.()
       await prefetchSentence(index)
     },
 
@@ -142,11 +141,6 @@ export function createPlayer(providers: Providers): Player {
       app.activeCard = -1
       app.progress = 0
       setStatus(STRINGS.stopped)
-    },
-
-    releaseAudio: () => {
-      providers.tts.forEach(provider => provider.release?.())
-      app.clips = {}
     },
   }
 }
