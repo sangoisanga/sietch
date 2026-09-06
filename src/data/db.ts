@@ -1,9 +1,10 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb'
 import type { Settings } from '../core/settings'
+import type { ReviewState } from '../core/srs'
 import type { Drill, Profile } from '../types'
 
 export const DB_NAME = 'sietch'
-export const DB_VERSION = 3
+export const DB_VERSION = 4
 
 export const ACTIVE_PROFILE_KEY = 'activeProfile'
 
@@ -56,6 +57,11 @@ export interface ProfilePrefsRecord extends Timestamped {
   shadowPace: number
 }
 
+export interface ReviewRecord extends Timestamped, ReviewState {
+  profileId: string
+  itemKey: string
+}
+
 export interface ClipRecord extends Timestamped {
   key: string
   text: string
@@ -80,6 +86,7 @@ interface SietchDB extends DBSchema {
   meta: { key: string; value: MetaRecord }
   profilePrefs: { key: string; value: ProfilePrefsRecord }
   clips: { key: string; value: ClipRecord; indexes: { byText: string; byUpdated: number } }
+  reviews: { key: [string, string]; value: ReviewRecord; indexes: { byProfile: string } }
 }
 
 export type SietchDatabase = IDBPDatabase<SietchDB>
@@ -92,6 +99,11 @@ function createClipsStore(db: SietchDatabase): void {
   const clips = db.createObjectStore('clips', { keyPath: 'key' })
   clips.createIndex('byText', 'text')
   clips.createIndex('byUpdated', 'updatedAt')
+}
+
+function createReviewsStore(db: SietchDatabase): void {
+  db.createObjectStore('reviews', { keyPath: ['profileId', 'itemKey'] })
+    .createIndex('byProfile', 'profileId')
 }
 
 function createInitialStores(db: SietchDatabase): void {
@@ -117,6 +129,7 @@ export function openDb(): Promise<SietchDatabase> {
       if (oldVersion < 1) createInitialStores(database)
       if (oldVersion < 2) createProfilePrefsStore(database)
       if (oldVersion < 3) createClipsStore(database)
+      if (oldVersion < 4) createReviewsStore(database)
     },
   })
   return connection

@@ -1,8 +1,9 @@
 <script lang="ts">
   import { ACCENTS, ACCENT_CODES, DEFAULT_ACCENT } from '../core/accents'
+  import { RATINGS } from '../core/srs'
   import {
-    annotate, copyPrompt, forge, isLlmConfigured, loadPastedJson, markScheduledDone,
-    openPack, openScheduled, saveOpenDrill, splitOwnTextLocally,
+    annotate, copyPrompt, forge, isLlmConfigured, loadPastedJson, openPack,
+    openScheduled, rateOpenDrill, saveOpenDrill, splitOwnTextLocally,
   } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import type { AccentCode } from '../types'
@@ -74,8 +75,16 @@
         <option value="{choice.poolId}/{choice.packId}">{choice.title}</option>
       {/each}
     </select>
-    <Button size="mini" disabled={!app.canMarkDone} onclick={markScheduledDone}>✓ Mark done</Button>
   </Row>
+
+  {#if app.openPackId}
+    <Row style="margin-top:10px">
+      {#each RATINGS as rating (rating.value)}
+        <Button size="mini" onclick={() => rateOpenDrill(rating.value)}>{rating.label}</Button>
+      {/each}
+    </Row>
+    <Note>How did that one go? Rating it sets when it comes back.</Note>
+  {/if}
 
   <details class="detour">
     <summary>Or: use your own text</summary>

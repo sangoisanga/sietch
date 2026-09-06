@@ -5,6 +5,7 @@ import { validatePool, type PoolReport } from '../content/validatePool'
 import { resolveAccent } from '../core/accents'
 import { dayKey, periodKey } from '../core/period'
 import { buildAnnotatePrompt, buildForgePrompt } from '../core/prompts'
+import { nextReview, NEW_REVIEW, type Rating } from '../core/srs'
 import { countWords, splitSentences } from '../core/text'
 import { cachedKeys, clearClips, getClip, putClip } from '../data/audioClips'
 import { deleteRetiredDatabases } from '../data/db'
@@ -17,6 +18,7 @@ import {
 import { loadPrefs, savePrefs } from '../data/prefs'
 import { exportPool, findConflict, installPool, listPools, loadDrill, removePool, toRotationPool, type InstallDecision } from '../data/pools'
 import { assignForPeriod, loadProgress, markCompleted } from '../data/progress'
+import { loadReviews, saveReview } from '../data/reviews'
 import { loadSettings, saveSettings } from '../data/settings'
 import { GeminiError, MISSING_KEY } from '../providers/gemini/client'
 import { generateJsonRetrying } from '../providers/llm/json'
@@ -74,6 +76,8 @@ export function present(drill: Drill): void {
   app.activeCard = -1
   app.litWord = -1
   app.openNote = { card: -1, word: -1 }
+  // a forged or library drill is not a pool pack, so nothing is open to rate until openPack says so
+  app.openPackId = ''
   void refreshAudioState().catch(reportError)
 }
 
@@ -129,7 +133,8 @@ async function refreshScheduled(): Promise<void> {
 
   const period = periodKey(pool.cadence, new Date())
   const progress = await loadProgress(profile.id)
-  const item = drawForPeriod(pool, progress, period, profile.id)
+  const reviews = await loadReviews(profile.id)
+  const item = drawForPeriod(pool, progress, period, profile.id, reviews, dayKey(new Date()))
   if (!item) return
 
   await assignForPeriod(profile.id, period, itemKey(item))
@@ -149,18 +154,22 @@ export async function openScheduled(): Promise<void> {
   await openPack(app.scheduled.poolId, app.scheduled.packId)
 }
 
-export async function markScheduledDone(): Promise<void> {
-  if (!app.scheduled || !app.profile) {
-    setStatus(STRINGS.noScheduledItem, 'err')
+export async function rateOpenDrill(rating: Rating): Promise<void> {
+  const packId = app.openPackId.split('/')[1]
+  if (!app.profile || !packId) {
+    setStatus(STRINGS.nothingToRate, 'err')
     return
   }
-  if (app.completedToday) {
-    setStatus(STRINGS.alreadyDone)
-    return
-  }
-  await markCompleted(app.profile.id, `passage:${app.scheduled.packId}`, dayKey(new Date()))
-  app.completedToday = true
-  setStatus(STRINGS.markedDone(app.scheduled.title))
+
+  const key = `passage:${packId}`
+  const today = dayKey(new Date())
+  const reviews = await loadReviews(app.profile.id)
+  const state = nextReview(reviews[key] ?? NEW_REVIEW, rating, today)
+
+  await saveReview(app.profile.id, key, state)
+  await markCompleted(app.profile.id, key, today)
+  if (app.scheduled?.packId === packId) app.completedToday = true
+  setStatus(STRINGS.rated(state.interval))
 }
 
 async function ensureStarterPool(): Promise<void> {

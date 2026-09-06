@@ -70,7 +70,6 @@ class AppState {
   ))
 
   words = $derived(countWords(this.drill.sentences))
-  canMarkDone = $derived(this.scheduled !== null && !this.completedToday)
   missingAudio = $derived(this.drill.sentences.filter(sentence => !this.audioReady.has(sentence.en)).length)
 }
 

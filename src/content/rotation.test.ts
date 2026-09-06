@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { NEW_REVIEW, type ReviewState } from '../core/srs'
 import type { Progress } from '../types'
 import { itemKey, type Pool } from './pool'
 import { drawForPeriod, withAssignment, withCompletion } from './rotation'
@@ -13,6 +14,37 @@ const pool = (...packIds: string[]): Pool => ({
 const empty = (): Progress => ({ completed: {}, assignments: {} })
 
 const TWELVE = pool('beatles', 'dylan', 'cohen', 'andersen', 'aesop', 'grimm', 'holmes', 'ghibli', 'pratchett', 'rumi', 'austen', 'floyd')
+
+describe('drawForPeriod with reviews', () => {
+  const review = (due: string): ReviewState => ({ ...NEW_REVIEW, due, reps: 1, interval: 1 })
+
+  it('brings back the most overdue pack before anything new', () => {
+    const reviews = { 'passage:rumi': review('2026-09-01'), 'passage:dylan': review('2026-09-04') }
+    expect(drawForPeriod(TWELVE, empty(), '2026-09-05', 'sang', reviews))
+      .toEqual({ kind: 'passage', packId: 'rumi' })
+  })
+
+  it('leaves a pack alone until the day it falls due', () => {
+    const reviews = { 'passage:rumi': review('2026-09-09') }
+    expect(drawForPeriod(TWELVE, empty(), '2026-09-05', 'sang', reviews))
+      .not.toEqual({ kind: 'passage', packId: 'rumi' })
+
+    expect(drawForPeriod(TWELVE, empty(), '2026-09-09', 'sang', reviews))
+      .toEqual({ kind: 'passage', packId: 'rumi' })
+  })
+
+  it('compares due dates against today, not against a weekly period key', () => {
+    const weekly: Pool = { ...TWELVE, cadence: 'weekly' }
+    const reviews = { 'passage:rumi': review('2026-09-01') }
+    expect(drawForPeriod(weekly, empty(), '2026-W37', 'sang', reviews, '2026-09-06'))
+      .toEqual({ kind: 'passage', packId: 'rumi' })
+  })
+
+  it('keeps drawing as it always did when nothing has been rated', () => {
+    expect(drawForPeriod(TWELVE, empty(), '2026-09-05', 'sang', {}))
+      .toEqual(drawForPeriod(TWELVE, empty(), '2026-09-05', 'sang'))
+  })
+})
 
 describe('drawForPeriod', () => {
   it('returns null for an empty pool', () => {

@@ -1,9 +1,12 @@
 import { itemKey } from '../content/pool'
 import { resolveAccent } from '../core/accents'
+import { dayKey } from '../core/period'
+import { daysUntilDue } from '../core/srs'
 import { countWords } from '../core/text'
 import { cachedKeys } from '../data/audioClips'
 import { listPools, loadDrill } from '../data/pools'
 import { loadProgress } from '../data/progress'
+import { loadReviews } from '../data/reviews'
 import type { AccentCode, Drill } from '../types'
 import { providers } from './actions'
 import { app } from './app.svelte'
@@ -23,6 +26,7 @@ export interface ExerciseEntry {
   words: number
   audio: AudioState
   completedOn: string
+  dueInDays: number | null
 }
 
 async function audioStates(drills: Drill[]): Promise<AudioState[]> {
@@ -42,11 +46,14 @@ async function audioStates(drills: Drill[]): Promise<AudioState[]> {
 
 export async function listExercises(): Promise<ExerciseEntry[]> {
   const progress = app.profile ? await loadProgress(app.profile.id) : { completed: {}, assignments: {} }
+  const reviews = app.profile ? await loadReviews(app.profile.id) : {}
+  const today = dayKey(new Date())
   const found: { drill: Drill; entry: Omit<ExerciseEntry, 'audio'> }[] = []
 
   for (const pool of await listPools()) {
     for (const packId of pool.packIds) {
       const drill = await loadDrill(pool.id, packId)
+      const review = reviews[itemKey({ kind: 'passage', packId })]
       found.push({
         drill,
         entry: {
@@ -57,6 +64,7 @@ export async function listExercises(): Promise<ExerciseEntry[]> {
           sentences: drill.sentences.length,
           words: countWords(drill.sentences),
           completedOn: progress.completed[itemKey({ kind: 'passage', packId })] ?? '',
+          dueInDays: review ? daysUntilDue(review, today) : null,
         },
       })
     }
@@ -73,12 +81,15 @@ export async function listExercises(): Promise<ExerciseEntry[]> {
         sentences: drill.sentences.length,
         words: countWords(drill.sentences),
         completedOn: '',
+        dueInDays: null,
       },
     })
   }
 
   const audio = await audioStates(found.map(item => item.drill))
-  return found.map((item, index) => ({ ...item.entry, audio: audio[index]! }))
+  return found
+    .map((item, index) => ({ ...item.entry, audio: audio[index]! }))
+    .sort((a, b) => (a.dueInDays ?? Number.MAX_SAFE_INTEGER) - (b.dueInDays ?? Number.MAX_SAFE_INTEGER))
 }
 
 export function matchesSearch(entry: ExerciseEntry, search: string): boolean {

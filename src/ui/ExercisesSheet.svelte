@@ -69,7 +69,10 @@
             <span class="dot {entry.audio}" title={STRINGS.audioState(entry.audio)}></span>
             {entry.title}
           </b>
-          <span class="meta">{STRINGS.exerciseMeta(entry.accent, entry.sentences, entry.completedOn)}</span>
+          <span class="meta" class:due={entry.dueInDays !== null && entry.dueInDays <= 0}>
+            {entry.dueInDays === null ? STRINGS.newExercise : STRINGS.dueIn(entry.dueInDays)}
+          </span>
+          <span class="meta">{entry.accent}</span>
           <Button size="mini" onclick={() => openEntry(entry)}>Open</Button>
           {#if entry.from.kind === 'library'}
             <Button size="mini" aria-label="Rename" onclick={() => { renaming = entry.id; renameTo = entry.title }}>✎</Button>
@@ -178,6 +181,8 @@
     margin-right: 6px;
     vertical-align: middle;
   }
+
+  .due { color: var(--red); font-weight: 700 }
 
   .none { background: #fff }
   .partial { background: var(--acc) }

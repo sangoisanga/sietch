@@ -2,6 +2,7 @@ import type { Profile } from '../types'
 import { ACTIVE_PROFILE_KEY, now, openDb, readMeta, writeMeta } from './db'
 import { clearPrefs } from './prefs'
 import { clearProfileProgress } from './progress'
+import { clearProfileReviews } from './reviews'
 
 const FIRST_PROFILE_NAME = 'Me'
 
@@ -50,6 +51,7 @@ export async function deleteProfile(id: string): Promise<boolean> {
   const db = await openDb()
   await db.delete('profiles', id)
   await clearProfileProgress(id)
+  await clearProfileReviews(id)
   await clearPrefs(id)
 
   const active = await readMeta<string | null>(ACTIVE_PROFILE_KEY, null)
