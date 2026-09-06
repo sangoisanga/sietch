@@ -4,7 +4,7 @@ import type { Pool } from '../content/pool'
 import { DEFAULT_SETTINGS } from '../core/settings'
 import type { Drill } from '../types'
 import { closeDb, DB_NAME, openDb } from './db'
-import { loadLibrary, removeFromLibrary, saveToLibrary } from './library'
+import { loadLibrary, removeFromLibrary, renameLibraryEntry, saveToLibrary } from './library'
 import { migrateFromLocalStorage, MIGRATION_MARKER } from './migrate'
 import { exportProfile, importProfile } from './profileTransfer'
 import { activeProfile, createProfile, deleteProfile, listProfiles, renameProfile, setActiveProfile } from './profiles'
@@ -156,6 +156,22 @@ describe('library', () => {
     await saveToLibrary(original)
     original.theme = 'edited'
     expect((await loadLibrary())[0]!.theme).toBe('Rumi')
+  })
+
+  it('renames an entry without touching its sentences', async () => {
+    await saveToLibrary(drill('Rumi'))
+    const [entry] = await loadLibrary()
+
+    await renameLibraryEntry(entry!.entryId, 'Evening reading')
+
+    const [renamed] = await loadLibrary()
+    expect(renamed!.theme).toBe('Evening reading')
+    expect(renamed!.sentences).toEqual(entry!.sentences)
+    expect(renamed!.entryId).toBe(entry!.entryId)
+  })
+
+  it('ignores a rename for an entry that is gone', async () => {
+    await expect(renameLibraryEntry('never-existed', 'Whatever')).resolves.toBeUndefined()
   })
 })
 
