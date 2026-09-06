@@ -18,6 +18,7 @@ import { exportPool, findConflict, installPool, listPools, loadDrill, toRotation
 import { assignForPeriod, loadProgress, markCompleted } from '../data/progress'
 import { loadSettings, saveSettings } from '../data/settings'
 import { GeminiError, MISSING_KEY } from '../providers/gemini/client'
+import { generateJsonRetrying } from '../providers/llm/json'
 import { MISSING_KEY as OPENROUTER_MISSING_KEY, OpenRouterError } from '../providers/openrouter/client'
 import { createProviders } from '../providers'
 import type { AccentCode, Drill, Sentence } from '../types'
@@ -299,14 +300,14 @@ export async function forge(themeInput: string, accent: AccentCode, maxWords: st
   const theme = themeFallback(themeInput)
   setStatus(STRINGS.forging)
   const prompt = buildForgePrompt(theme, resolveAccent(accent), maxWords, missing)
-  const raw = await providers.activeLlm().generateJson<unknown>(prompt, missing.length ? 0.6 : 0.9)
+  const raw = await generateJsonRetrying<unknown>(providers.activeLlm(), prompt, missing.length ? 0.6 : 0.9)
   present(toDrill(raw, theme, accent))
   setStatus(STRINGS.forged(app.drill.theme, countWords(app.drill.sentences)))
 }
 
 export async function annotate(passage: string, accent: AccentCode): Promise<void> {
   setStatus(STRINGS.annotating)
-  const raw = await providers.activeLlm().generateJson<unknown>(buildAnnotatePrompt(passage, resolveAccent(accent)), 0.3)
+  const raw = await generateJsonRetrying<unknown>(providers.activeLlm(), buildAnnotatePrompt(passage, resolveAccent(accent)), 0.3)
   present(toDrill(raw, STRINGS.myText, accent))
   setStatus(STRINGS.annotated(countWords(app.drill.sentences)))
 }
