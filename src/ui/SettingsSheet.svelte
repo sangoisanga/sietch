@@ -4,6 +4,9 @@
   import { updateSettings } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import type { Player } from '../state/player'
+  import Button from './primitives/Button.svelte'
+  import Note from './primitives/Note.svelte'
+  import Row from './primitives/Row.svelte'
   import Sheet from './Sheet.svelte'
   import { STRINGS } from './strings'
 
@@ -56,7 +59,7 @@
 </script>
 
 <Sheet bind:open title="Settings">
-  <div class="row">
+  <Row>
     <div>
       <label for="ttsProvider">Voice engine</label>
       <select id="ttsProvider" value={app.settings.ttsProviderId} onchange={e => updateSettings({ ttsProviderId: e.currentTarget.value })}>
@@ -69,13 +72,13 @@
         {#each providers.llm as provider (provider.id)}<option value={provider.id}>{provider.label}</option>{/each}
       </select>
     </div>
-  </div>
+  </Row>
 
   {#each sections as section (section.id)}
-    <div style="margin-top:16px">
+    <div class="section">
       {#each section.fields as field (field.key)}
         {@const value = providerConfig(section.id)[field.key] ?? ''}
-        <div style="margin-top:10px">
+        <div class="field">
           <label for="{section.id}-{field.key}">{field.label}</label>
           {#if field.type === 'select'}
             <select id="{section.id}-{field.key}" {value} onchange={e => updateProviderField(section.id, field, e.currentTarget.value)}>
@@ -90,16 +93,21 @@
     </div>
   {/each}
 
-  <p class="sub" style="margin-top:6px">Stored on your machine. Without a key the built-in passages still play through the browser voice.</p>
+  <Note>Stored on your machine. Without a key the built-in passages still play through the browser voice.</Note>
 
-  <div class="row" style="margin-top:16px">
-    <button class="pri" onclick={async () => {
+  <Row style="margin-top:16px">
+    <Button variant="accent" onclick={async () => {
       open = false
       const total = app.drill.sentences.length
       await runSteppedTask(STRINGS.audioTask, total, step => player.prefetchAll(step))
-    }}>⚡ Generate all audio</button>
-    <button onclick={() => { player.releaseAudio(); setStatus(STRINGS.audioCleared) }}>✕ Clear audio</button>
-  </div>
+    }}>⚡ Generate all audio</Button>
+    <Button onclick={() => { player.releaseAudio(); setStatus(STRINGS.audioCleared) }}>✕ Clear audio</Button>
+  </Row>
 
-  <p class="sub" style="margin-top:20px">Build {__BUILD_HASH__} · {__BUILD_TIME__}</p>
+  <Note style="margin-top:20px">Build {__BUILD_HASH__} · {__BUILD_TIME__}</Note>
 </Sheet>
+
+<style>
+  .section { margin-top: 16px }
+  .field { margin-top: 10px }
+</style>

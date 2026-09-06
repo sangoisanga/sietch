@@ -3,6 +3,10 @@
     addProfile, exportActiveProfile, importProfileFile, removeProfile, renameActiveProfile, switchProfile,
   } from '../state/actions'
   import { app } from '../state/app.svelte'
+  import Button from './primitives/Button.svelte'
+  import ListItem from './primitives/ListItem.svelte'
+  import Note from './primitives/Note.svelte'
+  import Row from './primitives/Row.svelte'
   import Sheet from './Sheet.svelte'
 
   let { open = $bindable() }: { open: boolean } = $props()
@@ -13,36 +17,35 @@
 
 <Sheet bind:open title="Profiles">
   {#each app.profiles as profile (profile.id)}
-    <div class="lib">
+    <ListItem>
       <input
-        style="flex:1"
         value={profile.name}
         onchange={event => renameActiveProfile(profile.id, event.currentTarget.value)}
       >
-      <button class="mini" disabled={profile.id === app.profile?.id} onclick={() => switchProfile(profile.id)}>
+      <Button size="mini" disabled={profile.id === app.profile?.id} onclick={() => switchProfile(profile.id)}>
         {profile.id === app.profile?.id ? 'Active' : 'Use'}
-      </button>
-      <button class="mini" onclick={() => removeProfile(profile.id)}>✕</button>
-    </div>
+      </Button>
+      <Button size="mini" onclick={() => removeProfile(profile.id)}>✕</Button>
+    </ListItem>
   {/each}
 
-  <div class="row" style="margin-top:14px">
+  <Row style="margin-top:14px">
     <input bind:value={newName} placeholder="New profile name">
-    <button class="pri" onclick={async () => { await addProfile(newName); newName = '' }}>+ Add</button>
-  </div>
+    <Button variant="accent" onclick={async () => { await addProfile(newName); newName = '' }}>+ Add</Button>
+  </Row>
 
-  <p class="sub">Progress lives in this browser. Export it to carry it to another device.</p>
+  <Note>Progress lives in this browser. Export it to carry it to another device.</Note>
 
-  <div class="row" style="margin-top:14px">
-    <button class="mini" onclick={exportActiveProfile}>↓ Export progress</button>
-    <button class="mini" onclick={() => fileInput.click()}>↑ Import progress</button>
-  </div>
+  <Row style="margin-top:14px">
+    <Button size="mini" onclick={exportActiveProfile}>↓ Export progress</Button>
+    <Button size="mini" onclick={() => fileInput.click()}>↑ Import progress</Button>
+  </Row>
 
   <input
     bind:this={fileInput}
     type="file"
     accept="application/json"
-    class="hide"
+    style="display:none"
     onchange={async event => {
       const file = event.currentTarget.files?.[0]
       event.currentTarget.value = ''

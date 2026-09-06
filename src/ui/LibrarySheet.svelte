@@ -1,25 +1,32 @@
 <script lang="ts">
   import { deleteFromLibrary, openFromLibrary, saveOpenDrill } from '../state/actions'
   import { app } from '../state/app.svelte'
+  import Button from './primitives/Button.svelte'
+  import ListItem from './primitives/ListItem.svelte'
+  import Note from './primitives/Note.svelte'
   import Sheet from './Sheet.svelte'
 
   let { open = $bindable() }: { open: boolean } = $props()
 </script>
 
 <Sheet bind:open title="Library">
-  <button class="pri" style="width:100%" onclick={saveOpenDrill}>💾 Save the open passage</button>
+  <Button variant="accent" style="width:100%" onclick={saveOpenDrill}>💾 Save the open passage</Button>
 
-  <div style="margin-top:16px">
+  <div class="list">
     {#if app.library.length}
       {#each app.library as entry (entry.entryId)}
-        <div class="lib">
+        <ListItem>
           <b>{entry.theme} · {entry.accent}</b>
-          <button class="mini" onclick={async () => { await openFromLibrary(entry.entryId); open = false }}>Open</button>
-          <button class="mini" onclick={() => deleteFromLibrary(entry.entryId)}>✕</button>
-        </div>
+          <Button size="mini" onclick={async () => { await openFromLibrary(entry.entryId); open = false }}>Open</Button>
+          <Button size="mini" onclick={() => deleteFromLibrary(entry.entryId)}>✕</Button>
+        </ListItem>
       {/each}
     {:else}
-      <p class="sub">Empty.</p>
+      <Note>Empty.</Note>
     {/if}
   </div>
 </Sheet>
+
+<style>
+  .list { margin-top: 16px }
+</style>

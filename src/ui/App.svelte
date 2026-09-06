@@ -6,6 +6,9 @@
   import LibrarySheet from './LibrarySheet.svelte'
   import PlayerBar from './PlayerBar.svelte'
   import PoolsSheet from './PoolsSheet.svelte'
+  import Box from './primitives/Box.svelte'
+  import Button from './primitives/Button.svelte'
+  import Note from './primitives/Note.svelte'
   import ProfilesSheet from './ProfilesSheet.svelte'
   import SentenceCard from './SentenceCard.svelte'
   import SettingsSheet from './SettingsSheet.svelte'
@@ -76,22 +79,22 @@
   })
 </script>
 
-<header class="hdr">
-  <div class="hdr-in">
+<header class="header">
+  <div class="header-inner">
     <div class="brand">Sietch</div>
-    <button class="mini" onclick={() => (profilesOpen = true)}>👤 {app.profile?.name ?? '…'}</button>
-    <button class="ico" aria-label="Pools" onclick={() => (poolsOpen = true)}>⇅</button>
-    <button class="ico" aria-label="Library" onclick={() => (libraryOpen = true)}>☰</button>
-    <button class="ico" aria-label="Settings" onclick={() => (settingsOpen = true)}>⚙</button>
+    <Button size="mini" onclick={() => (profilesOpen = true)}>👤 {app.profile?.name ?? '…'}</Button>
+    <Button size="icon" aria-label="Pools" onclick={() => (poolsOpen = true)}>⇅</Button>
+    <Button size="icon" aria-label="Library" onclick={() => (libraryOpen = true)}>☰</Button>
+    <Button size="icon" aria-label="Settings" onclick={() => (settingsOpen = true)}>⚙</Button>
   </div>
 </header>
 
 <div class="wrap" style:padding-bottom="{barHeight + 28}px">
   <h1 class="lead">Every sound.<br>Every day.<br>Discipline is the water.</h1>
-  <p class="sub">
+  <Note>
     Pick the band, the author, or the fairy tale you love. The forge writes an original passage
     containing every sound in English, then audits itself.
-  </p>
+  </Note>
 
   <hr>
 
@@ -99,9 +102,9 @@
 
   <div class="toggles">
     {#each toggles as toggle (toggle.key)}
-      <button class="mini" class:on={app.toggles[toggle.key]} onclick={() => (app.toggles[toggle.key] = !app.toggles[toggle.key])}>
+      <Button size="mini" active={app.toggles[toggle.key]} onclick={() => (app.toggles[toggle.key] = !app.toggles[toggle.key])}>
         {toggle.label}
-      </button>
+      </Button>
     {/each}
   </div>
 
@@ -117,14 +120,14 @@
     />
   {/each}
 
-  <div class="box" style="margin-top:16px">
-    <span class="brand" style="font-size:.64rem">The 90-second routine</span>
-    <p class="sub" style="color:#000">
+  <Box style="margin-top:16px">
+    <h2>The 90-second routine</h2>
+    <Note tone="ink">
       <b>20s</b> — listen sentence by sentence at 0.6×, watching only the anchors.<br>
       <b>40s</b> — turn on Shadow mode, read over the top of it, record yourself on your phone.<br>
       <b>30s</b> — play it back and pick <b>one</b> mistake. Fix that one tomorrow.
-    </p>
-  </div>
+    </Note>
+  </Box>
 
   <p class="foot">
     P(fluent) = P(every sound) × P(linking right) × P(repeating for 60 days).<br>
@@ -140,3 +143,51 @@
 <PoolsSheet bind:open={poolsOpen} />
 <TaskOverlay />
 <UpdateBar />
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: #fff;
+    border-bottom: 2px solid #000;
+    padding: 0 max(var(--pad), env(safe-area-inset-right)) 0 max(var(--pad), env(safe-area-inset-left));
+  }
+
+  .header-inner {
+    max-width: 36rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 52px;
+  }
+
+  .brand {
+    flex: 1;
+    font-weight: 700;
+    font-size: .86rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .wrap { max-width: 36rem; margin: 0 auto; width: 100% }
+
+  .lead { margin-top: 22px }
+
+  .toggles { display: flex; gap: 6px; flex-wrap: wrap; margin: 18px 0 }
+
+  /* the toggles are components, so they carry no scoping class of ours */
+  .toggles > :global(button) { flex: 1 1 auto }
+
+  .foot {
+    font-size: .7rem;
+    color: var(--muted);
+    margin-top: 26px;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 600px) {
+    .toggles > :global(button) { flex: 0 0 auto }
+  }
+</style>

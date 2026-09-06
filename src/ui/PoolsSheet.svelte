@@ -1,8 +1,13 @@
 <script lang="ts">
   import type { PoolReport } from '../content/validatePool'
+  import type { PoolConflict } from '../data/pools'
   import { acceptPool, exportPoolFile, inspectPoolFile } from '../state/actions'
   import { app } from '../state/app.svelte'
-  import type { PoolConflict } from '../data/pools'
+  import Box from './primitives/Box.svelte'
+  import Button from './primitives/Button.svelte'
+  import ListItem from './primitives/ListItem.svelte'
+  import Note from './primitives/Note.svelte'
+  import Row from './primitives/Row.svelte'
   import Sheet from './Sheet.svelte'
   import { STRINGS } from './strings'
 
@@ -16,62 +21,64 @@
 
 <Sheet bind:open title="Pools">
   {#each app.pools as pool (pool.id)}
-    <div class="lib">
+    <ListItem>
       <b>{pool.title} · v{pool.version} · {pool.packIds.length} packs</b>
-      <button class="mini" onclick={() => exportPoolFile(pool.id)}>↓ Export</button>
-    </div>
+      <Button size="mini" onclick={() => exportPoolFile(pool.id)}>↓ Export</Button>
+    </ListItem>
   {/each}
 
-  <div class="row" style="margin-top:14px">
-    <button class="pri" onclick={() => fileInput.click()}>↑ Import a pool</button>
-  </div>
+  <Row style="margin-top:14px">
+    <Button variant="accent" onclick={() => fileInput.click()}>↑ Import a pool</Button>
+  </Row>
 
   {#if pending}
-    <div class="box" style="margin-top:16px">
+    <Box style="margin-top:16px">
       {#if pending.report.ok}
         <h2>Import {pending.report.title}?</h2>
-        <p class="sub" style="color:#000">
+        <Note tone="ink">
           {pending.report.packs} packs · {pending.report.words} words<br>
           Checksum: {pending.report.checksumValid ? 'valid ✓' : 'invalid ✗'}<br>
           Coverage: {shortCoverage.length ? `${shortCoverage.length} pack(s) below 100%` : 'all packs 100% ✓'}
-        </p>
+        </Note>
+
         {#each pending.report.warnings as warning (warning)}
-          <p class="sub" style="color:var(--red)">{warning}</p>
+          <Note style="color:var(--red)">{warning}</Note>
         {/each}
+
         {#if pending.conflict}
-          <p class="sub" style="color:#000">
+          <Note tone="ink">
             <b>Already installed:</b> v{pending.conflict.installed.version} · {pending.conflict.installed.packIds.length} packs<br>
             <b>Incoming:</b> v{pending.conflict.incoming.version} · {pending.conflict.incoming.packs} packs<br>
             Your completed drills carry over either way.
-          </p>
-          <div class="row" style="margin-top:10px">
-            <button class="pri" onclick={async () => { await acceptPool(pending!.raw, 'replace'); pending = null }}>Replace</button>
-            <button class="mini" onclick={async () => { await acceptPool(pending!.raw, 'keepBoth'); pending = null }}>Keep both</button>
-            <button class="mini" onclick={() => (pending = null)}>Cancel</button>
-          </div>
+          </Note>
+          <Row style="margin-top:10px">
+            <Button variant="accent" onclick={async () => { await acceptPool(pending!.raw, 'replace'); pending = null }}>Replace</Button>
+            <Button size="mini" onclick={async () => { await acceptPool(pending!.raw, 'keepBoth'); pending = null }}>Keep both</Button>
+            <Button size="mini" onclick={() => (pending = null)}>Cancel</Button>
+          </Row>
         {:else}
-          <div class="row" style="margin-top:10px">
-            <button class="pri" onclick={async () => { await acceptPool(pending!.raw, 'replace'); pending = null }}>Import</button>
-            <button class="mini" onclick={() => (pending = null)}>Cancel</button>
-          </div>
+          <Row style="margin-top:10px">
+            <Button variant="accent" onclick={async () => { await acceptPool(pending!.raw, 'replace'); pending = null }}>Import</Button>
+            <Button size="mini" onclick={() => (pending = null)}>Cancel</Button>
+          </Row>
         {/if}
       {:else}
         <h2>{STRINGS.poolRejected}</h2>
         {#each pending.report.errors as error (error)}
-          <p class="sub" style="color:var(--red)">{error}</p>
+          <Note style="color:var(--red)">{error}</Note>
         {/each}
-        <div class="row" style="margin-top:10px">
-          <button class="mini" onclick={() => (pending = null)}>Close</button>
-        </div>
+        <Row style="margin-top:10px">
+          <Button size="mini" onclick={() => (pending = null)}>Close</Button>
+        </Row>
       {/if}
-    </div>
+    </Box>
   {/if}
 
   <input
     bind:this={fileInput}
     type="file"
     accept="application/json,.sietch.json"
-    class="hide"
+    style="display:none"
     onchange={async event => {
       const file = event.currentTarget.files?.[0]
       event.currentTarget.value = ''

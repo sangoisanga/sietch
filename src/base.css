@@ -1,0 +1,103 @@
+/* Design tokens and bare-element styling only.
+   Everything with a class name lives in the component or primitive that owns it —
+   custom properties must be inherited from the root, and element selectors cannot
+   be scoped to a component, so these two groups are all that belongs here. */
+
+:root {
+  --acc: #FBD45B;
+  --blue: #1d4ed8;
+  --red: #b91c1c;
+  --green: #15803d;
+  --muted: #666;
+  --shadow: 3px 3px 0px #000;
+  --pad: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0 }
+
+html { -webkit-text-size-adjust: 100% }
+
+body {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  background: #fff;
+  color: #000;
+  line-height: 1.6;
+  padding: 20px var(--pad) 160px;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-family: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.65rem, 7.5vw, 2rem);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -.015em;
+}
+
+h2 {
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+hr { border: 0; border-top: 2px solid #000; margin: 22px 0 }
+
+label {
+  display: block;
+  font-size: .64rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  width: 100%;
+  max-width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #000;
+  background: #fff;
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #000 50%),
+    linear-gradient(135deg, #000 50%, transparent 50%);
+  background-position: calc(100% - 15px) 50%, calc(100% - 10px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+  /* the arrow is a background image, so long option text would otherwise run under it */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+textarea { line-height: 1.5; resize: vertical }
+
+input:focus, select:focus, textarea:focus { box-shadow: var(--shadow) }
+
+details summary {
+  cursor: pointer;
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 3px 0;
+}
+
+details summary::-webkit-details-marker { color: #000 }
+
+@media (min-width: 600px) {
+  input, select, textarea { font-size: .84rem; padding: 9px 10px }
+  /* the shorthand above would reclaim the space the arrow is drawn in */
+  select { padding-right: 30px }
+}

@@ -6,6 +6,10 @@
   } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import type { AccentCode } from '../types'
+  import Box from './primitives/Box.svelte'
+  import Button from './primitives/Button.svelte'
+  import Note from './primitives/Note.svelte'
+  import Row from './primitives/Row.svelte'
   import { STRINGS } from './strings'
 
   let { runTask }: { runTask: (label: string, detail: string, work: () => Promise<void>) => Promise<void> } = $props()
@@ -31,7 +35,7 @@
   }
 </script>
 
-<div class="box acc">
+<Box accent>
   <h2>1 · Pick a world</h2>
   <input bind:value={theme} placeholder="The Beatles / Hans Christian Andersen / Sherlock Holmes…">
 
@@ -41,7 +45,7 @@
     {/each}
   </div>
 
-  <div class="row" style="margin-top:12px">
+  <Row style="margin-top:12px">
     <div>
       <label for="accent">Accent</label>
       <select id="accent" bind:value={accent}>
@@ -56,12 +60,12 @@
         <option value="60">≤60 words</option>
       </select>
     </div>
-  </div>
+  </Row>
 
-  <div class="row" style="margin-top:12px">
-    <button class="pri" onclick={() => runTask(STRINGS.forgeTask, `${theme || 'The Beatles'} · ${accent}`, () => forge(theme, accent, maxWords, []))}>
+  <Row style="margin-top:12px">
+    <Button variant="accent" onclick={() => runTask(STRINGS.forgeTask, `${theme || 'The Beatles'} · ${accent}`, () => forge(theme, accent, maxWords, []))}>
       ⚒ Forge passage
-    </button>
+    </Button>
     <select value={selected} onchange={event => choosePack((event.currentTarget as HTMLSelectElement).value)} aria-label="Drill pack">
       <option value={TODAY} disabled={!app.scheduled}>
         {app.scheduled ? STRINGS.todayOption(app.scheduled.title) : STRINGS.nothingScheduled}
@@ -70,71 +74,153 @@
         <option value="{choice.poolId}/{choice.packId}">{choice.title}</option>
       {/each}
     </select>
-    <button class="mini" disabled={!app.canMarkDone} onclick={markScheduledDone}>✓ Mark done</button>
-  </div>
+    <Button size="mini" disabled={!app.canMarkDone} onclick={markScheduledDone}>✓ Mark done</Button>
+  </Row>
 
-  <details style="margin-top:12px;border-top:2px solid #000;padding-top:10px">
+  <details class="detour">
     <summary>Or: use your own text</summary>
-    <p class="sub" style="color:#000;margin-top:8px">
+    <Note tone="ink">
       Paste your English passage. The forge <b>keeps your wording</b> and only adds IPA, Vietnamese meaning and pronunciation tips.
-    </p>
-    <textarea bind:value={ownText} rows="4" placeholder="Paste your English passage here…" style="margin-top:10px"></textarea>
-    <div class="row" style="margin-top:8px">
-      <button class="pri" onclick={async () => {
+    </Note>
+    <textarea bind:value={ownText} rows="4" placeholder="Paste your English passage here…"></textarea>
+    <Row style="margin-top:8px">
+      <Button variant="accent" onclick={async () => {
         const passage = ownText.trim()
         if (!passage) { setStatus(STRINGS.pasteFirst, 'err'); return }
         if (!isLlmConfigured()) { splitOwnTextLocally(passage, accent); return }
         await runTask(STRINGS.annotateTask, passage.slice(0, 60), () => annotate(passage, accent))
-      }}>✍ Use my text</button>
-    </div>
+      }}>✍ Use my text</Button>
+    </Row>
   </details>
 
-  <details style="margin-top:12px;border-top:2px solid #000;padding-top:10px">
+  <details class="detour">
     <summary>No API key? Take the detour</summary>
-    <p class="sub" style="color:#000;margin-top:8px">
+    <Note tone="ink">
       Copy the prompt → paste it into Gemini web / ChatGPT / Claude → copy the JSON back → paste below → Load.
       The phoneme audit runs on your machine, no network needed.
-    </p>
-    <div class="row" style="margin-top:10px">
-      <button class="mini" onclick={async () => {
+    </Note>
+    <Row style="margin-top:10px">
+      <Button size="mini" onclick={async () => {
         const fallback = await copyPrompt(theme, ownText, accent, maxWords)
         if (fallback) pasted = fallback
-      }}>📋 Copy prompt</button>
-    </div>
-    <textarea bind:value={pasted} rows="4" placeholder={'{"theme":"...","sentences":[...]}'} style="margin-top:10px;font-size:.7rem"></textarea>
-    <div class="row" style="margin-top:8px">
-      <button class="mini" onclick={() => { if (loadPastedJson(pasted, accent, theme)) pasted = '' }}>⤵ Load JSON</button>
-    </div>
+      }}>📋 Copy prompt</Button>
+    </Row>
+    <textarea class="json" bind:value={pasted} rows="4" placeholder={'{"theme":"...","sentences":[...]}'}></textarea>
+    <Row style="margin-top:8px">
+      <Button size="mini" onclick={() => { if (loadPastedJson(pasted, accent, theme)) pasted = '' }}>⤵ Load JSON</Button>
+    </Row>
   </details>
-</div>
+</Box>
 
-<div class="box">
+<Box>
   <h2>2 · Phoneme audit</h2>
-  <div class="row" style="align-items:baseline">
+
+  <Row align="baseline">
     <div class="score" style:color={app.audit.pct >= 95 ? 'var(--green)' : app.audit.pct >= 85 ? '#000' : 'var(--red)'}>
       {app.drill.sentences.length ? `${app.audit.pct}%` : '—'}
     </div>
-    <div class="sub" style="margin:0;flex:2">
+    <div class="summary">
       {STRINGS.auditSummary(app.words, app.drill.sentences.length, app.audit.missing.length, app.audit.inventory.length)}
       {#if app.audit.missing.length}
         <b>{STRINGS.coverageGaps(app.audit.missing)}</b>
       {:else}
-        <b style="color:var(--green)">{STRINGS.coverageComplete}</b>
+        <b class="covered">{STRINGS.coverageComplete}</b>
       {/if}
     </div>
-  </div>
+  </Row>
 
   <div class="grid">
     {#each app.audit.inventory as phoneme (phoneme)}
-      <span class="ph {app.audit.found[phoneme] ? 'ok' : 'no'}">{phoneme}</span>
+      <span class="phoneme" class:missing={!app.audit.found[phoneme]}>{phoneme}</span>
     {/each}
   </div>
 
-  <div class="row" style="margin-top:12px">
-    <button class="mini" onclick={async () => {
+  <Row style="margin-top:12px">
+    <Button size="mini" onclick={async () => {
       if (!app.audit.missing.length) { setStatus(STRINGS.nothingToPatch); return }
       await runTask(STRINGS.forgeTask, STRINGS.coverageGaps(app.audit.missing), () => forge(theme, accent, maxWords, app.audit.missing))
-    }}>⚕ Patch the gaps</button>
-    <button class="mini" onclick={saveOpenDrill}>💾 Save to library</button>
-  </div>
-</div>
+    }}>⚕ Patch the gaps</Button>
+    <Button size="mini" onclick={saveOpenDrill}>💾 Save to library</Button>
+  </Row>
+</Box>
+
+<style>
+  .chips {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding: 0 14px 6px;
+    margin-left: -14px;
+    margin-right: -14px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chips::-webkit-scrollbar { display: none }
+
+  .chip {
+    font-family: inherit;
+    font-size: .7rem;
+    font-weight: 600;
+    border: 2px solid #000;
+    background: #fff;
+    padding: 7px 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #000;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    border-radius: 0;
+  }
+
+  .chip:active { transform: translate(2px, 2px); box-shadow: none }
+
+  .detour {
+    margin-top: 12px;
+    border-top: 2px solid #000;
+    padding-top: 10px;
+  }
+
+  .detour textarea { margin-top: 10px }
+  .json { font-size: .7rem }
+
+  .score {
+    font-family: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    flex: 0 0 auto;
+  }
+
+  .summary {
+    font-size: .76rem;
+    color: var(--muted);
+    line-height: 1.55;
+    flex: 2;
+  }
+
+  .covered { color: var(--green) }
+
+  .grid { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px }
+
+  .phoneme {
+    font-size: .72rem;
+    border: 2px solid var(--green);
+    padding: 3px 7px;
+    background: var(--green);
+    color: #fff;
+  }
+
+  .missing { background: var(--red); border-color: var(--red) }
+
+  @media (min-width: 600px) {
+    .chips {
+      flex-wrap: wrap;
+      overflow: visible;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+</style>
