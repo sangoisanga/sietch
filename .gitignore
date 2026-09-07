@@ -1,2 +1,7 @@
 node_modules/
 dist/
+
+# agent working notes and reference material: local only, never published
+.claude/
+thoughts/
+reference/
