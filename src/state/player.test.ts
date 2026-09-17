@@ -3,6 +3,7 @@ import type { Providers } from '../providers'
 import type { SpeechHandle, TtsProvider } from '../providers/tts/types'
 import { app } from './app.svelte'
 import { createPlayer } from './player'
+import { STRINGS } from '../ui/strings'
 
 const sentence = (en: string) => ({ en, ipa: '', vi: '', tips: [] })
 
@@ -37,6 +38,8 @@ describe('player playback', () => {
 
     expect(spoken).toEqual(['One.', 'Two.'])
     expect(app.resumeAt).toBe(-1)
+    expect(app.playing).toBe(false)
+    expect(app.status.message).toBe(STRINGS.passageEnd)
   })
 
   it('resumes from the sentence that was playing when paused', async () => {

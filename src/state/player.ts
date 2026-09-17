@@ -115,7 +115,7 @@ export function createPlayer(providers: Providers): Player {
         await speakSentence(index, run)
         if (runId !== run) return
         await shadowGap(index)
-        await wait(200)
+        if (index < app.drill.sentences.length - 1) await wait(200)
       }
 
       if (runId !== run) return
