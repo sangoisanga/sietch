@@ -1,6 +1,9 @@
 export type ProviderConfig = Record<string, string>
 
+export type ThemeMode = 'light' | 'dark'
+
 export interface Settings {
+  themeMode: ThemeMode
   ttsProviderId: string
   llmProviderId: string
   rate: number
@@ -16,6 +19,7 @@ export const GEMINI_DEFAULTS: ProviderConfig = {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
+  themeMode: 'light',
   ttsProviderId: 'gemini',
   llmProviderId: 'gemini',
   rate: 1,

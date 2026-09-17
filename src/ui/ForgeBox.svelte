@@ -113,7 +113,7 @@
   <h2>2 · Phoneme audit</h2>
 
   <Row align="baseline">
-    <div class="score" style:color={app.audit.pct >= 95 ? 'var(--green)' : app.audit.pct >= 85 ? '#000' : 'var(--red)'}>
+    <div class="score" style:color={app.audit.pct >= 95 ? 'var(--green)' : app.audit.pct >= 85 ? 'var(--ink)' : 'var(--red)'}>
       {app.drill.sentences.length ? `${app.audit.pct}%` : '—'}
     </div>
     <div class="summary">
@@ -161,11 +161,11 @@
     font-family: inherit;
     font-size: .7rem;
     font-weight: 600;
-    border: 2px solid #000;
-    background: #fff;
+    border: 2px solid var(--ink);
+    background: var(--paper);
     padding: 7px 10px;
     cursor: pointer;
-    box-shadow: 2px 2px 0 #000;
+    box-shadow: 2px 2px 0 var(--ink);
     white-space: nowrap;
     flex: 0 0 auto;
     border-radius: 0;
@@ -175,7 +175,7 @@
 
   .detour {
     margin-top: 12px;
-    border-top: 2px solid #000;
+    border-top: 2px solid var(--ink);
     padding-top: 10px;
   }
 
@@ -205,7 +205,7 @@
     border: 2px solid var(--green);
     padding: 3px 7px;
     background: var(--green);
-    color: #fff;
+    color: var(--paper);
   }
 
   .missing { background: var(--red); border-color: var(--red) }

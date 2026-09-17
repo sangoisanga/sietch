@@ -61,4 +61,8 @@ export const STRINGS = {
   auditSummary: (words: number, sentences: number, missing: number, total: number) =>
     `${words} words · ${sentences} sentences · missing ${missing}/${total} sounds.`,
   migrated: (profiles: number) => `Brought ${profiles} profile${profiles === 1 ? '' : 's'} over from the old version.`,
+  themeToggle: 'Toggle light and dark theme',
+  themeLabel: 'Theme',
+  themeLight: 'Desert Sandstone (Light)',
+  themeDark: 'Desert Night (Dark)',
 } as const

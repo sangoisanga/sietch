@@ -28,8 +28,8 @@
     font-size: .8rem;
     font-weight: 600;
     cursor: pointer;
-    border: 2px solid #000;
-    background: #fff;
+    border: 2px solid var(--ink);
+    background: var(--paper);
     padding: 11px 13px;
     box-shadow: var(--shadow);
     border-radius: 0;
@@ -42,13 +42,13 @@
   .btn:active { transform: translate(3px, 3px); box-shadow: none }
   .btn:disabled { opacity: .4; cursor: not-allowed }
 
-  .accent { background: var(--acc) }
-  .active { background: #000; color: #fff }
+  .accent { background: var(--acc); color: var(--acc-ink) }
+  .active { background: var(--ink); color: var(--paper) }
 
   .mini {
     font-size: .7rem;
     padding: 8px 11px;
-    box-shadow: 2px 2px 0 #000;
+    box-shadow: 2px 2px 0 var(--ink);
     min-height: 40px;
     display: inline-flex;
     align-items: center;
@@ -62,7 +62,7 @@
     padding: 0;
     width: 40px;
     height: 40px;
-    box-shadow: 2px 2px 0 #000;
+    box-shadow: 2px 2px 0 var(--ink);
     display: flex;
     align-items: center;
     justify-content: center;

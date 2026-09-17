@@ -2,8 +2,8 @@ import { deflateSync } from 'node:zlib'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const ACCENT = [0xfb, 0xd4, 0x5b]
-const INK = [0x00, 0x00, 0x00]
+const ACCENT = [0xb4, 0x53, 0x2a]
+const INK = [0x26, 0x1a, 0x14]
 
 function crc32(buffer) {
   let crc = 0xffffffff

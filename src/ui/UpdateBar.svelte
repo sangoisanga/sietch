@@ -25,7 +25,8 @@
     justify-content: center;
     padding: 8px 12px;
     background: var(--acc);
-    border-bottom: 2px solid #000;
+    color: var(--acc-ink);
+    border-bottom: 2px solid var(--ink);
     font-size: 0.74rem;
     font-weight: 600;
   }

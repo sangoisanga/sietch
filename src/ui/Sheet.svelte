@@ -34,15 +34,15 @@
   .scrim {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, .45);
+    background: var(--scrim);
     z-index: 70;
   }
 
   .sheet {
     position: fixed;
     z-index: 80;
-    background: #fff;
-    border: 2px solid #000;
+    background: var(--paper);
+    border: 2px solid var(--ink);
     display: none;
     left: 0;
     right: 0;
@@ -58,7 +58,8 @@
     position: sticky;
     top: 0;
     background: var(--acc);
-    border-bottom: 2px solid #000;
+    color: var(--acc-ink);
+    border-bottom: 2px solid var(--ink);
     padding: 12px 14px;
     display: flex;
     align-items: center;
@@ -81,7 +82,7 @@
       transform: translate(-50%, -50%);
       width: min(34rem, 92vw);
       max-height: 86vh;
-      box-shadow: 6px 6px 0 #000;
+      box-shadow: 6px 6px 0 var(--ink);
     }
   }
 </style>

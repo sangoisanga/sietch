@@ -51,8 +51,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff;
-    border-top: 2px solid #000;
+    background: var(--paper);
+    border-top: 2px solid var(--ink);
     z-index: 50;
     padding:
       9px
@@ -85,8 +85,8 @@
 
   .progress {
     height: 6px;
-    background: #eee;
-    border: 1px solid #000;
+    background: var(--fill);
+    border: 1px solid var(--ink);
     width: 100%;
     margin-bottom: 8px;
   }
@@ -108,5 +108,5 @@
   }
 
   .error { color: var(--red); font-weight: 600 }
-  .shadow { color: #000; background: var(--acc); padding: 2px 5px; font-weight: 600 }
+  .shadow { color: var(--acc-ink); background: var(--acc); padding: 2px 5px; font-weight: 600 }
 </style>

@@ -40,6 +40,7 @@ describe('normaliseSettings', () => {
 
   it('round-trips a record already in the new shape', () => {
     const stored = {
+      themeMode: 'light' as const,
       ttsProviderId: 'openrouter',
       llmProviderId: 'openrouter',
       rate: 1,

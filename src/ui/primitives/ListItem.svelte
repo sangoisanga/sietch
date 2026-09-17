@@ -13,7 +13,7 @@
     display: flex;
     gap: 6px;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--line);
     padding: 8px 0;
     font-size: .74rem;
   }

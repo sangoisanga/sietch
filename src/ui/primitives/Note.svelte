@@ -16,5 +16,5 @@
     line-height: 1.55;
   }
 
-  .ink { color: #000 }
+  .ink { color: var(--ink) }
 </style>

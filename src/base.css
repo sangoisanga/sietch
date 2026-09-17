@@ -4,13 +4,44 @@
    be scoped to a component, so these two groups are all that belongs here. */
 
 :root {
-  --acc: #FBD45B;
-  --blue: #1d4ed8;
-  --red: #b91c1c;
-  --green: #15803d;
-  --muted: #666;
-  --shadow: 3px 3px 0px #000;
+  /* Natural Sandstone & Rich Terracotta (Light). Sampled from natural palette. */
+  --paper: #FAF6F0;
+  --paper-lit: #F3ECE1;
+  --fill: #E8DCCE;
+  --line: #D5C5B5;
+  --ink: #261A14;
+  --ink-soft: #4D3B31;
+  --acc: #B4532A;
+  --acc-ink: #FFFFFF;
+  --blue: #1D5C8A;
+  --red: #AC2E1E;
+  --green: #236F45;
+  --muted: #756356;
+  --shadow: 3px 3px 0px var(--ink);
+  --scrim: rgba(38, 26, 20, .55);
+  --overlay-scrim: rgba(250, 246, 240, .94);
   --pad: 16px;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  /* Desert Night (Dark). Softer warm charcoal and matte terracotta. */
+  --paper: #231D19;
+  --paper-lit: #2C2420;
+  --fill: #382F2A;
+  --line: #4E413B;
+  --ink: #E2D5C7;
+  --ink-soft: #C8B9AA;
+  --acc: #D9774B;
+  --acc-ink: #231D19;
+  --blue: #6CA5CE;
+  --red: #E66F5E;
+  --green: #5BB880;
+  --muted: #9C8C7F;
+  --shadow: 3px 3px 0px var(--ink);
+  --scrim: rgba(0, 0, 0, .60);
+  --overlay-scrim: rgba(35, 29, 25, .94);
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0 }
@@ -19,8 +50,8 @@ html { -webkit-text-size-adjust: 100% }
 
 body {
   font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  background: #fff;
-  color: #000;
+  background: var(--paper);
+  color: var(--ink);
   line-height: 1.6;
   padding: 20px var(--pad) 160px;
   overflow-x: hidden;
@@ -42,7 +73,7 @@ h2 {
   margin-bottom: 8px;
 }
 
-hr { border: 0; border-top: 2px solid #000; margin: 22px 0 }
+hr { border: 0; border-top: 2px solid var(--ink); margin: 22px 0 }
 
 label {
   display: block;
@@ -59,8 +90,8 @@ input, select, textarea {
   font-family: inherit;
   font-size: 16px;
   padding: 10px;
-  border: 2px solid #000;
-  background: #fff;
+  border: 2px solid var(--ink);
+  background: var(--paper);
   outline: none;
   border-radius: 0;
   -webkit-appearance: none;
@@ -69,8 +100,8 @@ input, select, textarea {
 
 select {
   background-image:
-    linear-gradient(45deg, transparent 50%, #000 50%),
-    linear-gradient(135deg, #000 50%, transparent 50%);
+    linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
   background-position: calc(100% - 15px) 50%, calc(100% - 10px) 50%;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
@@ -94,7 +125,7 @@ details summary {
   padding: 3px 0;
 }
 
-details summary::-webkit-details-marker { color: #000 }
+details summary::-webkit-details-marker { color: var(--ink) }
 
 @media (min-width: 600px) {
   input, select, textarea { font-size: .84rem; padding: 9px 10px }

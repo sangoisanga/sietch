@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { boot, providers, reportError } from '../state/actions'
+  import { boot, providers, reportError, toggleTheme } from '../state/actions'
   import { app, setStatus } from '../state/app.svelte'
   import { createPlayer } from '../state/player'
   import { go, route } from '../state/route.svelte'
@@ -22,6 +22,10 @@
   let barHeight = $state(120)
 
   const onPractice = $derived(route.current === 'practice')
+
+  $effect(() => {
+    document.documentElement.dataset.theme = app.settings.themeMode
+  })
 
   boot().catch(error => setStatus(STRINGS.failed(error instanceof Error ? error.message : String(error)), 'err'))
 
@@ -68,6 +72,9 @@
 <header class="header">
   <div class="header-inner">
     <button class="brand" onclick={() => go('practice')}>Sietch</button>
+    <Button size="icon" aria-label={STRINGS.themeToggle} onclick={toggleTheme}>
+      {app.settings.themeMode === 'dark' ? '☀' : '☾'}
+    </Button>
     <Button size="mini" onclick={() => (profilesOpen = true)}>👤 {app.profile?.name ?? '…'}</Button>
     <Button
       size="icon"
@@ -101,8 +108,8 @@
     position: sticky;
     top: 0;
     z-index: 60;
-    background: #fff;
-    border-bottom: 2px solid #000;
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
     padding: 0 max(var(--pad), env(safe-area-inset-right)) 0 max(var(--pad), env(safe-area-inset-left));
   }
 

@@ -27,6 +27,7 @@ export function normaliseSettings(stored: unknown): Settings {
   providers.gemini = { ...GEMINI_DEFAULTS, ...providers.gemini, ...legacy }
 
   return {
+    themeMode: source.themeMode === 'dark' ? 'dark' : 'light',
     ttsProviderId: typeof source.ttsProviderId === 'string' ? source.ttsProviderId : DEFAULT_SETTINGS.ttsProviderId,
     llmProviderId: typeof source.llmProviderId === 'string' ? source.llmProviderId : DEFAULT_SETTINGS.llmProviderId,
     rate: typeof source.rate === 'number' ? source.rate : DEFAULT_SETTINGS.rate,

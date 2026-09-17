@@ -72,21 +72,21 @@
 
 <style>
   .card {
-    border: 2px solid #000;
-    background: #fff;
+    border: 2px solid var(--ink);
+    background: var(--paper);
     padding: 14px;
     margin-bottom: 12px;
     position: relative;
   }
 
-  .active { box-shadow: var(--shadow); background: #fffdf3 }
+  .active { box-shadow: var(--shadow); background: var(--paper-lit) }
 
   .num {
     position: absolute;
     top: -2px;
     right: -2px;
-    background: #000;
-    color: #fff;
+    background: var(--ink);
+    color: var(--paper);
     font-size: .6rem;
     padding: 2px 7px;
     font-weight: 600;
@@ -101,15 +101,16 @@
 
   .w { padding: 1px 0; border-radius: 2px }
   .anchor { cursor: pointer; -webkit-tap-highlight-color: transparent }
-  .sel { background: #fff; box-shadow: 0 0 0 2px #000 }
-  .lit { background: var(--acc); box-shadow: 0 0 0 2px var(--acc) }
+  .sel { background: var(--paper); box-shadow: 0 0 0 2px var(--ink) }
+  .lit { background: var(--acc); color: var(--acc-ink); box-shadow: 0 0 0 2px var(--acc) }
 
   .anchor-note {
     margin-top: 9px;
     font-size: .72rem;
     line-height: 1.5;
     background: var(--acc);
-    border: 2px solid #000;
+    color: var(--acc-ink);
+    border: 2px solid var(--ink);
     padding: 7px 9px;
     word-break: break-word;
   }
@@ -127,7 +128,7 @@
     font-family: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
     font-style: italic;
     font-size: .9rem;
-    color: #333;
+    color: var(--ink-soft);
     margin-top: 9px;
     border-left: 3px solid var(--acc);
     padding-left: 9px;
@@ -139,9 +140,9 @@
   .tip {
     font-size: .64rem;
     line-height: 1.45;
-    border: 1px solid #000;
+    border: 1px solid var(--ink);
     padding: 3px 6px;
-    background: #f5f5f5;
+    background: var(--fill);
   }
 
   .acts { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; align-items: center }

@@ -27,11 +27,11 @@
         </defs>
         <polygon points="10,8 50,8 30,45" fill="var(--acc)" clip-path="url(#clipTop)" />
         <polygon points="30,45 50,82 10,82" fill="var(--acc)" clip-path="url(#clipBot)" />
-        <line class="stream" x1="30" y1="44" x2="30" y2="74" stroke="#000" stroke-width="2.5" stroke-dasharray="3 5" />
-        <polygon points="10,8 50,8 30,45" fill="none" stroke="#000" stroke-width="3" />
-        <polygon points="30,45 50,82 10,82" fill="none" stroke="#000" stroke-width="3" />
-        <rect x="6" y="3" width="48" height="6" fill="#000" />
-        <rect x="6" y="81" width="48" height="6" fill="#000" />
+        <line class="stream" x1="30" y1="44" x2="30" y2="74" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="3 5" />
+        <polygon points="10,8 50,8 30,45" fill="none" stroke="var(--ink)" stroke-width="3" />
+        <polygon points="30,45 50,82 10,82" fill="none" stroke="var(--ink)" stroke-width="3" />
+        <rect x="6" y="3" width="48" height="6" fill="var(--ink)" />
+        <rect x="6" y="81" width="48" height="6" fill="var(--ink)" />
       </svg>
 
       <div class="count">{app.task.done} / {app.task.total}</div>
@@ -53,7 +53,7 @@
     position: fixed;
     inset: 0;
     z-index: 90;
-    background: rgba(255, 255, 255, .94);
+    background: var(--overlay-scrim);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,9 +61,9 @@
   }
 
   .card {
-    border: 2px solid #000;
+    border: 2px solid var(--ink);
     box-shadow: var(--shadow);
-    background: #fff;
+    background: var(--paper);
     padding: 26px 22px;
     text-align: center;
     max-width: 20rem;

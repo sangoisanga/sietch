@@ -178,20 +178,20 @@
     display: inline-block;
     width: 8px;
     height: 8px;
-    border: 2px solid #000;
+    border: 2px solid var(--ink);
     margin-right: 6px;
     vertical-align: middle;
   }
 
   .due { color: var(--red); font-weight: 700 }
 
-  .none { background: #fff }
+  .none { background: var(--paper) }
   .partial { background: var(--acc) }
   .ready { background: var(--green); border-color: var(--green) }
 
   .pools {
     margin-top: 20px;
-    border-top: 2px solid #000;
+    border-top: 2px solid var(--ink);
     padding-top: 10px;
   }
 </style>

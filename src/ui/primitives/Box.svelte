@@ -10,9 +10,9 @@
 
 <style>
   .box {
-    border: 2px solid #000;
+    border: 2px solid var(--ink);
     box-shadow: var(--shadow);
-    background: #fff;
+    background: var(--paper);
     padding: 14px;
     margin-bottom: 16px;
   }

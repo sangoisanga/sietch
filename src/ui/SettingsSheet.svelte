@@ -62,6 +62,16 @@
 <Sheet bind:open title="Settings">
   <Row>
     <div>
+      <label for="themeMode">{STRINGS.themeLabel}</label>
+      <select id="themeMode" value={app.settings.themeMode} onchange={e => updateSettings({ themeMode: e.currentTarget.value as 'light' | 'dark' })}>
+        <option value="light">{STRINGS.themeLight}</option>
+        <option value="dark">{STRINGS.themeDark}</option>
+      </select>
+    </div>
+  </Row>
+
+  <Row style="margin-top:10px">
+    <div>
       <label for="ttsProvider">Voice engine</label>
       <select id="ttsProvider" value={app.settings.ttsProviderId} onchange={e => updateSettings({ ttsProviderId: e.currentTarget.value })}>
         {#each providers.tts as provider (provider.id)}<option value={provider.id}>{provider.label}</option>{/each}
