@@ -62,13 +62,14 @@ class AppState {
   library = $state<(Drill & { entryId: string })[]>([])
   shadowPace = $state(DEFAULT_SHADOW_PACE)
 
-  toggles = $state({ ipa: true, vi: true, anchor: true, shadow: false })
+  toggles = $state({ ipa: true, vi: false, anchor: true, shadow: false })
   playing = $state(false)
   stopRequested = false
 
   status = $state({ message: 'Ready.', kind: '' as StatusKind })
   progress = $state(0)
   activeCard = $state(-1)
+  resumeAt = $state(-1)
   litWord = $state(-1)
   openNote = $state({ card: -1, word: -1 })
   clips = $state<Record<number, Clip>>({})

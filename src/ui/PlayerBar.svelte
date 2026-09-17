@@ -4,20 +4,28 @@
   import { app } from '../state/app.svelte'
   import type { Player } from '../state/player'
   import Button from './primitives/Button.svelte'
+  import { STRINGS } from './strings'
 
   let { player, height = $bindable(0) }: { player: Player; height?: number } = $props()
 
   const RATES = ['0.6', '0.75', '0.85', '1']
+
+  const idleLabel = $derived(app.resumeAt >= 0 ? STRINGS.resume : STRINGS.playPassage)
+  const playLabel = $derived(app.playing ? STRINGS.pause : idleLabel)
 </script>
 
 <div class="bar" bind:offsetHeight={height}>
   <div class="inner">
     <div class="progress"><i style:width="{Math.max(0, Math.min(1, app.progress)) * 100}%"></i></div>
 
-    <Button variant="accent" active={app.playing} class="play" onclick={() => player.playAll()}>
-      ▶ Play the passage
+    <Button
+      variant="accent"
+      active={app.playing}
+      class="play"
+      onclick={() => (app.playing ? player.pause() : player.playAll())}
+    >
+      {playLabel}
     </Button>
-    <Button class="stop" onclick={() => player.stop()}>■</Button>
 
     <select
       value={String(app.settings.rate)}
@@ -72,7 +80,6 @@
 
   /* buttons come from a component, so they carry no scoping class of ours */
   .inner > :global(.play) { flex: 1 1 130px }
-  .inner > :global(.stop) { flex: 0 0 48px; padding: 11px 0 }
 
   .picker {
     flex: 0 0 92px;

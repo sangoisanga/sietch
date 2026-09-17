@@ -77,6 +77,7 @@ export function present(drill: Drill): void {
   app.drill = drill
   app.clips = {}
   app.activeCard = -1
+  app.resumeAt = -1
   app.litWord = -1
   app.openNote = { card: -1, word: -1 }
   app.open = null

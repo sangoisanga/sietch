@@ -13,19 +13,32 @@ export interface Player {
   playAll(): Promise<void>
   regenerate(index: number): Promise<void>
   prefetchAll(onStep: (done: number, sentence: string) => void): Promise<number>
-  stop(): void
+  pause(): void
 }
 
 export function createPlayer(providers: Providers): Player {
   let speaking: SpeechHandle | null = null
+  let runId = 0
 
-  async function speakSentence(index: number): Promise<void> {
+  function beginRun(): number {
+    runId += 1
+    app.playing = false
+    app.stopRequested = false
+    speaking?.stop()
+    speaking = null
+    app.litWord = -1
+    return runId
+  }
+
+  async function speakSentence(index: number, run: number): Promise<void> {
     const sentence = app.drill.sentences[index]
     if (!sentence) return
 
     app.activeCard = index
+    app.resumeAt = index
     const wordCount = sentence.en.split(/\s+/).filter(Boolean).length
     const handle = providers.activeTts().speak(sentence.en, speakOptions(), wordIndex => {
+      if (runId !== run) return
       app.litWord = wordIndex ?? -1
       const withinSentence = wordIndex === null ? 0 : (wordIndex + 1) / wordCount
       app.progress = (index + withinSentence) / app.drill.sentences.length
@@ -35,8 +48,10 @@ export function createPlayer(providers: Providers): Player {
     try {
       await handle.finished
     } finally {
-      speaking = null
-      app.litWord = -1
+      if (runId === run) {
+        speaking = null
+        app.litWord = -1
+      }
     }
   }
 
@@ -75,16 +90,16 @@ export function createPlayer(providers: Providers): Player {
 
   return {
     sayOne: async index => {
-      app.stopRequested = false
-      await speakSentence(index)
+      const run = beginRun()
+      await speakSentence(index, run)
       await shadowGap(index)
     },
 
     loopThree: async index => {
-      app.stopRequested = false
+      const run = beginRun()
       for (let round = 0; round < 3; round++) {
-        if (app.stopRequested) break
-        await speakSentence(index)
+        if (runId !== run) break
+        await speakSentence(index, run)
         await shadowGap(index)
         await wait(300)
       }
@@ -92,21 +107,23 @@ export function createPlayer(providers: Providers): Player {
 
     playAll: async () => {
       if (app.playing) return
+      const run = beginRun()
       app.playing = true
-      app.stopRequested = false
 
-      for (let index = 0; index < app.drill.sentences.length; index++) {
-        if (app.stopRequested) break
-        await speakSentence(index)
-        if (app.stopRequested) break
+      for (let index = Math.max(0, app.resumeAt); index < app.drill.sentences.length; index++) {
+        if (runId !== run) return
+        await speakSentence(index, run)
+        if (runId !== run) return
         await shadowGap(index)
         await wait(200)
       }
 
+      if (runId !== run) return
       app.activeCard = -1
       app.playing = false
       app.progress = 0
-      if (!app.stopRequested) setStatus(STRINGS.passageEnd)
+      app.resumeAt = -1
+      setStatus(STRINGS.passageEnd)
     },
 
     regenerate: async index => {
@@ -132,15 +149,12 @@ export function createPlayer(providers: Providers): Player {
       return done
     },
 
-    stop: () => {
+    pause: () => {
+      beginRun()
       app.stopRequested = true
       app.playing = false
-      speaking?.stop()
-      speaking = null
-      app.litWord = -1
-      app.activeCard = -1
-      app.progress = 0
-      setStatus(STRINGS.stopped)
+      app.progress = app.resumeAt >= 0 ? app.resumeAt / app.drill.sentences.length : 0
+      setStatus(STRINGS.paused)
     },
   }
 }
