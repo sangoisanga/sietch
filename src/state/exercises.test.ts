@@ -1,10 +1,13 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { signPool, type PoolFile } from '../content/poolFile'
+import { dayKey } from '../core/period'
 import { putClip } from '../data/audioClips'
 import { closeDb, DB_NAME } from '../data/db'
 import { installPool } from '../data/pools'
+import { markCompleted } from '../data/progress'
+import { saveReview } from '../data/reviews'
 import { providers } from './actions'
-import { app, speakOptions } from './app.svelte'
+import { app, exerciseItemKey, speakOptions } from './app.svelte'
 import { listExercises, matchesSearch, type ExerciseEntry } from './exercises'
 
 const sentence = (en: string) => ({ en, ipa: '', vi: '', tips: [] })
@@ -72,6 +75,42 @@ describe('listExercises', () => {
     await installPool(await twoPacks())
 
     expect((await listExercises()).every(found => found.audio === 'none')).toBe(true)
+  })
+})
+
+describe('scheduling a saved drill', () => {
+  const me = { id: 'p1', name: 'Me' }
+
+  const inDays = (days: number) => {
+    const date = new Date()
+    date.setDate(date.getDate() + days)
+    return dayKey(date)
+  }
+
+  const reviewDue = (due: string) => ({ interval: 3, ease: 2.5, reps: 1, lapses: 0, due })
+
+  it('reports a real due date and completion date for a rated library entry', async () => {
+    app.profile = me
+    app.library = [{ entryId: 'saved-1', theme: 'My text', accent: 'GA', sentences: [sentence('Sing now.')], anchors: {} }]
+    const key = exerciseItemKey({ kind: 'library', entryId: 'saved-1' })
+
+    await saveReview(me.id, key, reviewDue(inDays(3)))
+    await markCompleted(me.id, key, inDays(-1))
+
+    const saved = entry(await listExercises(), 'My text')
+    expect(saved.dueInDays).toBe(3)
+    expect(saved.completedOn).toBe(inDays(-1))
+  })
+
+  // the key was never pool-prefixed, and prefixing it now would silently reset everyone's history
+  it('leaves the pool key unprefixed, so review rows earned before this change still match', async () => {
+    app.profile = me
+    await installPool(await twoPacks())
+    expect(exerciseItemKey({ kind: 'pool', poolId: 'tiny', packId: 'one' })).toBe('passage:one')
+
+    await saveReview(me.id, 'passage:one', reviewDue(inDays(5)))
+
+    expect(entry(await listExercises(), 'Rumi').dueInDays).toBe(5)
   })
 })
 

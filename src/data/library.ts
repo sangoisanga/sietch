@@ -10,12 +10,17 @@ export async function loadLibrary(): Promise<(Drill & { entryId: string })[]> {
   return records.sort(newestFirst).map(record => ({ ...record.drill, entryId: record.id }))
 }
 
-export async function saveToLibrary(drill: Drill): Promise<void> {
+export async function saveToLibrary(drill: Drill, rated: Set<string> = new Set()): Promise<string> {
   const db = await openDb()
-  await db.put('library', { id: crypto.randomUUID(), drill: toPlain(drill), updatedAt: now() })
+  const id = crypto.randomUUID()
+  await db.put('library', { id, drill: toPlain(drill), updatedAt: now() })
 
   const records = (await db.getAll('library')).sort(newestFirst)
-  await Promise.all(records.slice(LIBRARY_LIMIT).map(record => db.delete('library', record.id)))
+  await Promise.all(records.slice(LIBRARY_LIMIT)
+    .filter(record => !rated.has(record.id))
+    .map(record => db.delete('library', record.id)))
+
+  return id
 }
 
 export async function renameLibraryEntry(entryId: string, title: string): Promise<void> {

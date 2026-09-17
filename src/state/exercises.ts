@@ -1,21 +1,16 @@
-import { itemKey } from '../content/pool'
 import { resolveAccent } from '../core/accents'
 import { dayKey } from '../core/period'
-import { daysUntilDue } from '../core/srs'
+import { daysUntilDue, type ReviewState } from '../core/srs'
 import { countWords } from '../core/text'
 import { cachedKeys } from '../data/audioClips'
 import { listPools, loadDrill } from '../data/pools'
 import { loadProgress } from '../data/progress'
 import { loadReviews } from '../data/reviews'
-import type { AccentCode, Drill } from '../types'
+import type { AccentCode, Drill, Progress } from '../types'
 import { providers } from './actions'
-import { app } from './app.svelte'
+import { app, exerciseId, exerciseItemKey, type ExerciseSource } from './app.svelte'
 
 export type AudioState = 'none' | 'partial' | 'ready'
-
-export type ExerciseSource =
-  | { kind: 'pool'; poolId: string; packId: string }
-  | { kind: 'library'; entryId: string }
 
 export interface ExerciseEntry {
   id: string
@@ -44,6 +39,27 @@ async function audioStates(drills: Drill[]): Promise<AudioState[]> {
   })
 }
 
+function describe(
+  drill: Drill,
+  from: ExerciseSource,
+  progress: Progress,
+  reviews: Record<string, ReviewState>,
+  today: string,
+): Omit<ExerciseEntry, 'audio'> {
+  const key = exerciseItemKey(from)
+  const review = reviews[key]
+  return {
+    id: exerciseId(from),
+    from,
+    title: drill.theme,
+    accent: drill.accent,
+    sentences: drill.sentences.length,
+    words: countWords(drill.sentences),
+    completedOn: progress.completed[key] ?? '',
+    dueInDays: review ? daysUntilDue(review, today) : null,
+  }
+}
+
 export async function listExercises(): Promise<ExerciseEntry[]> {
   const progress = app.profile ? await loadProgress(app.profile.id) : { completed: {}, assignments: {} }
   const reviews = app.profile ? await loadReviews(app.profile.id) : {}
@@ -53,37 +69,12 @@ export async function listExercises(): Promise<ExerciseEntry[]> {
   for (const pool of await listPools()) {
     for (const packId of pool.packIds) {
       const drill = await loadDrill(pool.id, packId)
-      const review = reviews[itemKey({ kind: 'passage', packId })]
-      found.push({
-        drill,
-        entry: {
-          id: `${pool.id}/${packId}`,
-          from: { kind: 'pool', poolId: pool.id, packId },
-          title: drill.theme,
-          accent: drill.accent,
-          sentences: drill.sentences.length,
-          words: countWords(drill.sentences),
-          completedOn: progress.completed[itemKey({ kind: 'passage', packId })] ?? '',
-          dueInDays: review ? daysUntilDue(review, today) : null,
-        },
-      })
+      found.push({ drill, entry: describe(drill, { kind: 'pool', poolId: pool.id, packId }, progress, reviews, today) })
     }
   }
 
   for (const { entryId, ...drill } of app.library) {
-    found.push({
-      drill,
-      entry: {
-        id: entryId,
-        from: { kind: 'library', entryId },
-        title: drill.theme,
-        accent: drill.accent,
-        sentences: drill.sentences.length,
-        words: countWords(drill.sentences),
-        completedOn: '',
-        dueInDays: null,
-      },
-    })
+    found.push({ drill, entry: describe(drill, { kind: 'library', entryId }, progress, reviews, today) })
   }
 
   const audio = await audioStates(found.map(item => item.drill))

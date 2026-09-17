@@ -15,7 +15,6 @@ export async function putClip(clip: StoredClip): Promise<void> {
   try {
     await db.put('clips', { ...clip, bytes: clip.blob.size, updatedAt: now() })
   } catch {
-    // a full or blocked cache must not break playback: the clip is already in memory and will play
     return
   }
   await trimOldest(db)

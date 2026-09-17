@@ -29,7 +29,7 @@ import { MISSING_KEY as OPENROUTER_MISSING_KEY, OpenRouterError } from '../provi
 import { createProviders } from '../providers'
 import type { AccentCode, Drill, Sentence } from '../types'
 import { STRINGS } from '../ui/strings'
-import { app, setStatus, speakOptions, type PackChoice } from './app.svelte'
+import { app, exerciseItemKey, setStatus, speakOptions, type PackChoice } from './app.svelte'
 
 const STARTER_POOL_URL = `${import.meta.env.BASE_URL}pools/starter${POOL_EXTENSION}`
 const STARTER_POOL_ID = 'sietch-starter'
@@ -79,8 +79,7 @@ export function present(drill: Drill): void {
   app.activeCard = -1
   app.litWord = -1
   app.openNote = { card: -1, word: -1 }
-  // a forged or library drill is not a pool pack, so nothing is open to rate until openPack says so
-  app.openPackId = ''
+  app.open = null
   void refreshAudioState().catch(reportError)
 }
 
@@ -97,7 +96,6 @@ export async function refreshAudioState(): Promise<void> {
   app.audioReady = new Set(sentences.filter((_, index) => cached.has(keys[index]!)).map(sentence => sentence.en))
 }
 
-// a voice change only changes the cache key, so clips recorded in the old voice stay worth keeping
 export async function forgetLoadedAudio(): Promise<void> {
   providers.tts.forEach(provider => provider.release?.())
   app.clips = {}
@@ -148,8 +146,17 @@ async function refreshScheduled(): Promise<void> {
 
 export async function openPack(poolId: string, packId: string): Promise<void> {
   present(await loadDrill(poolId, packId))
-  app.openPackId = `${poolId}/${packId}`
+  app.open = { kind: 'pool', poolId, packId }
   setStatus(STRINGS.opened(app.drill.theme))
+}
+
+export async function openExercise(id: string): Promise<void> {
+  const [poolId, packId] = id.split('/')
+  if (poolId && packId) {
+    await openPack(poolId, packId)
+    return
+  }
+  await openFromLibrary(id)
 }
 
 export async function openScheduled(): Promise<void> {
@@ -158,20 +165,20 @@ export async function openScheduled(): Promise<void> {
 }
 
 export async function rateOpenDrill(rating: Rating): Promise<void> {
-  const packId = app.openPackId.split('/')[1]
-  if (!app.profile || !packId) {
+  const open = app.open
+  if (!app.profile || !open) {
     setStatus(STRINGS.nothingToRate, 'err')
     return
   }
 
-  const key = `passage:${packId}`
+  const key = exerciseItemKey(open)
   const today = dayKey(new Date())
   const reviews = await loadReviews(app.profile.id)
   const state = nextReview(reviews[key] ?? NEW_REVIEW, rating, today)
 
   await saveReview(app.profile.id, key, state)
   await markCompleted(app.profile.id, key, today)
-  if (app.scheduled?.packId === packId) app.completedToday = true
+  if (open.kind === 'pool' && app.scheduled?.packId === open.packId) app.completedToday = true
   setStatus(STRINGS.rated(state.interval))
 }
 
@@ -227,7 +234,6 @@ export async function switchProfile(id: string): Promise<void> {
   await setActiveProfile(id)
   await refreshProfiles()
   await refreshScheduled()
-  // the drill on screen belongs to whoever was drilling before, so follow the new draw
   if (app.scheduled) await openScheduled()
   setStatus(STRINGS.profileSwitched(app.profile?.name ?? ''))
 }
@@ -262,7 +268,6 @@ function downloadJson(filename: string, payload: unknown): void {
   link.href = url
   link.download = filename
   link.click()
-  // revoking synchronously can cancel the download before the browser has read the blob
   setTimeout(() => URL.revokeObjectURL(url), 0)
 }
 
@@ -321,9 +326,23 @@ export async function updateSettings(patch: Partial<typeof app.settings>): Promi
   await saveSettings(app.settings)
 }
 
+export async function toggleTheme(): Promise<void> {
+  const next = app.settings.themeMode === 'dark' ? 'light' : 'dark'
+  await updateSettings({ themeMode: next })
+}
+
+async function ratedLibraryIds(): Promise<Set<string>> {
+  if (!app.profile) return new Set()
+  const reviews = await loadReviews(app.profile.id)
+  return new Set(app.library
+    .filter(entry => reviews[exerciseItemKey({ kind: 'library', entryId: entry.entryId })])
+    .map(entry => entry.entryId))
+}
+
 export async function saveOpenDrill(): Promise<void> {
-  await saveToLibrary(app.drill)
+  const entryId = await saveToLibrary(app.drill, await ratedLibraryIds())
   app.library = await loadLibrary()
+  app.open = { kind: 'library', entryId }
   setStatus(STRINGS.savedTo(app.drill.theme))
 }
 
@@ -332,6 +351,7 @@ export async function openFromLibrary(entryId: string): Promise<void> {
   if (!entry) return
   const { entryId: _ignored, ...drill } = entry
   present(drill)
+  app.open = { kind: 'library', entryId }
   setStatus(STRINGS.opened(drill.theme))
 }
 

@@ -6,7 +6,6 @@ import { now, openDb, toPlain, type PoolRecord } from './db'
 
 export type InstallDecision = 'replace' | 'keepBoth'
 
-// the recipient's own voice decides the key, so shared audio plays without re-paying for it
 export type ClipKeyFor = (text: string, accent: AccentCode) => string | null
 
 export interface PoolConflict {
@@ -14,7 +13,6 @@ export interface PoolConflict {
   incoming: { id: string; title: string; version: number; packs: number; updatedAt: string }
 }
 
-// packs are keyed by pool so two pools can ship a pack with the same id
 const packKey = (poolId: string, packId: string) => `${poolId}/${packId}`
 
 export async function listPools(): Promise<PoolRecord[]> {
@@ -42,7 +40,6 @@ export async function installPool(file: PoolFile, decision: InstallDecision = 'r
   const poolId = conflict && decision === 'keepBoth' ? `${file.id}-${crypto.randomUUID().slice(0, 8)}` : file.id
   const title = poolId === file.id ? file.title : `${file.title} (copy)`
 
-  // replacing leaves progress alone: completions are keyed by item, not by pool version
   if (poolId === file.id) await removePacksOf(poolId)
 
   const stamp = now()
@@ -75,7 +72,6 @@ export async function importPoolAudio(file: PoolFile, clipKeyFor: ClipKeyFor): P
     const key = accent && clipKeyFor(text, accent)
     if (!key) continue
 
-    // a clip already recorded here was made with this voice; the incoming one only guesses at it
     if ((await cachedKeys([key])).has(key)) continue
 
     await putClip({ key, text, blob: decodeAudio(audio), durationSeconds: audio.durationSeconds })

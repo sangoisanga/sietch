@@ -1,3 +1,4 @@
+import { itemKey } from '../content/pool'
 import { DEFAULT_ACCENT, resolveAccent } from '../core/accents'
 import { auditIPA } from '../core/audit'
 import { DEFAULT_SETTINGS, type Settings } from '../core/settings'
@@ -14,6 +15,16 @@ export interface PackChoice {
   packId: string
   title: string
 }
+
+export type ExerciseSource =
+  | { kind: 'pool'; poolId: string; packId: string }
+  | { kind: 'library'; entryId: string }
+
+export const exerciseId = (from: ExerciseSource): string =>
+  from.kind === 'pool' ? `${from.poolId}/${from.packId}` : from.entryId
+
+export const exerciseItemKey = (from: ExerciseSource): string =>
+  itemKey({ kind: 'passage', packId: from.kind === 'pool' ? from.packId : from.entryId })
 
 export interface ScheduledItem {
   poolId: string
@@ -47,7 +58,7 @@ class AppState {
   packChoices = $state<PackChoice[]>([])
   scheduled = $state<ScheduledItem | null>(null)
   completedToday = $state(false)
-  openPackId = $state('')
+  open = $state<ExerciseSource | null>(null)
   library = $state<(Drill & { entryId: string })[]>([])
   shadowPace = $state(DEFAULT_SHADOW_PACE)
 
@@ -68,6 +79,11 @@ class AppState {
     this.drill.sentences.map(sentence => sentence.ipa ?? '').join(' '),
     resolveAccent(this.drill.accent),
   ))
+
+  exerciseChoices = $derived([
+    ...this.packChoices.map(choice => ({ id: `${choice.poolId}/${choice.packId}`, title: choice.title })),
+    ...this.library.map(entry => ({ id: entry.entryId, title: entry.theme })),
+  ])
 
   words = $derived(countWords(this.drill.sentences))
   missingAudio = $derived(this.drill.sentences.filter(sentence => !this.audioReady.has(sentence.en)).length)

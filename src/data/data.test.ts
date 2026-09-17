@@ -151,6 +151,22 @@ describe('library', () => {
     expect(await loadLibrary()).toHaveLength(30)
   })
 
+  it('returns the id that loadLibrary then reports as the entry id', async () => {
+    const id = await saveToLibrary(drill('Rumi'))
+    expect((await loadLibrary())[0]!.entryId).toBe(id)
+  })
+
+  it('evicts unrated overflow but never a rated entry', async () => {
+    const rated = await saveToLibrary(drill('rated'))
+    const doomed = await saveToLibrary(drill('pack 0'))
+    for (let i = 1; i < 35; i++) await saveToLibrary(drill(`pack ${i}`), new Set([rated]))
+
+    const themes = (await loadLibrary()).map(entry => entry.theme)
+    expect(themes).toContain('rated')
+    expect(themes).not.toContain('pack 0')
+    expect(await (await openDb()).get('library', doomed)).toBeUndefined()
+  })
+
   it('deep-copies so later edits cannot reach the stored entry', async () => {
     const original = drill('Rumi')
     await saveToLibrary(original)

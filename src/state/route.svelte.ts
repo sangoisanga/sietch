@@ -13,7 +13,6 @@ class RouteState {
 
 export const route = new RouteState()
 
-// the hash, not a variable, is the source of truth: the phone's back button has to work
 export function go(next: Route): void {
   location.hash = HASH[next]
 }

@@ -6,7 +6,7 @@
   "cadence": "daily",
   "author": "Sietch",
   "license": "CC-BY-4.0",
-  "updatedAt": "2026-09-06T00:00:00.000Z",
+  "updatedAt": "2026-09-17T00:00:00.000Z",
   "packs": [
     {
       "id": "beatles",
@@ -1376,5 +1376,5 @@
       }
     }
   ],
-  "checksum": "sha256:8180432fd0fe77c691ca789f07f096bc59704e45845d2b7069408d82cf75b195"
+  "checksum": "sha256:87ac8c65fd6ddc990801f916e1f6990c733fd193b0f628c44ac3b12d4f40c3fc"
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { RATINGS } from '../core/srs'
-  import { openPack, openScheduled, providers, rateOpenDrill, reportError } from '../state/actions'
-  import { app } from '../state/app.svelte'
+  import { openExercise, openScheduled, providers, rateOpenDrill, reportError } from '../state/actions'
+  import { app, exerciseId } from '../state/app.svelte'
   import type { Player } from '../state/player'
   import { go } from '../state/route.svelte'
   import Box from './primitives/Box.svelte'
@@ -19,7 +19,9 @@
   const TODAY = '__today__'
 
   const canPrefetch = $derived(Boolean(providers.activeTts().prefetch))
-  const selected = $derived(app.scheduled && app.openPackId === `${app.scheduled.poolId}/${app.scheduled.packId}` ? TODAY : app.openPackId)
+  const openId = $derived(app.open ? exerciseId(app.open) : '')
+  const selected = $derived(
+    app.scheduled && openId === `${app.scheduled.poolId}/${app.scheduled.packId}` ? TODAY : openId)
 
   const toggles = [
     { key: 'ipa', label: 'IPA' },
@@ -30,8 +32,7 @@
 
   async function choosePack(value: string) {
     if (value === TODAY) return openScheduled()
-    const [poolId, packId] = value.split('/')
-    if (poolId && packId) await openPack(poolId, packId)
+    await openExercise(value)
   }
 
   $effect(() => {
@@ -45,8 +46,8 @@
     <option value={TODAY} disabled={!app.scheduled}>
       {app.scheduled ? STRINGS.todayOption(app.scheduled.title) : STRINGS.nothingScheduled}
     </option>
-    {#each app.packChoices as choice (choice.poolId + choice.packId)}
-      <option value="{choice.poolId}/{choice.packId}">{choice.title}</option>
+    {#each app.exerciseChoices as choice (choice.id)}
+      <option value={choice.id}>{choice.title}</option>
     {/each}
   </select>
   {#if canPrefetch && app.drill.sentences.length}
@@ -86,7 +87,7 @@
   </Row>
 {/each}
 
-{#if app.openPackId}
+{#if app.open}
   <Box style="margin-top:16px">
     <h2>How did that go?</h2>
     <Row>
