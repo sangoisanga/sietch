@@ -5,3 +5,4 @@ dist/
 .claude/
 thoughts/
 reference/
+.DS_Store
